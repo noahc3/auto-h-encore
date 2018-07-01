@@ -59,12 +59,12 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 310);
+            this.txtLog.Location = new System.Drawing.Point(12, 330);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(569, 299);
+            this.txtLog.Size = new System.Drawing.Size(569, 305);
             this.txtLog.TabIndex = 2;
             // 
             // btnStart
@@ -72,7 +72,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Enabled = false;
-            this.btnStart.Location = new System.Drawing.Point(12, 281);
+            this.btnStart.Location = new System.Drawing.Point(12, 301);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(569, 23);
             this.btnStart.TabIndex = 3;
@@ -127,24 +127,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInfo.Location = new System.Drawing.Point(12, 121);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(569, 128);
+            this.lblInfo.Size = new System.Drawing.Size(569, 148);
             this.lblInfo.TabIndex = 8;
             // 
             // barProgress
             // 
             this.barProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barProgress.Location = new System.Drawing.Point(15, 252);
+            this.barProgress.Location = new System.Drawing.Point(12, 272);
             this.barProgress.Maximum = 18;
             this.barProgress.Name = "barProgress";
-            this.barProgress.Size = new System.Drawing.Size(566, 23);
+            this.barProgress.Size = new System.Drawing.Size(569, 23);
             this.barProgress.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 621);
+            this.ClientSize = new System.Drawing.Size(593, 647);
             this.Controls.Add(this.barProgress);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnBrowseQCMA);

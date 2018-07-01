@@ -51,6 +51,9 @@
             this.ClientSize = new System.Drawing.Size(456, 288);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGuide);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(472, 327);
+            this.MinimumSize = new System.Drawing.Size(472, 327);
             this.Name = "FormAID";
             this.Text = "Help";
             this.ResumeLayout(false);
