@@ -1,6 +1,8 @@
 # auto h-encore
 A C# (.NET) application to automate (most of) the process of getting h-encore running on your PS Vita system!
 
+This application is **WINDOWS ONLY**.
+
 ![screenshot](https://puu.sh/APo40/a82dc57a6d.png "screenshot")
 
 ## Features
@@ -20,7 +22,7 @@ Basically, you still need QCMA.
 
 ## Usage
 
-The application has been tested on an OLED 3G Vita. Newer models and PSTV are untested.
+The application has been verified working on 1000 and 2000 series Vita's. Compatibility with other models and PSTV is unconfirmed (but should work fine).
 
 Download and extract the [latest release](https://github.com/noahc3/auto-h-encore/releases "latest release") and run it. Further instructions are included in the application itself. QCMA is required to get your AID and transfer h-encore to your Vita.
 
