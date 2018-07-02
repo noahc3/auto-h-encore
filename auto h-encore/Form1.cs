@@ -16,9 +16,6 @@ using System.Diagnostics;
 namespace auto_h_encore {
     public partial class Form1 : Form {
 
-        WebClient web = new WebClient();
-        HttpClient http = new HttpClient();
-
         public Form1() {
             InitializeComponent();
 
@@ -33,8 +30,16 @@ namespace auto_h_encore {
             else btnStart.Enabled = false;
         }
 
-        private void generateDirectories() {
+        private void generateDirectories(string AID) {
             info("Generating working directories...");
+            if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
+            if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
+                if (MessageBox.Show("You must remove the existing bittersmile backup from your QCMA directory. Delete?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                    Directory.Delete(txtQCMA.Text + txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", true);
+                } else {
+                    throw new IOException("Directory Already Exists");
+                }
+            }
             Directory.CreateDirectory(Reference.path_data);
             Directory.CreateDirectory(Reference.path_hencore);
             Directory.CreateDirectory(Reference.path_psvimgtools);
@@ -44,78 +49,42 @@ namespace auto_h_encore {
         }
 
         private void downloadFiles() {
-            info("Downloading h-encore...");
-            web.DownloadFile(Reference.url_hencore, Reference.path_downloads + "hencore.zip");
-            info("      Done!");
-            incrementProgress();
-            info("Extracting h-encore...");
-            ZipFile.ExtractToDirectory(Reference.path_downloads + "hencore.zip", Reference.path_hencore);
-            info("      Done!");
-            incrementProgress();
-
-            info("Downloading psvimgtools...");
-            web.DownloadFile(Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
-            info("  Done!");
-            incrementProgress();
-            info("Extracting psvimgtools...");
-            ZipFile.ExtractToDirectory(Reference.path_downloads + "psvimgtools.zip", Reference.path_psvimgtools);
-            info("      Done!");
-            incrementProgress();
-
-            info("Downloading pkg2zip...");
-            web.DownloadFile(Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
-            info("      Done!");
-            incrementProgress();
-            info("Extracting pkg2zip...");
-            ZipFile.ExtractToDirectory(Reference.path_downloads + "pkg2zip.zip", Reference.path_pkg2zip);
-            info("      Done!");
-            incrementProgress();
-
-            info("Downloading bittersmile demo (this might take a while)...");
-            web.DownloadFile(Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
-            info("      Done!");
-            incrementProgress();
+            Utility.DownloadFile(this, true, Reference.url_hencore, Reference.path_downloads + "hencore.zip");
+            Utility.ExtractFile(this, true, Reference.path_downloads + "hencore.zip", Reference.path_hencore);
+            
+            Utility.DownloadFile(this, true, Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
+            Utility.ExtractFile(this, true, Reference.path_downloads + "psvimgtools.zip", Reference.path_psvimgtools);
+            
+            Utility.DownloadFile(this, true, Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
+            Utility.ExtractFile(this, true, Reference.path_downloads + "pkg2zip.zip", Reference.path_pkg2zip);
+            
+            Utility.DownloadFile(this, true, Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
         }
 
         private void PackageHencore(string encKey) {
-
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.WorkingDirectory = Reference.path_hencore + "h-encore\\";
-            psi.FileName = Reference.path_psvimgtools + "psvimg-create.exe";
-
-            info("Packaging h-encore app using psvimgtools...");
-            psi.Arguments = "-n app -K " + encKey + " app PCSG90096/app";
-            Process process = Process.Start(psi);
-            process.WaitForExit();
-            info("      Done!");
-            incrementProgress();
-
-            info("Packaging h-encore appmeta using psvimgtools...");
-            psi.Arguments = "-n appmeta -K " + encKey + " appmeta PCSG90096/appmeta";
-            process = Process.Start(psi);
-            process.WaitForExit();
-            info("      Done!");
-            incrementProgress();
-
-            info("Packaging h-encore license using psvimgtools...");
-            psi.Arguments = "-n license -K " + encKey + " license PCSG90096/license";
-            process = Process.Start(psi);
-            process.WaitForExit();
-            info("      Done!");
-            incrementProgress();
-
-            info("Packaging h-encore savedata using psvimgtools...");
-            psi.Arguments = "-n savedata -K " + encKey + " savedata PCSG90096/savedata";
-            process = Process.Start(psi);
-            process.WaitForExit();
-            info("      Done!");
-            incrementProgress();
+            Utility.PackageFiles(this, true, Reference.path_hencore + "h-encore\\", encKey, "app");
+            Utility.PackageFiles(this, true, Reference.path_hencore + "h-encore\\", encKey, "appmeta");
+            Utility.PackageFiles(this, true, Reference.path_hencore + "h-encore\\", encKey, "license");
+            Utility.PackageFiles(this, true, Reference.path_hencore + "h-encore\\", encKey, "savedata");
         }
 
-        private string GetEncKey(string aid) {
-            string page = http.GetStringAsync(Reference.url_cma + aid).Result;
-            return page.Substring(page.Length - 65, 64);
+
+        private void toggleControls(bool state) {
+            if (InvokeRequired) {
+                Invoke(new Action(() => {
+                    btnStart.Enabled = state;
+                    txtAID.Enabled = state;
+                    txtQCMA.Enabled = state;
+                    btnBrowseQCMA.Enabled = state;
+                }));
+            } else {
+                btnStart.Enabled = state;
+                txtAID.Enabled = state;
+                txtQCMA.Enabled = state;
+                btnBrowseQCMA.Enabled = state;
+            }
         }
+        
 
         private void lblHowToAID_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             FormAID frmAid = new FormAID();
@@ -127,56 +96,132 @@ namespace auto_h_encore {
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            btnStart.Enabled = false;
-            txtAID.Enabled = false;
-            txtQCMA.Enabled = false;
-            btnBrowseQCMA.Enabled = false;
+            toggleControls(false);
 
             //run code on new thread to keep UI responsive
             Task.Factory.StartNew(new Action(() => {
 
+                try {
+                    generateDirectories(txtAID.Text);
+                    downloadFiles();
+                } catch (Exception) {
+                    toggleControls(true);
+                    return;
+                }
                 
-                generateDirectories();
-                downloadFiles();
+                try {
+                    info("Extracting bittersmile demo with pkg2zip...");
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.WorkingDirectory = Reference.path_pkg2zip;
+                    psi.Arguments = "-x \"" + Reference.path_downloads + "bittersmile.pkg\"";
+                    psi.FileName = Reference.path_pkg2zip + "pkg2zip.exe";
+                    Process process = Process.Start(psi);
+                    process.WaitForExit();
+                    info("      Done!");
+                    incrementProgress();
+                } catch (FileNotFoundException) {
+                    MessageBox.Show("Files that were downloaded seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                    toggleControls(true);
+                    return;
+                }
                 
-                info("Extracting bittersmile demo with pkg2zip...");
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.WorkingDirectory = Reference.path_pkg2zip;
-                psi.Arguments = "-x \"" + Reference.path_downloads + "bittersmile.pkg\"";
-                psi.FileName = Reference.path_pkg2zip + "pkg2zip.exe";
-                Process process = Process.Start(psi);
-                process.WaitForExit();
-                info("      Done!");
-                incrementProgress();
-
-                foreach (string k in Directory.EnumerateFiles(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
-                    info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                    File.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                try {
+                    foreach (string k in Directory.EnumerateFiles(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
+                        info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                        File.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                    }
+                } catch (DirectoryNotFoundException ex) {
+                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                    toggleControls(true);
+                    return;
+                } catch (UnauthorizedAccessException ex) {
+                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
+                    toggleControls(true);
+                    return;
+                } catch (IOException ex) {
+                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
+                    toggleControls(true);
+                    return;
                 }
 
-                foreach(string k in Directory.EnumerateDirectories(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
-                    info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                    Directory.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                try {
+                    foreach (string k in Directory.EnumerateDirectories(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
+                        info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                        Directory.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                    }
+                } catch (DirectoryNotFoundException ex) {
+                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                    toggleControls(true);
+                    return;
+                } catch (UnauthorizedAccessException ex) {
+                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
+                    toggleControls(true);
+                    return;
+                } catch (IOException ex) {
+                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
+                    toggleControls(true);
+                    return;
                 }
 
                 incrementProgress();
 
-                info("Moving license file...");
-                File.Move(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
-                info("      Done!");
-                incrementProgress();
+                try {
+                    info("Moving license file...");
+                    File.Move(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
+                    info("      Done!");
+                    incrementProgress();
+                } catch (DirectoryNotFoundException ex) {
+                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                    toggleControls(true);
+                    return;
+                } catch (UnauthorizedAccessException ex) {
+                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
+                    toggleControls(true);
+                    return;
+                } catch (IOException ex) {
+                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
+                    toggleControls(true);
+                    return;
+                }
 
-                info("Getting CMA encryption key using AID " + txtAID.Text);
-                string encKey = GetEncKey(txtAID.Text);
-                info("Got CMA key " + encKey);
-                incrementProgress();
+                string encKey;
 
-                PackageHencore(encKey);
+                try {
+                    info("Getting CMA encryption key using AID " + txtAID.Text);
+                    encKey = Utility.GetEncKey(txtAID.Text);
+                    if (encKey.Length != 64) return;
+                    info("Got CMA encryption key " + encKey);
+                    incrementProgress();
+                } catch (Exception) {
+                    toggleControls(true);
+                    return;
+                }
+                
+                try {
+                    PackageHencore(encKey);
+                } catch (Exception) {
+                    toggleControls(true);
+                    return;
+                }
 
-                info("Moving h-encore files to QCMA APP directory...\r\n");
-                Directory.Move(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
-                incrementProgress();
-                info("auto h-encore Done!!");
+                try {
+                    info("Moving h-encore files to QCMA APP directory...\r\n");
+                    Directory.Move(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
+                    incrementProgress();
+                    info("auto h-encore Done!!");
+                } catch (DirectoryNotFoundException ex) {
+                    MessageBox.Show("Your QCMA directory disappeared! Make sure you specified the correct directory and that it wasn't changed or deleted!");
+                    toggleControls(true);
+                    return;
+                } catch (UnauthorizedAccessException ex) {
+                    MessageBox.Show("The application doesn't have write access to your specified QCMA directory. Change it in QCMA settings to a directory you own, run this application as administrator, or disable read-only mode on the QCMA directory.");
+                    toggleControls(true);
+                    return;
+                } catch (IOException ex) {
+                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
+                    toggleControls(true);
+                    return;
+                }
 
                 Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"
                     + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
@@ -190,22 +235,17 @@ namespace auto_h_encore {
                     + "8. Run the h-encore app from the Live Area\r\n"
                     + "Done!")));
 
-                Invoke(new Action(() => {
-                    btnStart.Enabled = true;
-                    txtAID.Enabled = true;
-                    txtQCMA.Enabled = true;
-                    btnBrowseQCMA.Enabled = true;
-                }));
+                toggleControls(true);
             }));
             
         }
 
-        private void incrementProgress() {
+        public void incrementProgress() {
             if (InvokeRequired) Invoke(new Action(() => barProgress.Value++));
             else barProgress.Value++;
         }
 
-        private void info(string message) {
+        public void info(string message) {
             if (InvokeRequired) Invoke(new Action(() => txtLog.AppendText("[" + DateTime.Now.ToLongTimeString() + "] " + message + "\r\n")));
             else txtLog.AppendText("[" + DateTime.Now.ToLongTimeString() + "] " + message + "\r\n");
 
