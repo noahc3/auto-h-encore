@@ -6,7 +6,7 @@ A C# (.NET) application to automate (most of) the process of getting h-encore ru
 ## Features
 This application does everything short of installing QCMA/integrating libVitaMTP. That means:
 
- - Automatically downloads required tools (psvimgtools, pkg2img, bittersmile demo and h-encore itself)
+ - Automatically downloads required tools (psvimgtools, pkg2zip, bittersmile demo and h-encore itself)
  - Grabs CMA encryption key from your account ID
  - Unpackages bittersmile and repackages it with your encryption key and h-encore
  - Moves finished files to your QCMA directory for copying to your PS Vita
@@ -37,3 +37,9 @@ I don't know C, so I can't reasonably integrate libVitaMTP into the application 
 The code also needs some cleanup and error handling.
 
 Other changes are also welcome through pull requests.
+
+## Thanks
+ - thefl0w for [h-encore](https://github.com/TheOfficialFloW/h-encore "h-encore") and all of their other contributions to the Vita scene.
+ - yifanlu for [psvimgtools](https://github.com/yifanlu/psvimgtools/) and all of their other contributions to the Vita scene.
+ - mmozeiko for [pkg2zip](https://github.com/mmozeiko/pkg2zip "pkg2zip").
+ - Everyone else that positively contributes to the Vita scene.
