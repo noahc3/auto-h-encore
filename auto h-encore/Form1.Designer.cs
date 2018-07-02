@@ -33,6 +33,7 @@
             this.btnBrowseQCMA = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
             this.barProgress = new System.Windows.Forms.ProgressBar();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtAID
@@ -64,7 +65,7 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(569, 305);
+            this.txtLog.Size = new System.Drawing.Size(569, 292);
             this.txtLog.TabIndex = 2;
             // 
             // btnStart
@@ -140,11 +141,21 @@
             this.barProgress.Size = new System.Drawing.Size(569, 23);
             this.barProgress.TabIndex = 9;
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Location = new System.Drawing.Point(326, 628);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(255, 13);
+            this.lblVersion.TabIndex = 10;
+            this.lblVersion.Text = "auto h-encore version x";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 647);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.barProgress);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnBrowseQCMA);
@@ -174,6 +185,7 @@
         private System.Windows.Forms.Button btnBrowseQCMA;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.ProgressBar barProgress;
+        private System.Windows.Forms.Label lblVersion;
     }
 }
 
