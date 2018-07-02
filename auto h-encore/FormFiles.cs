@@ -225,6 +225,9 @@ namespace auto_h_encore {
         }
 
         private void FormFiles_Load(object sender, EventArgs e) {
+
+            ControlBox = false;
+
             UserChecked = true;
             cbxIgnoreHashes.Checked = HashState;
             if (HashState) cbxIgnoreHashes.BackColor = Color.Red;

@@ -13,11 +13,14 @@ using System.IO.Compression;
 using System.Net.Http;
 using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace auto_h_encore {
     public partial class Form1 : Form {
 
         private static string[] imports = new string[4];
+        private static bool[] existingFiles = new bool[4];
+
 
         public Form1() {
             InitializeComponent();
@@ -35,8 +38,91 @@ namespace auto_h_encore {
         }
 
         private void generateDirectories(string AID) {
-            info("Generating working directories...");
-            if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
+            //TODO: Needs code cleanup pretty bad...
+            if (cbxDelete.Checked) {
+                info("Deleting old files...");
+                if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
+                
+            } else {
+                using (MD5 md5 = MD5.Create()) {
+                    if (FileSystem.FileExists(Reference.path_pkg2zip + "bittersmile.pkg")) {
+                        if (imports[3] != null && imports[3] != "") {
+                            info("Deleting existing bittersmile since an import is selected...");
+                            FileSystem.DeleteFile(Reference.path_pkg2zip + "bittersmile.pkg");
+                        } else {
+                            using (FileStream stream = File.OpenRead(Reference.path_pkg2zip + "bittersmile.pkg")) {
+                                if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hash_bittersmile) {
+                                    info("Bittersmile already downloaded and checksum OK");
+                                    stream.Close();
+                                    FileSystem.MoveFile(Reference.path_pkg2zip + "bittersmile.pkg", Reference.path_downloads + "bittersmile.pkg");
+                                    existingFiles[3] = true;
+                                } else {
+                                    info("Existing bittersmile pkg hash mismatch, deleting...");
+                                    stream.Close();
+                                    FileSystem.DeleteFile(Reference.path_pkg2zip + "bittersmile.pkg");
+                                }
+                            }
+                        }
+                    }
+                    if (FileSystem.FileExists(Reference.path_downloads + "hencore.zip")) {
+                        if (imports[0] != null && imports[0] != "") {
+                            info("Deleting existing h-encore since an import is selected...");
+                            FileSystem.DeleteFile(Reference.path_downloads + "hencore.zip");
+                        } else {
+                            using (FileStream stream = File.OpenRead(Reference.path_downloads + "hencore.zip")) {
+                                if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hash_hencore) {
+                                    info("h-encore already downloaded and checksum OK");
+                                    existingFiles[0] = true;
+                                } else {
+                                    info("Existing h-encore.zip hash mismatch, deleting...");
+                                    stream.Close();
+                                    FileSystem.DeleteFile(Reference.path_downloads + "hencore.zip");
+                                }
+                            }
+                        }
+                    }
+                    if (FileSystem.FileExists(Reference.path_downloads + "pkg2zip.zip")) {
+                        if (imports[1] != null && imports[1] != "") {
+                            info("Deleting existing pkg2zip since an import is selected...");
+                            FileSystem.DeleteFile(Reference.path_downloads + "pkg2zip.zip");
+                        } else {
+                            using (FileStream stream = File.OpenRead(Reference.path_downloads + "pkg2zip.zip")) {
+                                if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hash_pkg2zip) {
+                                    info("pkg2zip already downloaded and checksum OK");
+                                    existingFiles[1] = true;
+                                } else {
+                                    info("Existing pkg2zip.zip hash mismatch, deleting...");
+                                    stream.Close();
+                                    FileSystem.DeleteFile(Reference.path_downloads + "pkg2zip.zip");
+                                }
+                            }
+                        }
+                    }
+                    if (FileSystem.FileExists(Reference.path_downloads + "psvimgtools.zip")) {
+                        if (imports[2] != null && imports[2] != "") {
+                            info("Deleting existing psvimgtools since an import is selected...");
+                            FileSystem.DeleteFile(Reference.path_downloads + "psvimgtools.zip");
+                        } else {
+                            using (FileStream stream = File.OpenRead(Reference.path_downloads + "psvimgtools.zip")) {
+                                if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hash_psvimgtools) {
+                                    info("psvimgtools already downloaded and checksum OK");
+                                    existingFiles[2] = true;
+                                } else {
+                                    info("Existing psvimgtools.zip hash mismatch, deleting...");
+                                    stream.Close();
+                                    FileSystem.DeleteFile(Reference.path_downloads + "psvimgtools.zip");
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+
+                if (Directory.Exists(Reference.path_hencore)) Directory.Delete(Reference.path_hencore, true);
+                if (Directory.Exists(Reference.path_pkg2zip)) Directory.Delete(Reference.path_pkg2zip, true);
+                if (Directory.Exists(Reference.path_psvimgtools)) Directory.Delete(Reference.path_psvimgtools, true);
+            }
+
             if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
                 if (MessageBox.Show("You must remove the existing bittersmile backup from your QCMA directory. Delete?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                     Directory.Delete(txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", true);
@@ -44,6 +130,8 @@ namespace auto_h_encore {
                     throw new IOException("Directory Already Exists");
                 }
             }
+
+            info("Generating working directories...");
             Directory.CreateDirectory(Reference.path_data);
             Directory.CreateDirectory(Reference.path_hencore);
             Directory.CreateDirectory(Reference.path_psvimgtools);
@@ -53,34 +141,46 @@ namespace auto_h_encore {
         }
 
         private void downloadFiles() {
-            if (imports[0] != "") {
-                Utility.ImportFile(this, true, imports[0], Reference.path_downloads + "hencore.zip");
-            } else {
-                Utility.DownloadFile(this, true, Reference.url_hencore, Reference.path_downloads + "hencore.zip");
+            if (!existingFiles[0]) {
+                if (imports[0] != null && imports[0] != "") {
+                    Utility.ImportFile(this, imports[0], Reference.path_downloads + "hencore.zip");
+                } else {
+                    Utility.DownloadFile(this, Reference.url_hencore, Reference.path_downloads + "hencore.zip");
+                }
             }
+            incrementProgress();
             Utility.ExtractFile(this, true, Reference.path_downloads + "hencore.zip", Reference.path_hencore);
 
-            if (imports[1] != "") {
-                Utility.ImportFile(this, true, imports[1], Reference.path_downloads + "pkg2zip.zip");
-            } else {
-                Utility.DownloadFile(this, true, Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
+            if (!existingFiles[1]) {
+                if (imports[1] != null && imports[1] != "") {
+                    Utility.ImportFile(this, imports[1], Reference.path_downloads + "pkg2zip.zip");
+                } else {
+                    Utility.DownloadFile(this, Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
+                }
             }
+            incrementProgress();
             Utility.ExtractFile(this, true, Reference.path_downloads + "pkg2zip.zip", Reference.path_pkg2zip);
 
-            if (imports[2] != "") {
-                Utility.ImportFile(this, true, imports[2], Reference.path_downloads + "psvimgtools.zip");
-            } else {
-                Utility.DownloadFile(this, true, Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
+            if (!existingFiles[2]) {
+                if (imports[2] != null && imports[2] != "") {
+                    Utility.ImportFile(this, imports[2], Reference.path_downloads + "psvimgtools.zip");
+                } else {
+                    Utility.DownloadFile(this, Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
+                }
             }
+            incrementProgress();
             Utility.ExtractFile(this, true, Reference.path_downloads + "psvimgtools.zip", Reference.path_psvimgtools);
 
-            if (imports[3] != "") {
-                Utility.ImportFile(this, true, imports[3], Reference.path_downloads + "bittersmile.pkg");
-            } else {
-                Utility.DownloadFile(this, true, Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
+            if (!existingFiles[3]) {
+                if (imports[3] != null && imports[3] != "") {
+                    Utility.ImportFile(this, imports[3], Reference.path_downloads + "bittersmile.pkg");
+                } else {
+                    Utility.DownloadFile(this, Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
+                }
             }
-            
-            
+            incrementProgress();
+
+            existingFiles = new bool[4];
             
             
            
@@ -127,16 +227,17 @@ namespace auto_h_encore {
 
             //run code on new thread to keep UI responsive
             Task.Factory.StartNew(new Action(() => {
-
+                
                 try {
                     generateDirectories(txtAID.Text);
                     downloadFiles();
-                } catch (Exception) {
+                } catch (Exception ex) {
                     //MessageBox.Show(ex.Message);
                     toggleControls(true);
                     return;
                 }
                 
+
                 try {
                     //move the bittersmile pkg to pkg2zip working directory because pkg2zip doesnt support special characters
                     info("Extracting bittersmile demo with pkg2zip...");

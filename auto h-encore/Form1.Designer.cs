@@ -36,6 +36,7 @@
             this.barProgress = new System.Windows.Forms.ProgressBar();
             this.lblVersion = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
+            this.cbxDelete = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtAID
@@ -154,7 +155,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(15, 272);
+            this.btnImport.Location = new System.Drawing.Point(12, 282);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(566, 23);
             this.btnImport.TabIndex = 11;
@@ -163,11 +164,22 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
+            // cbxDelete
+            // 
+            this.cbxDelete.AutoSize = true;
+            this.cbxDelete.Location = new System.Drawing.Point(15, 311);
+            this.cbxDelete.Name = "cbxDelete";
+            this.cbxDelete.Size = new System.Drawing.Size(306, 17);
+            this.cbxDelete.TabIndex = 12;
+            this.cbxDelete.Text = "Delete existing files (do this if something went wrong before)";
+            this.cbxDelete.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 718);
+            this.Controls.Add(this.cbxDelete);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.barProgress);
@@ -202,6 +214,7 @@
         private System.Windows.Forms.ProgressBar barProgress;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.CheckBox cbxDelete;
     }
 }
 

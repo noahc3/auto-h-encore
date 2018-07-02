@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFiles));
             this.txtHencore = new System.Windows.Forms.TextBox();
             this.btnBrowseHencore = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
@@ -243,6 +244,8 @@
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnBrowseHencore);
             this.Controls.Add(this.txtHencore);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormFiles";
             this.Text = "Select Pre-existing Files";
             this.Load += new System.EventHandler(this.FormFiles_Load);

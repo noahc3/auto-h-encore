@@ -26,13 +26,12 @@ namespace auto_h_encore {
             }
         }
 
-        public static void DownloadFile(Form1 form, bool incrementProgress, string url, string output) {
+        public static void DownloadFile(Form1 form, string url, string output) {
             while (true)
                 try {
                     form.info("Downloading " + output.Replace('/', '\\').Split('\\').Last());
                     web.DownloadFile(url, output);
                     form.info("      Done!");
-                    if (incrementProgress) form.incrementProgress();
                     return;
                 } catch (WebException ex) {
                     if (MessageBox.Show("Failed to download file " + url + "\r\n\r\nMake sure your internet is connected and/or retry. If it still doesn't work, create an issue on the Github issue tracker.", "Error", MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
@@ -76,7 +75,7 @@ namespace auto_h_encore {
                 Process process = Process.Start(psi);
                 process.WaitForExit();
                 form.info("      Done!");
-                if (incrementProgress) form.incrementProgress();
+                form.incrementProgress();
                 return;
             } catch (FileNotFoundException ex) {
                 MessageBox.Show("Files that were downloaded seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
@@ -84,12 +83,11 @@ namespace auto_h_encore {
             }
         }
 
-        public static void ImportFile(Form1 form, bool incrementProgress, string source, string dest) {
+        public static void ImportFile(Form1 form, string source, string dest) {
             try {
                 form.info("Importing file " + source.Replace('/', '\\').Split('\\').Last());
                 FileSystem.CopyFile(source, dest);
                 form.info("        Done!");
-                if (incrementProgress) form.incrementProgress();
             } catch (DirectoryNotFoundException ex) {
                 MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
                 return;
