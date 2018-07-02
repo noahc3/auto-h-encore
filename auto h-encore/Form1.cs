@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.IO.Compression;
 using System.Net.Http;
+using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
 
 namespace auto_h_encore {
@@ -92,6 +93,7 @@ namespace auto_h_encore {
         private void lblHowToAID_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             FormAID frmAid = new FormAID();
             frmAid.ShowDialog();
+            
         }
 
         private void txtAID_TextChanged(object sender, EventArgs e) {
@@ -132,7 +134,7 @@ namespace auto_h_encore {
                 try {
                     foreach (string k in Directory.EnumerateFiles(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
                         info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                        File.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
                 } catch (DirectoryNotFoundException ex) {
                     MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
@@ -151,7 +153,7 @@ namespace auto_h_encore {
                 try {
                     foreach (string k in Directory.EnumerateDirectories(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
                         info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                        Directory.Move(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
                 } catch (DirectoryNotFoundException ex) {
                     MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
@@ -171,7 +173,7 @@ namespace auto_h_encore {
 
                 try {
                     info("Moving license file...");
-                    File.Move(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
+                    FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
                     info("      Done!");
                     incrementProgress();
                 } catch (DirectoryNotFoundException ex) {
@@ -210,7 +212,7 @@ namespace auto_h_encore {
 
                 try {
                     info("Moving h-encore files to QCMA APP directory...\r\n");
-                    Directory.Move(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
+                    FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
                     incrementProgress();
                     info("auto h-encore Done!!");
                 } catch (DirectoryNotFoundException ex) {
