@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAID));
             this.lblGuide = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             this.ClientSize = new System.Drawing.Size(456, 288);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblGuide);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(472, 327);
             this.MinimumSize = new System.Drawing.Size(472, 327);
