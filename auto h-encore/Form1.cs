@@ -17,6 +17,8 @@ using System.Diagnostics;
 namespace auto_h_encore {
     public partial class Form1 : Form {
 
+        private static string[] imports = new string[4];
+
         public Form1() {
             InitializeComponent();
 
@@ -51,16 +53,37 @@ namespace auto_h_encore {
         }
 
         private void downloadFiles() {
-            Utility.DownloadFile(this, true, Reference.url_hencore, Reference.path_downloads + "hencore.zip");
+            if (imports[0] != "") {
+                Utility.ImportFile(this, true, imports[0], Reference.path_downloads + "hencore.zip");
+            } else {
+                Utility.DownloadFile(this, true, Reference.url_hencore, Reference.path_downloads + "hencore.zip");
+            }
             Utility.ExtractFile(this, true, Reference.path_downloads + "hencore.zip", Reference.path_hencore);
-            
-            Utility.DownloadFile(this, true, Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
-            Utility.ExtractFile(this, true, Reference.path_downloads + "psvimgtools.zip", Reference.path_psvimgtools);
-            
-            Utility.DownloadFile(this, true, Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
+
+            if (imports[1] != "") {
+                Utility.ImportFile(this, true, imports[1], Reference.path_downloads + "pkg2zip.zip");
+            } else {
+                Utility.DownloadFile(this, true, Reference.url_pkg2zip, Reference.path_downloads + "pkg2zip.zip");
+            }
             Utility.ExtractFile(this, true, Reference.path_downloads + "pkg2zip.zip", Reference.path_pkg2zip);
+
+            if (imports[2] != "") {
+                Utility.ImportFile(this, true, imports[2], Reference.path_downloads + "psvimgtools.zip");
+            } else {
+                Utility.DownloadFile(this, true, Reference.url_psvimgtools, Reference.path_downloads + "psvimgtools.zip");
+            }
+            Utility.ExtractFile(this, true, Reference.path_downloads + "psvimgtools.zip", Reference.path_psvimgtools);
+
+            if (imports[3] != "") {
+                Utility.ImportFile(this, true, imports[3], Reference.path_downloads + "bittersmile.pkg");
+            } else {
+                Utility.DownloadFile(this, true, Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
+            }
             
-            Utility.DownloadFile(this, true, Reference.url_bittersmile, Reference.path_downloads + "bittersmile.pkg");
+            
+            
+            
+           
         }
 
         private void PackageHencore(string encKey) {
@@ -108,8 +131,8 @@ namespace auto_h_encore {
                 try {
                     generateDirectories(txtAID.Text);
                     downloadFiles();
-                } catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
+                } catch (Exception) {
+                    //MessageBox.Show(ex.Message);
                     toggleControls(true);
                     return;
                 }
@@ -267,6 +290,14 @@ namespace auto_h_encore {
 
         private void txtQCMA_TextChanged(object sender, EventArgs e) {
             VerifyUserInfo();
+        }
+
+        private void btnImport_Click(object sender, EventArgs e) {
+            FormFiles frm = new FormFiles(imports);
+            frm.ShowDialog();
+            if (frm.result != null) {
+                imports = frm.result;
+            }
         }
     }
 }

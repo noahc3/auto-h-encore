@@ -35,6 +35,7 @@
             this.lblInfo = new System.Windows.Forms.Label();
             this.barProgress = new System.Windows.Forms.ProgressBar();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.btnImport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtAID
@@ -61,12 +62,12 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 330);
+            this.txtLog.Location = new System.Drawing.Point(12, 392);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(569, 292);
+            this.txtLog.Size = new System.Drawing.Size(569, 301);
             this.txtLog.TabIndex = 2;
             // 
             // btnStart
@@ -74,7 +75,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Enabled = false;
-            this.btnStart.Location = new System.Drawing.Point(12, 301);
+            this.btnStart.Location = new System.Drawing.Point(12, 363);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(569, 23);
             this.btnStart.TabIndex = 3;
@@ -136,7 +137,7 @@
             // 
             this.barProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barProgress.Location = new System.Drawing.Point(12, 272);
+            this.barProgress.Location = new System.Drawing.Point(12, 334);
             this.barProgress.Maximum = 17;
             this.barProgress.Name = "barProgress";
             this.barProgress.Size = new System.Drawing.Size(569, 23);
@@ -144,18 +145,30 @@
             // 
             // lblVersion
             // 
-            this.lblVersion.Location = new System.Drawing.Point(326, 628);
+            this.lblVersion.Location = new System.Drawing.Point(326, 698);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(255, 13);
             this.lblVersion.TabIndex = 10;
             this.lblVersion.Text = "auto h-encore version x";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(15, 272);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(566, 23);
+            this.btnImport.TabIndex = 11;
+            this.btnImport.Text = "I\'ve already download some or all of the files and would like to use them rather " +
+    "than redownload them";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 647);
+            this.ClientSize = new System.Drawing.Size(593, 718);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.barProgress);
             this.Controls.Add(this.lblInfo);
@@ -188,6 +201,7 @@
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.ProgressBar barProgress;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnImport;
     }
 }
 

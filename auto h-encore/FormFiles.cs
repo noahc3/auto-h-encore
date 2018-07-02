@@ -15,9 +15,12 @@ using System.Threading;
 namespace auto_h_encore {
     public partial class FormFiles : Form {
 
-        private static MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+        static bool HashState = false;
+
+        private bool UserChecked = false;
 
         private bool[] calculating = new bool[4];
+        private bool[] okFiles = new bool[4];
 
         private static string[] fileStatusMessages = new string[] {
             "No file selected, will download.",
@@ -28,10 +31,12 @@ namespace auto_h_encore {
             "Calculating checksum..."
         };
 
-        public static string[] result;
+        public string[] result = new string[4];
 
-        public FormFiles() {
+        public FormFiles(string[] imports) {
             InitializeComponent();
+
+            result = imports;
         }
 
         private void LockControls(int id, Button btn, TextBox txt) {
@@ -64,39 +69,48 @@ namespace auto_h_encore {
         private void CheckStatus(int id, Button btnBrowse, Label lblStatus, TextBox txtFile) {
             lblStatus.ForeColor = SystemColors.ControlText;
             lblStatus.Text = fileStatusMessages[5];
-            LockControls(id, btnBrowse, txtHencore);
-            Task.Factory.StartNew(new Action(() => {
-                if (txtFile.Text == "") {
-                    Invoke(new Action(() => {
-                        lblStatus.ForeColor = SystemColors.ControlText;
-                        lblStatus.Text = fileStatusMessages[0];
-                    }));
-                } else if (FileSystem.FileExists(txtFile.Text)) {
-                    if (md5.ComputeHash(File.OpenRead(txtFile.Text)).ToString() == Reference.hash_hencore) {
-                        Invoke(new Action(() => {
-                            lblStatus.ForeColor = Color.Green;
-                            lblStatus.Text = fileStatusMessages[2];
-                        }));
-                    } else {
-                        if (cbxIgnoreHashes.Checked) {
-                            Invoke(new Action(() => {
-                                lblStatus.ForeColor = Color.Yellow;
-                                lblStatus.Text = fileStatusMessages[4];
-                            }));
-                        } else {
-                            Invoke(new Action(() => {
-                                lblStatus.ForeColor = Color.Red;
-                                lblStatus.Text = fileStatusMessages[3];
-                            }));
+            if (txtFile.Text == "") {
+                //if nothing is specified, default message
+                lblStatus.ForeColor = SystemColors.ControlText;
+                lblStatus.Text = fileStatusMessages[0];
+                okFiles[id] = false;
+            } else if (FileSystem.FileExists(txtFile.Text)) {
+                //if the file is specified and exists, lock the textbox and start doing an MD5 verification
+                LockControls(id, btnBrowse, txtFile);
+                Task.Factory.StartNew(new Action(() => {
+                    using (MD5 md5 = MD5.Create()) {
+                        using (FileStream stream = File.OpenRead(txtFile.Text)) {
+                            if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hashes[id]) {
+                                Invoke(new Action(() => {
+                                    lblStatus.ForeColor = Color.Green;
+                                    lblStatus.Text = fileStatusMessages[2];
+                                    okFiles[id] = true;
+                                }));
+                            } else {
+                                if (cbxIgnoreHashes.Checked) {
+                                    Invoke(new Action(() => {
+                                        lblStatus.ForeColor = Color.Orange;
+                                        lblStatus.Text = fileStatusMessages[4];
+                                        okFiles[id] = true;
+                                    }));
+                                } else {
+                                    Invoke(new Action(() => {
+                                        lblStatus.ForeColor = Color.Red;
+                                        lblStatus.Text = fileStatusMessages[3];
+                                        okFiles[id] = false;
+                                    }));
+                                }
+                            }
                         }
                     }
-                } else {
-                    lblHencoreName.ForeColor = Color.Red;
-                    lblHencoreName.Text = fileStatusMessages[1];
-                }
-
-                TryUnlockControls(id, btnBrowse, txtFile);
-            }));
+                    Invoke(new Action(() => TryUnlockControls(id, btnBrowse, txtFile)));
+                }));
+            } else {
+                //if something is specified but the file doesnt exist, tell the user
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = fileStatusMessages[1];
+                okFiles[id] = false;
+            }
         }
 
         private void txtHencore_TextChanged(object sender, EventArgs e) {
@@ -105,23 +119,122 @@ namespace auto_h_encore {
         }
 
         private void txtPkg2zip_TextChanged(object sender, EventArgs e) {
-            CheckStatus(1, btnPkg2zipBrowse, lblPkg2zipStatus, txtPkg2zip);
+            CheckStatus(1, btnBrowsePkg2zip, lblPkg2zipStatus, txtPkg2zip);
         }
 
         private void txtPsvimgtools_TextChanged(object sender, EventArgs e) {
-            CheckStatus(2, btnPsvimgtoolsBrowse, lblPsvimgtoolsStatus, txtPsvimgtools);
+            CheckStatus(2, btnBrowsePsvimgtools, lblPsvimgtoolsStatus, txtPsvimgtools);
         }
 
         private void txtBittersmile_TextChanged(object sender, EventArgs e) {
-            CheckStatus(3, btnBittersmileBrowse, lblBittersmileStatus, txtBittersmile);
+            CheckStatus(3, btnBrowseBittersmile, lblBittersmileStatus, txtBittersmile);
         }
 
         private void btnOk_Click(object sender, EventArgs e) {
-            result = new string[] {
-                txtHencore.Text, txtPkg2zip.Text, txtPsvimgtools.Text, txtBittersmile.Text
-            };
+
+            if (okFiles[0] == true) result[0] = txtHencore.Text;
+            if (okFiles[1] == true) result[1] = txtPkg2zip.Text;
+            if (okFiles[2] == true) result[2] = txtPsvimgtools.Text;
+            if (okFiles[3] == true) result[3] = txtBittersmile.Text;
 
             Close();
+        }
+
+        private void btnBrowseHencore_Click(object sender, EventArgs e) {
+            txtHencore.Text = Utility.BrowseFile("Browse for h-encore.zip v1.0", ".zip", "Zip files (*.zip)|*.zip");
+        }
+
+        private void btnBrowsePkg2zip_Click(object sender, EventArgs e) {
+            txtPkg2zip.Text = Utility.BrowseFile("Browse for pkg2zip_32bit.zip v1.8", ".zip", "Zip files (*.zip)|*.zip");
+        }
+
+        private void btnBrowsePsvimgtools_Click(object sender, EventArgs e) {
+            txtPsvimgtools.Text = Utility.BrowseFile("psvimgtools-0.1-win32.zip v0.1", ".zip", "Zip files (*.zip)|*.zip");
+        }
+
+        private void btnBrowseBittersmile_Click(object sender, EventArgs e) {
+            txtBittersmile.Text = Utility.BrowseFile("Browse for BitterSmile demo pkg", ".pkg", "All files (*)|*");
+        }
+
+        private void cbxIgnoreHashes_CheckedChanged(object sender, EventArgs e) {
+            if (!UserChecked) {
+                if (cbxIgnoreHashes.Checked) {
+                    UserChecked = true;
+                    if (MessageBox.Show("Compatibility is not guranteed when using versions of files this application was not designed for. Continue anyways?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+                        cbxIgnoreHashes.BackColor = Color.Red;
+                        UserChecked = false;
+
+                        if (lblHencoreStatus.Text == fileStatusMessages[3]) {
+                            lblHencoreStatus.ForeColor = Color.Orange;
+                            lblHencoreStatus.Text = fileStatusMessages[4];
+                            okFiles[0] = true;
+                        }
+
+                        if (lblPkg2zipStatus.Text == fileStatusMessages[3]) {
+                            lblPkg2zipStatus.ForeColor = Color.Orange;
+                            lblPkg2zipStatus.Text = fileStatusMessages[4];
+                            okFiles[1] = true;
+                        }
+
+                        if (lblPsvimgtoolsStatus.Text == fileStatusMessages[3]) {
+                            lblPsvimgtoolsStatus.ForeColor = Color.Orange;
+                            lblPsvimgtoolsStatus.Text = fileStatusMessages[4];
+                            okFiles[2] = true;
+                        }
+
+                        if (lblBittersmileStatus.Text == fileStatusMessages[3]) {
+                            lblBittersmileStatus.ForeColor = Color.Orange;
+                            lblBittersmileStatus.Text = fileStatusMessages[4];
+                            okFiles[3] = true;
+                        }
+                    } else {
+                        cbxIgnoreHashes.Checked = false;
+                    }
+                } else {
+                    cbxIgnoreHashes.BackColor = SystemColors.Control;
+
+                    if (lblHencoreStatus.Text == fileStatusMessages[4]) {
+                        lblHencoreStatus.ForeColor = Color.Red;
+                        lblHencoreStatus.Text = fileStatusMessages[3];
+                        okFiles[0] = false;
+                    }
+
+                    if (lblPkg2zipStatus.Text == fileStatusMessages[4]) {
+                        lblPkg2zipStatus.ForeColor = Color.Red;
+                        lblPkg2zipStatus.Text = fileStatusMessages[3];
+                        okFiles[1] = false;
+                    }
+
+                    if (lblPsvimgtoolsStatus.Text == fileStatusMessages[4]) {
+                        lblPsvimgtoolsStatus.ForeColor = Color.Red;
+                        lblPsvimgtoolsStatus.Text = fileStatusMessages[3];
+                        okFiles[2] = false;
+                    }
+
+                    if (lblBittersmileStatus.Text == fileStatusMessages[4]) {
+                        lblBittersmileStatus.ForeColor = Color.Red;
+                        lblBittersmileStatus.Text = fileStatusMessages[3];
+                        okFiles[3] = false;
+                    }
+                }
+            } else {
+                UserChecked = false;
+            }
+
+            HashState = cbxIgnoreHashes.Checked;
+        }
+
+        private void FormFiles_Load(object sender, EventArgs e) {
+            UserChecked = true;
+            cbxIgnoreHashes.Checked = HashState;
+            if (HashState) cbxIgnoreHashes.BackColor = Color.Red;
+
+            txtHencore.Text = result[0];
+            txtPkg2zip.Text = result[1];
+            txtPsvimgtools.Text = result[2];
+            txtBittersmile.Text = result[3];
+
+            result = new string[4];
         }
     }
 }

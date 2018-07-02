@@ -30,15 +30,15 @@
             this.lblHencoreStatus = new System.Windows.Forms.Label();
             this.lblPkg2zipStatus = new System.Windows.Forms.Label();
             this.lblPkg2zipName = new System.Windows.Forms.Label();
-            this.btnPkg2zipBrowse = new System.Windows.Forms.Button();
+            this.btnBrowsePkg2zip = new System.Windows.Forms.Button();
             this.txtPkg2zip = new System.Windows.Forms.TextBox();
             this.lblPsvimgtoolsStatus = new System.Windows.Forms.Label();
             this.lblPsvimgtoolsName = new System.Windows.Forms.Label();
-            this.btnPsvimgtoolsBrowse = new System.Windows.Forms.Button();
+            this.btnBrowsePsvimgtools = new System.Windows.Forms.Button();
             this.txtPsvimgtools = new System.Windows.Forms.TextBox();
             this.lblBittersmileStatus = new System.Windows.Forms.Label();
             this.lblBittersmileName = new System.Windows.Forms.Label();
-            this.btnBittersmileBrowse = new System.Windows.Forms.Button();
+            this.btnBrowseBittersmile = new System.Windows.Forms.Button();
             this.txtBittersmile = new System.Windows.Forms.TextBox();
             this.cbxIgnoreHashes = new System.Windows.Forms.CheckBox();
             this.btnOk = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@
             this.btnBrowseHencore.TabIndex = 1;
             this.btnBrowseHencore.Text = "Browse";
             this.btnBrowseHencore.UseVisualStyleBackColor = true;
+            this.btnBrowseHencore.Click += new System.EventHandler(this.btnBrowseHencore_Click);
             // 
             // lblInfo
             // 
@@ -107,14 +108,15 @@
             this.lblPkg2zipName.TabIndex = 7;
             this.lblPkg2zipName.Text = "pkg2zip_32bit.zip (v1.8)";
             // 
-            // btnPkg2zipBrowse
+            // btnBrowsePkg2zip
             // 
-            this.btnPkg2zipBrowse.Location = new System.Drawing.Point(485, 144);
-            this.btnPkg2zipBrowse.Name = "btnPkg2zipBrowse";
-            this.btnPkg2zipBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnPkg2zipBrowse.TabIndex = 6;
-            this.btnPkg2zipBrowse.Text = "Browse";
-            this.btnPkg2zipBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowsePkg2zip.Location = new System.Drawing.Point(485, 144);
+            this.btnBrowsePkg2zip.Name = "btnBrowsePkg2zip";
+            this.btnBrowsePkg2zip.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowsePkg2zip.TabIndex = 6;
+            this.btnBrowsePkg2zip.Text = "Browse";
+            this.btnBrowsePkg2zip.UseVisualStyleBackColor = true;
+            this.btnBrowsePkg2zip.Click += new System.EventHandler(this.btnBrowsePkg2zip_Click);
             // 
             // txtPkg2zip
             // 
@@ -142,14 +144,15 @@
             this.lblPsvimgtoolsName.TabIndex = 11;
             this.lblPsvimgtoolsName.Text = "psvimgtools-0.1-win32.zip (v0.1)";
             // 
-            // btnPsvimgtoolsBrowse
+            // btnBrowsePsvimgtools
             // 
-            this.btnPsvimgtoolsBrowse.Location = new System.Drawing.Point(485, 210);
-            this.btnPsvimgtoolsBrowse.Name = "btnPsvimgtoolsBrowse";
-            this.btnPsvimgtoolsBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnPsvimgtoolsBrowse.TabIndex = 10;
-            this.btnPsvimgtoolsBrowse.Text = "Browse";
-            this.btnPsvimgtoolsBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowsePsvimgtools.Location = new System.Drawing.Point(485, 210);
+            this.btnBrowsePsvimgtools.Name = "btnBrowsePsvimgtools";
+            this.btnBrowsePsvimgtools.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowsePsvimgtools.TabIndex = 10;
+            this.btnBrowsePsvimgtools.Text = "Browse";
+            this.btnBrowsePsvimgtools.UseVisualStyleBackColor = true;
+            this.btnBrowsePsvimgtools.Click += new System.EventHandler(this.btnBrowsePsvimgtools_Click);
             // 
             // txtPsvimgtools
             // 
@@ -177,14 +180,15 @@
             this.lblBittersmileName.TabIndex = 15;
             this.lblBittersmileName.Text = "bitter smile demo pkg";
             // 
-            // btnBittersmileBrowse
+            // btnBrowseBittersmile
             // 
-            this.btnBittersmileBrowse.Location = new System.Drawing.Point(485, 280);
-            this.btnBittersmileBrowse.Name = "btnBittersmileBrowse";
-            this.btnBittersmileBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnBittersmileBrowse.TabIndex = 14;
-            this.btnBittersmileBrowse.Text = "Browse";
-            this.btnBittersmileBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowseBittersmile.Location = new System.Drawing.Point(485, 280);
+            this.btnBrowseBittersmile.Name = "btnBrowseBittersmile";
+            this.btnBrowseBittersmile.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseBittersmile.TabIndex = 14;
+            this.btnBrowseBittersmile.Text = "Browse";
+            this.btnBrowseBittersmile.UseVisualStyleBackColor = true;
+            this.btnBrowseBittersmile.Click += new System.EventHandler(this.btnBrowseBittersmile_Click);
             // 
             // txtBittersmile
             // 
@@ -203,6 +207,7 @@
             this.cbxIgnoreHashes.TabIndex = 17;
             this.cbxIgnoreHashes.Text = "Ignore Mismatch File Hashes";
             this.cbxIgnoreHashes.UseVisualStyleBackColor = true;
+            this.cbxIgnoreHashes.CheckedChanged += new System.EventHandler(this.cbxIgnoreHashes_CheckedChanged);
             // 
             // btnOk
             // 
@@ -223,15 +228,15 @@
             this.Controls.Add(this.cbxIgnoreHashes);
             this.Controls.Add(this.lblBittersmileStatus);
             this.Controls.Add(this.lblBittersmileName);
-            this.Controls.Add(this.btnBittersmileBrowse);
+            this.Controls.Add(this.btnBrowseBittersmile);
             this.Controls.Add(this.txtBittersmile);
             this.Controls.Add(this.lblPsvimgtoolsStatus);
             this.Controls.Add(this.lblPsvimgtoolsName);
-            this.Controls.Add(this.btnPsvimgtoolsBrowse);
+            this.Controls.Add(this.btnBrowsePsvimgtools);
             this.Controls.Add(this.txtPsvimgtools);
             this.Controls.Add(this.lblPkg2zipStatus);
             this.Controls.Add(this.lblPkg2zipName);
-            this.Controls.Add(this.btnPkg2zipBrowse);
+            this.Controls.Add(this.btnBrowsePkg2zip);
             this.Controls.Add(this.txtPkg2zip);
             this.Controls.Add(this.lblHencoreStatus);
             this.Controls.Add(this.lblHencoreName);
@@ -240,6 +245,7 @@
             this.Controls.Add(this.txtHencore);
             this.Name = "FormFiles";
             this.Text = "Select Pre-existing Files";
+            this.Load += new System.EventHandler(this.FormFiles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,15 +260,15 @@
         private System.Windows.Forms.Label lblHencoreStatus;
         private System.Windows.Forms.Label lblPkg2zipStatus;
         private System.Windows.Forms.Label lblPkg2zipName;
-        private System.Windows.Forms.Button btnPkg2zipBrowse;
+        private System.Windows.Forms.Button btnBrowsePkg2zip;
         private System.Windows.Forms.TextBox txtPkg2zip;
         private System.Windows.Forms.Label lblPsvimgtoolsStatus;
         private System.Windows.Forms.Label lblPsvimgtoolsName;
-        private System.Windows.Forms.Button btnPsvimgtoolsBrowse;
+        private System.Windows.Forms.Button btnBrowsePsvimgtools;
         private System.Windows.Forms.TextBox txtPsvimgtools;
         private System.Windows.Forms.Label lblBittersmileStatus;
         private System.Windows.Forms.Label lblBittersmileName;
-        private System.Windows.Forms.Button btnBittersmileBrowse;
+        private System.Windows.Forms.Button btnBrowseBittersmile;
         private System.Windows.Forms.TextBox txtBittersmile;
         private System.Windows.Forms.CheckBox cbxIgnoreHashes;
         private System.Windows.Forms.Button btnOk;

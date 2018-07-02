@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.1.2";
+        public static readonly string version = "0.2.0";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
@@ -24,5 +24,9 @@ namespace auto_h_encore {
         public static readonly string hash_pkg2zip = "10cf8255126521ee59fd884cf09c1e30";
         public static readonly string hash_psvimgtools = "44696426da9440b45fcef9ec2845a042";
         public static readonly string hash_bittersmile = "ce3badfc04ae24e7c209f1a2fd565943";
+
+        public static readonly string[] hashes = new string[] {
+            hash_hencore, hash_pkg2zip, hash_psvimgtools, hash_bittersmile
+        };
     }
 }
