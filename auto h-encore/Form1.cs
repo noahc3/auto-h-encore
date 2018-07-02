@@ -93,7 +93,6 @@ namespace auto_h_encore {
         private void lblHowToAID_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             FormAID frmAid = new FormAID();
             frmAid.ShowDialog();
-            
         }
 
         private void txtAID_TextChanged(object sender, EventArgs e) {
@@ -116,10 +115,12 @@ namespace auto_h_encore {
                 }
                 
                 try {
+                    //move the bittersmile pkg to pkg2zip working directory because pkg2zip doesnt support special characters
                     info("Extracting bittersmile demo with pkg2zip...");
+                    FileSystem.MoveFile(Reference.path_downloads + "bittersmile.pkg", Reference.path_pkg2zip + "bittersmile.pkg");
                     ProcessStartInfo psi = new ProcessStartInfo();
                     psi.WorkingDirectory = Reference.path_pkg2zip;
-                    psi.Arguments = "-x \"" + Reference.path_downloads + "bittersmile.pkg\"";
+                    psi.Arguments = "-x bittersmile.pkg";
                     psi.FileName = Reference.path_pkg2zip + "pkg2zip.exe";
                     Process process = Process.Start(psi);
                     process.WaitForExit();
@@ -130,9 +131,9 @@ namespace auto_h_encore {
                     toggleControls(true);
                     return;
                 }
-                
+
                 try {
-                    foreach (string k in Directory.EnumerateFiles(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
+                    foreach (string k in FileSystem.GetFiles(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
                         info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
                         FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
@@ -151,7 +152,7 @@ namespace auto_h_encore {
                 }
 
                 try {
-                    foreach (string k in Directory.EnumerateDirectories(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
+                    foreach (string k in FileSystem.GetDirectories(Reference.path_pkg2zip + "app\\PCSG90096\\")) {
                         info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
                         FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
