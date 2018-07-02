@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.txtAID = new System.Windows.Forms.TextBox();
             this.lblAID = new System.Windows.Forms.Label();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -136,7 +137,7 @@
             this.barProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.barProgress.Location = new System.Drawing.Point(12, 272);
-            this.barProgress.Maximum = 18;
+            this.barProgress.Maximum = 17;
             this.barProgress.Name = "barProgress";
             this.barProgress.Size = new System.Drawing.Size(569, 23);
             this.barProgress.TabIndex = 9;
@@ -166,6 +167,7 @@
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.lblAID);
             this.Controls.Add(this.txtAID);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "auto h-encore";
             this.ResumeLayout(false);

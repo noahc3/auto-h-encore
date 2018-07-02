@@ -36,7 +36,7 @@ namespace auto_h_encore {
             if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
             if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
                 if (MessageBox.Show("You must remove the existing bittersmile backup from your QCMA directory. Delete?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                    Directory.Delete(txtQCMA.Text + txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", true);
+                    Directory.Delete(txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", true);
                 } else {
                     throw new IOException("Directory Already Exists");
                 }
@@ -77,12 +77,14 @@ namespace auto_h_encore {
                     txtAID.Enabled = state;
                     txtQCMA.Enabled = state;
                     btnBrowseQCMA.Enabled = state;
+                    barProgress.Value = 0;
                 }));
             } else {
                 btnStart.Enabled = state;
                 txtAID.Enabled = state;
                 txtQCMA.Enabled = state;
                 btnBrowseQCMA.Enabled = state;
+                barProgress.Value = 0;
             }
         }
         
@@ -105,7 +107,8 @@ namespace auto_h_encore {
                 try {
                     generateDirectories(txtAID.Text);
                     downloadFiles();
-                } catch (Exception) {
+                } catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
                     toggleControls(true);
                     return;
                 }
