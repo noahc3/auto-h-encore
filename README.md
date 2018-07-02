@@ -1,7 +1,7 @@
 # auto h-encore
 A C# (.NET) application to automate (most of) the process of getting h-encore running on your PS Vita system!
 
-![screenshot](https://puu.sh/APlvB/66bb81d982.png "screenshot")
+![screenshot](https://puu.sh/APnW1/26ccff823e.png "screenshot")
 
 ## Features
 This application does everything short of installing QCMA/integrating libVitaMTP. That means:
