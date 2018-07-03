@@ -189,7 +189,7 @@
             this.cbxTrim.Size = new System.Drawing.Size(476, 17);
             this.cbxTrim.TabIndex = 13;
             this.cbxTrim.Text = "Trim excess content from bitter smile demo (reduces h-encore app size from ~240MB" +
-    " to ~17MB)";
+    " to ~13MB)";
             this.cbxTrim.UseVisualStyleBackColor = true;
             // 
             // lblIssueTracker
