@@ -37,6 +37,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
             this.cbxDelete = new System.Windows.Forms.CheckBox();
+            this.cbxTrim = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtAID
@@ -63,12 +64,12 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 392);
+            this.txtLog.Location = new System.Drawing.Point(12, 413);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(569, 301);
+            this.txtLog.Size = new System.Drawing.Size(569, 280);
             this.txtLog.TabIndex = 2;
             // 
             // btnStart
@@ -76,7 +77,7 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Enabled = false;
-            this.btnStart.Location = new System.Drawing.Point(12, 363);
+            this.btnStart.Location = new System.Drawing.Point(12, 384);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(569, 23);
             this.btnStart.TabIndex = 3;
@@ -138,7 +139,7 @@
             // 
             this.barProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barProgress.Location = new System.Drawing.Point(12, 334);
+            this.barProgress.Location = new System.Drawing.Point(12, 355);
             this.barProgress.Maximum = 17;
             this.barProgress.Name = "barProgress";
             this.barProgress.Size = new System.Drawing.Size(569, 23);
@@ -167,18 +168,32 @@
             // cbxDelete
             // 
             this.cbxDelete.AutoSize = true;
-            this.cbxDelete.Location = new System.Drawing.Point(15, 311);
+            this.cbxDelete.Location = new System.Drawing.Point(15, 332);
             this.cbxDelete.Name = "cbxDelete";
             this.cbxDelete.Size = new System.Drawing.Size(306, 17);
             this.cbxDelete.TabIndex = 12;
             this.cbxDelete.Text = "Delete existing files (do this if something went wrong before)";
             this.cbxDelete.UseVisualStyleBackColor = true;
             // 
+            // cbxTrim
+            // 
+            this.cbxTrim.AutoSize = true;
+            this.cbxTrim.Checked = true;
+            this.cbxTrim.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxTrim.Location = new System.Drawing.Point(15, 309);
+            this.cbxTrim.Name = "cbxTrim";
+            this.cbxTrim.Size = new System.Drawing.Size(476, 17);
+            this.cbxTrim.TabIndex = 13;
+            this.cbxTrim.Text = "Trim excess content from bitter smile demo (reduces h-encore app size from ~240MB" +
+    " to ~17MB)";
+            this.cbxTrim.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 718);
+            this.Controls.Add(this.cbxTrim);
             this.Controls.Add(this.cbxDelete);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.lblVersion);
@@ -215,6 +230,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.CheckBox cbxDelete;
+        private System.Windows.Forms.CheckBox cbxTrim;
     }
 }
 

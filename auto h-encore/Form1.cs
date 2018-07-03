@@ -195,6 +195,18 @@ namespace auto_h_encore {
                     return;
                 }
 
+                if (cbxTrim.Checked) {
+                    info("Trimming excess content from bitter smile demo...");
+                    string path = Reference.path_downloads + "app\\PCSG90096\\";
+                    FileSystem.DeleteFile(path + "resource\\movie\\Opening.mp4");
+                    foreach (string k in FileSystem.GetFiles(path + "resource\\sound\\bgm\\")) FileSystem.DeleteFile(k);
+                    FileSystem.DeleteDirectory(path + "resource\\sound\\voice\\01\\", DeleteDirectoryOption.DeleteAllContents);
+                    FileSystem.DeleteDirectory(path + "resource\\sound\\se\\", DeleteDirectoryOption.DeleteAllContents);
+                    FileSystem.DeleteDirectory(path + "resource\\image\\bg\\", DeleteDirectoryOption.DeleteAllContents);
+                    FileSystem.DeleteDirectory(path + "resource\\image\\tachie\\", DeleteDirectoryOption.DeleteAllContents);
+                    info("      Done!");
+                }
+
                 try {
                     foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
                         info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
@@ -297,12 +309,13 @@ namespace auto_h_encore {
                     + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
                     + "2. Connect your PS Vita to your PC using USB\r\n"
                     + "3. Open Content Manager on your PS Vita and select Copy Content\r\n"
-                    + "    If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
+                    + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
                     + "4. In Content Manager, choose PC -> PS Vita System\r\n"
                     + "5. Select Applications\r\n"
                     + "6. Select PS Vita\r\n"
                     + "7. Select h-encore and hit Copy\r\n"
                     + "8. Run the h-encore app from the Live Area\r\n"
+                    + "     If it crashes the first time, try restarting your Vita and launching the bubble again\r\n\r\n"
                     + "Done!")));
 
                 toggleControls(true);
