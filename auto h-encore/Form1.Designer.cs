@@ -38,6 +38,7 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.cbxDelete = new System.Windows.Forms.CheckBox();
             this.cbxTrim = new System.Windows.Forms.CheckBox();
+            this.lblIssueTracker = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // txtAID
@@ -188,11 +189,23 @@
     " to ~17MB)";
             this.cbxTrim.UseVisualStyleBackColor = true;
             // 
+            // lblIssueTracker
+            // 
+            this.lblIssueTracker.AutoSize = true;
+            this.lblIssueTracker.Location = new System.Drawing.Point(12, 698);
+            this.lblIssueTracker.Name = "lblIssueTracker";
+            this.lblIssueTracker.Size = new System.Drawing.Size(72, 13);
+            this.lblIssueTracker.TabIndex = 14;
+            this.lblIssueTracker.TabStop = true;
+            this.lblIssueTracker.Text = "Issue Tracker";
+            this.lblIssueTracker.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblIssueTracker_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 718);
+            this.Controls.Add(this.lblIssueTracker);
             this.Controls.Add(this.cbxTrim);
             this.Controls.Add(this.cbxDelete);
             this.Controls.Add(this.btnImport);
@@ -231,6 +244,7 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.CheckBox cbxDelete;
         private System.Windows.Forms.CheckBox cbxTrim;
+        private System.Windows.Forms.LinkLabel lblIssueTracker;
     }
 }
 

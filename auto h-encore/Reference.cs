@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.2.1";
+        public static readonly string version = "0.2.2";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
@@ -26,6 +26,7 @@ namespace auto_h_encore {
         public static readonly string url_pkg2zip = "https://github.com/mmozeiko/pkg2zip/releases/download/v1.8/pkg2zip_32bit.zip";
         public static readonly string url_hencore = "https://github.com/TheOfficialFloW/h-encore/releases/download/v1.0/h-encore.zip";
         public static readonly string url_cma = "http://cma.henkaku.xyz/?aid=";
+        public static readonly string url_issues = "https://github.com/noahc3/auto-h-encore/issues";
 
         public static readonly string hash_hencore = "d0b1bad1b52d8e2464ebf3aab5fc5401";
         public static readonly string hash_pkg2zip = "10cf8255126521ee59fd884cf09c1e30";
