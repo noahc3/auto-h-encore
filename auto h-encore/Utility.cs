@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.VisualBasic.FileIO;
+using System.Security.Cryptography;
 
 namespace auto_h_encore {
     public static class Utility {
@@ -83,24 +84,6 @@ namespace auto_h_encore {
             }
         }
 
-        public static void ImportFile(Form1 form, string source, string dest) {
-            try {
-                form.info("Importing file " + source.Replace('/', '\\').Split('\\').Last());
-                FileSystem.CopyFile(source, dest);
-                form.info("        Done!");
-            } catch (DirectoryNotFoundException ex) {
-                MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                return;
-            } catch (UnauthorizedAccessException ex) {
-                MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
-                return;
-            } catch (IOException ex) {
-                MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
-                return;
-            }
-
-        }
-
         public static string BrowseFile(string title, string extension, string restrictions) {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = restrictions;
@@ -112,5 +95,14 @@ namespace auto_h_encore {
             dialog.ShowDialog();
             return dialog.FileName;
         }
+
+        public static string MD5Checksum(string path) {
+            using (MD5 md5 = MD5.Create()) {
+                using (FileStream stream = File.OpenRead(path)) {
+                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                }
+            }
+        }
+
     }
 }

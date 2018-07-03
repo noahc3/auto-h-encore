@@ -31,12 +31,8 @@ namespace auto_h_encore {
             "Calculating checksum..."
         };
 
-        public string[] result = new string[4];
-
-        public FormFiles(string[] imports) {
+        public FormFiles() {
             InitializeComponent();
-
-            result = imports;
         }
 
         private void LockControls(int id, Button btn, TextBox txt) {
@@ -132,10 +128,10 @@ namespace auto_h_encore {
 
         private void btnOk_Click(object sender, EventArgs e) {
 
-            if (okFiles[0] == true) result[0] = txtHencore.Text;
-            if (okFiles[1] == true) result[1] = txtPkg2zip.Text;
-            if (okFiles[2] == true) result[2] = txtPsvimgtools.Text;
-            if (okFiles[3] == true) result[3] = txtBittersmile.Text;
+            if (okFiles[0] == true) Global.fileOverrides[0] = txtHencore.Text;
+            if (okFiles[1] == true) Global.fileOverrides[1] = txtPkg2zip.Text;
+            if (okFiles[2] == true) Global.fileOverrides[2] = txtPsvimgtools.Text;
+            if (okFiles[3] == true) Global.fileOverrides[3] = txtBittersmile.Text;
 
             Close();
         }
@@ -232,12 +228,10 @@ namespace auto_h_encore {
             cbxIgnoreHashes.Checked = HashState;
             if (HashState) cbxIgnoreHashes.BackColor = Color.Red;
 
-            txtHencore.Text = result[0];
-            txtPkg2zip.Text = result[1];
-            txtPsvimgtools.Text = result[2];
-            txtBittersmile.Text = result[3];
-
-            result = new string[4];
+            txtHencore.Text = Global.fileOverrides[0];
+            txtPkg2zip.Text = Global.fileOverrides[1];
+            txtPsvimgtools.Text = Global.fileOverrides[2];
+            txtBittersmile.Text = Global.fileOverrides[3];
         }
     }
 }
