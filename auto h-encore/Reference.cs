@@ -48,5 +48,19 @@ namespace auto_h_encore {
         public static readonly string[] paths = new string[] {
             path_hencore, path_downloads, path_psvimgtools
         };
+
+        public static readonly string[] trims = new string[] {
+            "movie\\",
+            "image\\bg\\",
+            "image\\ev\\",
+            "image\\icon\\",
+            "image\\stitle\\",
+            "image\\tachie\\",
+            "sound\\bgm\\",
+            "sound\\se\\",
+            "sound\\sec\\",
+            "sound\\voice\\",
+            "text\\01\\"
+        };
     }
 }

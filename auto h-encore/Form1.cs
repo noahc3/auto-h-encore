@@ -239,49 +239,54 @@ namespace auto_h_encore {
                 } catch (FileNotFoundException ex) {
                     //20030209
                     ErrorHandling.ShowError("20030209", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (Exception ex) {
                     //FFFF020A
                     ErrorHandling.ShowError("FFFF020A", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 }
 
 
                 if (cbxTrim.Checked) {
                     try {
                         info("Trimming excess content from bitter smile demo...");
-                        string path = Reference.path_downloads + "app\\PCSG90096\\";
-                        FileSystem.DeleteFile(path + "resource\\movie\\Opening.mp4");
-                        foreach (string k in FileSystem.GetFiles(path + "resource\\sound\\bgm\\")) FileSystem.DeleteFile(k);
-                        FileSystem.DeleteDirectory(path + "resource\\sound\\voice\\01\\", DeleteDirectoryOption.DeleteAllContents);
-                        FileSystem.DeleteDirectory(path + "resource\\sound\\se\\", DeleteDirectoryOption.DeleteAllContents);
-                        FileSystem.DeleteDirectory(path + "resource\\image\\bg\\", DeleteDirectoryOption.DeleteAllContents);
-                        FileSystem.DeleteDirectory(path + "resource\\image\\tachie\\", DeleteDirectoryOption.DeleteAllContents);
+                        string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
+                        foreach(string k in Reference.trims) {
+                            FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
+                        }
                         info("      Done!");
                     } catch (DirectoryNotFoundException ex) {
                         //2001020B
                         ErrorHandling.ShowError("2001020B", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     } catch (UnauthorizedAccessException ex) {
                         //2002020C
                         ErrorHandling.ShowError("2002020C", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     } catch (FileNotFoundException ex) {
                         //2003020D
                         ErrorHandling.ShowError("2003020D", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     } catch (InvalidDataException ex) {
                         //2004020E
                         ErrorHandling.ShowError("2004020E", "A download is corrupt. Make sure your network is stable, then retry.");
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     } catch (IOException ex) {
                         //20FF020F
                         ErrorHandling.ShowError("20FF020F", "Unexpected Exception: " + ex.Message);
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     } catch (Exception ex) {
                         //FFFF0210
                         ErrorHandling.ShowError("FFFF0210", "Unexpected Exception: " + ex.Message);
-                        throw ex;
+                        toggleControls(true);
+                        return;
                     }
                 }
 
@@ -293,27 +298,33 @@ namespace auto_h_encore {
                 } catch (DirectoryNotFoundException ex) {
                     //20010211
                     ErrorHandling.ShowError("20010211", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (UnauthorizedAccessException ex) {
                     //20020212
                     ErrorHandling.ShowError("20020212", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (FileNotFoundException ex) {
                     //20030213
                     ErrorHandling.ShowError("20030213", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (InvalidDataException ex) {
                     //20040214
                     ErrorHandling.ShowError("20040214", "A download is corrupt. Make sure your network is stable, then retry.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (IOException ex) {
                     //20FF0215
                     ErrorHandling.ShowError("20FF0215", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (Exception ex) {
                     //FFFF0216
                     ErrorHandling.ShowError("FFFF0216", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 }
 
                 try {
@@ -324,27 +335,33 @@ namespace auto_h_encore {
                 } catch (DirectoryNotFoundException ex) {
                     //20010217
                     ErrorHandling.ShowError("20010217", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (UnauthorizedAccessException ex) {
                     //20020218
                     ErrorHandling.ShowError("20020218", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (FileNotFoundException ex) {
                     //20030219
                     ErrorHandling.ShowError("20030219", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (InvalidDataException ex) {
                     //2004021A
                     ErrorHandling.ShowError("2004021A", "A download is corrupt. Make sure your network is stable, then retry.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (IOException ex) {
                     //20FF021B
                     ErrorHandling.ShowError("20FF021B", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (Exception ex) {
                     //FFFF021C
                     ErrorHandling.ShowError("FFFF021C", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 }
 
                 incrementProgress();
@@ -357,23 +374,28 @@ namespace auto_h_encore {
                 } catch (UnauthorizedAccessException ex) {
                     //2002021D
                     ErrorHandling.ShowError("2002021D", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (FileNotFoundException ex) {
                     //2003021E
                     ErrorHandling.ShowError("2003021E", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (InvalidDataException ex) {
                     //2004021F
                     ErrorHandling.ShowError("2004021F", "A download is corrupt. Make sure your network is stable, then retry.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (IOException ex) {
                     //20FF0220
                     ErrorHandling.ShowError("20FF0220", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (Exception ex) {
                     //FFFF0221
                     ErrorHandling.ShowError("FFFF0221", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 }
 
                 string encKey;
@@ -404,27 +426,33 @@ namespace auto_h_encore {
                 } catch (DirectoryNotFoundException ex) {
                     //20010222
                     ErrorHandling.ShowError("20010222", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (UnauthorizedAccessException ex) {
                     //20020223
                     ErrorHandling.ShowError("20020223", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (FileNotFoundException ex) {
                     //20030224
                     ErrorHandling.ShowError("20030224", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (InvalidDataException ex) {
                     //20040225
                     ErrorHandling.ShowError("20040225", "A download is corrupt. Make sure your network is stable, then retry.");
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (IOException ex) {
                     //20FF0226
                     ErrorHandling.ShowError("20FF0226", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 } catch (Exception ex) {
                     //FFFF0227
                     ErrorHandling.ShowError("FFFF0227", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    toggleControls(true);
+                    return;
                 }
 
                 Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"
