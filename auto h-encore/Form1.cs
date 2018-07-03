@@ -30,19 +30,33 @@ namespace auto_h_encore {
         }
 
         private void VerifyUserInfo() {
+
             if (txtAID.Text.Length == 16 && Directory.Exists(txtQCMA.Text + "\\APP\\")) btnStart.Enabled = true;
             else btnStart.Enabled = false;
+            
         }
 
         private void generateDirectories(string AID) {
-            //TODO: Needs code cleanup pretty bad...
             if (cbxDelete.Checked) {
-                info("Deleting old files...");
-                if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
-                for (int i = 0; i < 4; i++) {
-                    if (!FileSystem.FileExists(Global.fileOverrides[i])) Global.fileOverrides[i] = "";
+                try {
+                    info("Deleting old files...");
+                    if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
+                    for (int i = 0; i < 4; i++) {
+                        if (!FileSystem.FileExists(Global.fileOverrides[i])) Global.fileOverrides[i] = "";
+                    }
+                } catch (UnauthorizedAccessException ex) {
+                    //20020200
+                    ErrorHandling.ShowError("20020200", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                    throw ex;
+                } catch (IOException ex) {
+                    //20FF0201
+                    ErrorHandling.ShowError("20FF0201", "Unexpected Exception: " + ex.Message);
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF0202
+                    ErrorHandling.ShowError("FFFF0202", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
-                
             } else {
 
                 string path = "";
@@ -98,12 +112,26 @@ namespace auto_h_encore {
                 }
             }
 
-            info("Generating working directories...");
-            if (FileSystem.FileExists(Reference.fpath_pkg2zip)) FileSystem.DeleteFile(Reference.fpath_pkg2zip);
-            Directory.CreateDirectory(Reference.path_data);
-            Directory.CreateDirectory(Reference.path_hencore);
-            Directory.CreateDirectory(Reference.path_psvimgtools);
-            Directory.CreateDirectory(Reference.path_downloads);
+            try {
+                info("Generating working directories...");
+                if (FileSystem.FileExists(Reference.fpath_pkg2zip)) FileSystem.DeleteFile(Reference.fpath_pkg2zip);
+                Directory.CreateDirectory(Reference.path_data);
+                Directory.CreateDirectory(Reference.path_hencore);
+                Directory.CreateDirectory(Reference.path_psvimgtools);
+                Directory.CreateDirectory(Reference.path_downloads);
+            } catch (UnauthorizedAccessException ex) {
+                //20020203
+                ErrorHandling.ShowError("20020203", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+            } catch (IOException ex) {
+                //20FF0204
+                ErrorHandling.ShowError("20FF0204", "Unexpected Exception: " + ex.Message);
+                throw ex;
+            } catch (Exception ex) {
+                //FFFF0205
+                ErrorHandling.ShowError("FFFF0205", "Unexpected Exception: " + ex.Message);
+                throw ex;
+            }
+
             incrementProgress();
         }
 
@@ -114,9 +142,28 @@ namespace auto_h_encore {
                 if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
                     if (Global.fileOverrides[id] == Reference.raws[id]) info("File " + cleanName + " in correct location, skipping");
                     else {
-                        info("Importing " + cleanName);
-                        FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
-                        info("      Done!");
+                        try {
+                            info("Importing " + cleanName);
+                            FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
+                            info("      Done!");
+                        } catch (FileNotFoundException ex) {
+                            //20030205
+                            ErrorHandling.ShowError("20030205", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                            throw ex;
+                        } catch (UnauthorizedAccessException ex) {
+                            //20020206
+                            ErrorHandling.ShowError("20020206", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                            throw ex;
+                        } catch (IOException ex) {
+                            //20FF0207
+                            ErrorHandling.ShowError("20FF0207", "Unexpected Exception: " + ex.Message);
+                            throw ex;
+                        } catch (Exception ex) {
+                            //FFFF0208
+                            ErrorHandling.ShowError("FFFF0208", "Unexpected Exception: " + ex.Message);
+                            throw ex;
+                        }
+
                     }
                 } else {
                     Utility.DownloadFile(this, Reference.downloads[id], Reference.raws[id]);
@@ -189,22 +236,53 @@ namespace auto_h_encore {
                     process.WaitForExit();
                     info("      Done!");
                     incrementProgress();
-                } catch (FileNotFoundException) {
-                    MessageBox.Show("Files that were downloaded seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
+                } catch (FileNotFoundException ex) {
+                    //20030209
+                    ErrorHandling.ShowError("20030209", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF020A
+                    ErrorHandling.ShowError("FFFF020A", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
 
+
                 if (cbxTrim.Checked) {
-                    info("Trimming excess content from bitter smile demo...");
-                    string path = Reference.path_downloads + "app\\PCSG90096\\";
-                    FileSystem.DeleteFile(path + "resource\\movie\\Opening.mp4");
-                    foreach (string k in FileSystem.GetFiles(path + "resource\\sound\\bgm\\")) FileSystem.DeleteFile(k);
-                    FileSystem.DeleteDirectory(path + "resource\\sound\\voice\\01\\", DeleteDirectoryOption.DeleteAllContents);
-                    FileSystem.DeleteDirectory(path + "resource\\sound\\se\\", DeleteDirectoryOption.DeleteAllContents);
-                    FileSystem.DeleteDirectory(path + "resource\\image\\bg\\", DeleteDirectoryOption.DeleteAllContents);
-                    FileSystem.DeleteDirectory(path + "resource\\image\\tachie\\", DeleteDirectoryOption.DeleteAllContents);
-                    info("      Done!");
+                    try {
+                        info("Trimming excess content from bitter smile demo...");
+                        string path = Reference.path_downloads + "app\\PCSG90096\\";
+                        FileSystem.DeleteFile(path + "resource\\movie\\Opening.mp4");
+                        foreach (string k in FileSystem.GetFiles(path + "resource\\sound\\bgm\\")) FileSystem.DeleteFile(k);
+                        FileSystem.DeleteDirectory(path + "resource\\sound\\voice\\01\\", DeleteDirectoryOption.DeleteAllContents);
+                        FileSystem.DeleteDirectory(path + "resource\\sound\\se\\", DeleteDirectoryOption.DeleteAllContents);
+                        FileSystem.DeleteDirectory(path + "resource\\image\\bg\\", DeleteDirectoryOption.DeleteAllContents);
+                        FileSystem.DeleteDirectory(path + "resource\\image\\tachie\\", DeleteDirectoryOption.DeleteAllContents);
+                        info("      Done!");
+                    } catch (DirectoryNotFoundException ex) {
+                        //2001020B
+                        ErrorHandling.ShowError("2001020B", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                        throw ex;
+                    } catch (UnauthorizedAccessException ex) {
+                        //2002020C
+                        ErrorHandling.ShowError("2002020C", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                        throw ex;
+                    } catch (FileNotFoundException ex) {
+                        //2003020D
+                        ErrorHandling.ShowError("2003020D", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                        throw ex;
+                    } catch (InvalidDataException ex) {
+                        //2004020E
+                        ErrorHandling.ShowError("2004020E", "A download is corrupt. Make sure your network is stable, then retry.");
+                        throw ex;
+                    } catch (IOException ex) {
+                        //20FF020F
+                        ErrorHandling.ShowError("20FF020F", "Unexpected Exception: " + ex.Message);
+                        throw ex;
+                    } catch (Exception ex) {
+                        //FFFF0210
+                        ErrorHandling.ShowError("FFFF0210", "Unexpected Exception: " + ex.Message);
+                        throw ex;
+                    }
                 }
 
                 try {
@@ -213,17 +291,29 @@ namespace auto_h_encore {
                         FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
                 } catch (DirectoryNotFoundException ex) {
-                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
+                    //20010211
+                    ErrorHandling.ShowError("20010211", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
                 } catch (UnauthorizedAccessException ex) {
-                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
-                    toggleControls(true);
-                    return;
+                    //20020212
+                    ErrorHandling.ShowError("20020212", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                    throw ex;
+                } catch (FileNotFoundException ex) {
+                    //20030213
+                    ErrorHandling.ShowError("20030213", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
+                } catch (InvalidDataException ex) {
+                    //20040214
+                    ErrorHandling.ShowError("20040214", "A download is corrupt. Make sure your network is stable, then retry.");
+                    throw ex;
                 } catch (IOException ex) {
-                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
-                    toggleControls(true);
-                    return;
+                    //20FF0215
+                    ErrorHandling.ShowError("20FF0215", "Unexpected Exception: " + ex.Message);
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF0216
+                    ErrorHandling.ShowError("FFFF0216", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
 
                 try {
@@ -232,17 +322,29 @@ namespace auto_h_encore {
                         FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                     }
                 } catch (DirectoryNotFoundException ex) {
-                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
+                    //20010217
+                    ErrorHandling.ShowError("20010217", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
                 } catch (UnauthorizedAccessException ex) {
-                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
-                    toggleControls(true);
-                    return;
+                    //20020218
+                    ErrorHandling.ShowError("20020218", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                    throw ex;
+                } catch (FileNotFoundException ex) {
+                    //20030219
+                    ErrorHandling.ShowError("20030219", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
+                } catch (InvalidDataException ex) {
+                    //2004021A
+                    ErrorHandling.ShowError("2004021A", "A download is corrupt. Make sure your network is stable, then retry.");
+                    throw ex;
                 } catch (IOException ex) {
-                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
-                    toggleControls(true);
-                    return;
+                    //20FF021B
+                    ErrorHandling.ShowError("20FF021B", "Unexpected Exception: " + ex.Message);
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF021C
+                    ErrorHandling.ShowError("FFFF021C", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
 
                 incrementProgress();
@@ -252,18 +354,26 @@ namespace auto_h_encore {
                     FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
                     info("      Done!");
                     incrementProgress();
-                } catch (DirectoryNotFoundException ex) {
-                    MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
                 } catch (UnauthorizedAccessException ex) {
-                    MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
-                    toggleControls(true);
-                    return;
+                    //2002021D
+                    ErrorHandling.ShowError("2002021D", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                    throw ex;
+                } catch (FileNotFoundException ex) {
+                    //2003021E
+                    ErrorHandling.ShowError("2003021E", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
+                } catch (InvalidDataException ex) {
+                    //2004021F
+                    ErrorHandling.ShowError("2004021F", "A download is corrupt. Make sure your network is stable, then retry.");
+                    throw ex;
                 } catch (IOException ex) {
-                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
-                    toggleControls(true);
-                    return;
+                    //20FF0220
+                    ErrorHandling.ShowError("20FF0220", "Unexpected Exception: " + ex.Message);
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF0221
+                    ErrorHandling.ShowError("FFFF0221", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
 
                 string encKey;
@@ -292,17 +402,29 @@ namespace auto_h_encore {
                     incrementProgress();
                     info("auto h-encore Done!!");
                 } catch (DirectoryNotFoundException ex) {
-                    MessageBox.Show("Your QCMA directory disappeared! Make sure you specified the correct directory and that it wasn't changed or deleted!");
-                    toggleControls(true);
-                    return;
+                    //20010222
+                    ErrorHandling.ShowError("20010222", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
                 } catch (UnauthorizedAccessException ex) {
-                    MessageBox.Show("The application doesn't have write access to your specified QCMA directory. Change it in QCMA settings to a directory you own, run this application as administrator, or disable read-only mode on the QCMA directory.");
-                    toggleControls(true);
-                    return;
+                    //20020223
+                    ErrorHandling.ShowError("20020223", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                    throw ex;
+                } catch (FileNotFoundException ex) {
+                    //20030224
+                    ErrorHandling.ShowError("20030224", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                    throw ex;
+                } catch (InvalidDataException ex) {
+                    //20040225
+                    ErrorHandling.ShowError("20040225", "A download is corrupt. Make sure your network is stable, then retry.");
+                    throw ex;
                 } catch (IOException ex) {
-                    MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
-                    toggleControls(true);
-                    return;
+                    //20FF0226
+                    ErrorHandling.ShowError("20FF0226", "Unexpected Exception: " + ex.Message);
+                    throw ex;
+                } catch (Exception ex) {
+                    //FFFF0227
+                    ErrorHandling.ShowError("FFFF0227", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
 
                 Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"

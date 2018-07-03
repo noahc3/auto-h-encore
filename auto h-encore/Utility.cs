@@ -22,7 +22,8 @@ namespace auto_h_encore {
                 string page = http.GetStringAsync(Reference.url_cma + aid).Result;
                 return page.Substring(page.Length - 65, 64);
             } catch (Exception) {
-                MessageBox.Show("Failed to get the CMA encryption key");
+                //10020100
+                ErrorHandling.ShowError("10020100", "Failed to get the CMA encryption key. Make sure your internet is connected and/or retry.");
                 return "";
             }
         }
@@ -35,8 +36,13 @@ namespace auto_h_encore {
                     form.info("      Done!");
                     return;
                 } catch (WebException ex) {
-                    if (MessageBox.Show("Failed to download file " + url + "\r\n\r\nMake sure your internet is connected and/or retry. If it still doesn't work, create an issue on the Github issue tracker.", "Error", MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
+                    //01010100
+                    if (MessageBox.Show("Error 10010101\r\n\r\nFailed to download file " + url + "\r\n\r\nMake sure your internet is connected and/or retry. If it still doesn't work, create an issue on the Github issue tracker.", "Error", MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
                         throw ex;
+                } catch (Exception ex) {
+                    //FFFF0108
+                    ErrorHandling.ShowError("FFFF0108", "Unexpected Exception: " + ex.Message);
+                    throw ex;
                 }
         }
 
@@ -48,19 +54,28 @@ namespace auto_h_encore {
                 if (incrementProgress) form.incrementProgress();
                 return;
             } catch (DirectoryNotFoundException ex) {
-                MessageBox.Show("Directories that were created seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                //20010102
+                ErrorHandling.ShowError("20010102", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
                 throw ex;
             } catch (UnauthorizedAccessException ex) {
-                MessageBox.Show("The application doesn't have write access to the directory it was installed in. Please move it to a directory you are own of, or rerun the application as Administrator.");
+                //20020103
+                ErrorHandling.ShowError("20020103", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
                 throw ex;
             } catch (FileNotFoundException ex) {
-                MessageBox.Show("Files that were downloaded seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
-                throw ex;
-            } catch (IOException ex) {
-                MessageBox.Show("Something went wrong:\r\n\r\n" + ex.Message);
+                //20030104
+                ErrorHandling.ShowError("20030104", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
                 throw ex;
             } catch (InvalidDataException ex) {
-                MessageBox.Show("A download was corrupt, please rerun the application and make sure your network is stable.");
+                //20040105
+                ErrorHandling.ShowError("20040105", "A download is corrupt. Make sure your network is stable, then retry.");
+                throw ex;
+            } catch (IOException ex) {
+                //20FF0106
+                ErrorHandling.ShowError("20FF0106", "Unexpected Exception: " + ex.Message);
+                throw ex;
+            } catch (Exception ex) {
+                //FFFF0107
+                ErrorHandling.ShowError("FFFF0107", "Unexpected Exception: " + ex.Message);
                 throw ex;
             }
 
@@ -79,30 +94,63 @@ namespace auto_h_encore {
                 form.incrementProgress();
                 return;
             } catch (FileNotFoundException ex) {
-                MessageBox.Show("Files that were downloaded seem to have disappeared. Please relaunch the application and avoid touching the application directory.");
+                //20030109
+                ErrorHandling.ShowError("20030109", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                throw ex;
+            } catch (Exception ex) {
+                //FFFF010A
+                ErrorHandling.ShowError("FFFF010A", "Unexpected Exception: " + ex.Message);
                 throw ex;
             }
         }
 
         public static string BrowseFile(string title, string extension, string restrictions) {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = restrictions;
-            dialog.CheckFileExists = true;
-            dialog.CheckPathExists = true;
-            dialog.DefaultExt = extension;
-            dialog.Multiselect = false;
-            dialog.Title = title;
-            dialog.ShowDialog();
-            return dialog.FileName;
+            try {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = restrictions;
+                dialog.CheckFileExists = true;
+                dialog.CheckPathExists = true;
+                dialog.DefaultExt = extension;
+                dialog.Multiselect = false;
+                dialog.Title = title;
+                dialog.ShowDialog();
+                return dialog.FileName;
+            } catch (Exception ex) {
+                //FFFF010B
+                ErrorHandling.ShowError("FFFF010B", "Unexpected Exception: " + ex.Message);
+                throw ex;
+            }            
         }
 
         public static string MD5Checksum(string path) {
-            using (MD5 md5 = MD5.Create()) {
-                using (FileStream stream = File.OpenRead(path)) {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+            try {
+                using (MD5 md5 = MD5.Create()) {
+                    using (FileStream stream = File.OpenRead(path)) {
+                        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                    }
                 }
+            } catch (System.Reflection.TargetInvocationException ex) {
+                //3001010C
+                ErrorHandling.ShowError("3001010C", "Failed to create MD5 calculator. Please retry.");
+                throw ex;
+            } catch (DirectoryNotFoundException ex) {
+                //2001010D
+                ErrorHandling.ShowError("2001010D", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                throw ex;
+            } catch (UnauthorizedAccessException ex) {
+                //2002010E
+                ErrorHandling.ShowError("2002010E", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                throw ex;
+            } catch (FileNotFoundException ex) {
+                //2003010F
+                ErrorHandling.ShowError("2003010F", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
+                throw ex;
+            } catch (Exception ex) {
+                //FFFF0110
+                ErrorHandling.ShowError("FFFF0110", "Unexpected Exception: " + ex.Message);
+                throw ex;
             }
-        }
 
+        }
     }
 }
