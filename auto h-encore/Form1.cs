@@ -17,8 +17,8 @@ using System.Security.Cryptography;
 
 namespace auto_h_encore {
     public partial class Form1 : Form {
-
-
+        //TODO: Move ALL text into lang resource file to make translating easier
+        //TODO: Make exception catches reusable
         public Form1() {
             InitializeComponent();
 
@@ -115,6 +115,7 @@ namespace auto_h_encore {
             try {
                 info("Generating working directories...");
                 if (FileSystem.FileExists(Reference.fpath_pkg2zip)) FileSystem.DeleteFile(Reference.fpath_pkg2zip);
+                if (FileSystem.DirectoryExists(Reference.path_downloads + "app\\PCSG90096\\")) FileSystem.DeleteDirectory(Reference.path_downloads + "app\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
                 Directory.CreateDirectory(Reference.path_data);
                 Directory.CreateDirectory(Reference.path_hencore);
                 Directory.CreateDirectory(Reference.path_psvimgtools);
