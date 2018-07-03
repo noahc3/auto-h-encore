@@ -24,6 +24,8 @@ Basically, you still need QCMA.
 
 ## Usage
 
+The average user should probably follow [vita.hacks.guide](https://vita.hacks.guide/), which includes the process of using this application. Otherwise:
+
 The application has been verified working on 1000 and 2000 series Vita's as well as PSTV.
 
 Requires .NET 4.5.2 or higher (Windows should automatically download it or link you to it if you don't have it)
