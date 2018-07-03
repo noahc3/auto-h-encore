@@ -186,6 +186,10 @@ namespace auto_h_encore {
             if (InvokeRequired) {
                 Invoke(new Action(() => {
                     btnStart.Enabled = state;
+                    btnImport.Enabled = state;
+                    cbxDelete.Enabled = state;
+                    cbxTrim.Enabled = state;
+                    lblHowToAID.Enabled = state;
                     txtAID.Enabled = state;
                     txtQCMA.Enabled = state;
                     btnBrowseQCMA.Enabled = state;
@@ -193,6 +197,10 @@ namespace auto_h_encore {
                 }));
             } else {
                 btnStart.Enabled = state;
+                btnImport.Enabled = state;
+                cbxDelete.Enabled = state;
+                cbxTrim.Enabled = state;
+                lblHowToAID.Enabled = state;
                 txtAID.Enabled = state;
                 txtQCMA.Enabled = state;
                 btnBrowseQCMA.Enabled = state;

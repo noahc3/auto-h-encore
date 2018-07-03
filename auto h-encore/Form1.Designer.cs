@@ -148,6 +148,7 @@
             // 
             // lblVersion
             // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVersion.Location = new System.Drawing.Point(326, 698);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(255, 13);
@@ -157,6 +158,8 @@
             // 
             // btnImport
             // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImport.Location = new System.Drawing.Point(12, 282);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(566, 23);
@@ -191,6 +194,7 @@
             // 
             // lblIssueTracker
             // 
+            this.lblIssueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIssueTracker.AutoSize = true;
             this.lblIssueTracker.Location = new System.Drawing.Point(12, 698);
             this.lblIssueTracker.Name = "lblIssueTracker";
