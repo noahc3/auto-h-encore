@@ -142,11 +142,11 @@ namespace auto_h_encore {
         }
 
         private void btnBrowsePkg2zip_Click(object sender, EventArgs e) {
-            txtPkg2zip.Text = Utility.BrowseFile("Browse for pkg2zip_32bit.zip v1.8", ".zip", "Zip files (*.zip)|*.zip");
+            txtPkg2zip.Text = Utility.BrowseFile("Browse for pkg2zip_32bit.zip or pkg2zip_64bit.zip v1.8", ".zip", "Zip files (*.zip)|*.zip");
         }
 
         private void btnBrowsePsvimgtools_Click(object sender, EventArgs e) {
-            txtPsvimgtools.Text = Utility.BrowseFile("psvimgtools-0.1-win32.zip v0.1", ".zip", "Zip files (*.zip)|*.zip");
+            txtPsvimgtools.Text = Utility.BrowseFile("psvimgtools-0.1-win32.zip or psvimgtools-0.1-win64.zip v0.1", ".zip", "Zip files (*.zip)|*.zip");
         }
 
         private void btnBrowseBittersmile_Click(object sender, EventArgs e) {
