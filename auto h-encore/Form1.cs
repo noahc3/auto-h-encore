@@ -14,6 +14,7 @@ using System.Net.Http;
 using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace auto_h_encore {
     public partial class Form1 : Form {
@@ -340,15 +341,12 @@ namespace auto_h_encore {
 
         private void Form1_Load(object sender, EventArgs e) {
             //try to automatically populate needed information
-            if (FileSystem.DirectoryExists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\")) {
-                txtQCMA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\";
-                if (FileSystem.DirectoryExists(txtQCMA.Text + "APP\\")) {
-                    string[] directories = FileSystem.GetDirectories(txtQCMA.Text + "APP\\").ToArray();
-                    if (directories.Any()) {
-                        if (directories[0].Replace('/', '\\').Split('\\').Last().Length == 16) txtAID.Text = directories[0].Replace('/', '\\').Split('\\').Last();
-                    }
-                }
-            }
+            string QCMA = (string) Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "appsPath", null);
+            string AID = (string) Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null);
+            if (QCMA != null && FileSystem.DirectoryExists(QCMA)) txtQCMA.Text = QCMA;
+            if (AID != null && AID.Length == 16) txtAID.Text = AID;
+
+            
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
