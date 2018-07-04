@@ -78,8 +78,12 @@ namespace auto_h_encore {
                     }
 
                     if (FileSystem.FileExists(path)) {
+                        bool fileValid = false;
                         md5 = Utility.MD5Checksum(path);
-                        if (Reference.hashes[id] == md5) {
+                        foreach (string k in Reference.hashes[id]) {
+                            if (k == md5) fileValid = true;
+                        }
+                        if (fileValid) {
                             info("File " + cleanName + " already downloaded and valid, won't redownload");
                             Global.fileOverrides[id] = path;
                         } else {

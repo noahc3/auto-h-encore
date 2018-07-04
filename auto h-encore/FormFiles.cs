@@ -74,29 +74,30 @@ namespace auto_h_encore {
                 //if the file is specified and exists, lock the textbox and start doing an MD5 verification
                 LockControls(id, btnBrowse, txtFile);
                 Task.Factory.StartNew(new Action(() => {
-                    using (MD5 md5 = MD5.Create()) {
-                        using (FileStream stream = File.OpenRead(txtFile.Text)) {
-                            if (BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower() == Reference.hashes[id]) {
-                                Invoke(new Action(() => {
-                                    lblStatus.ForeColor = Color.Green;
-                                    lblStatus.Text = fileStatusMessages[2];
-                                    okFiles[id] = true;
-                                }));
-                            } else {
-                                if (cbxIgnoreHashes.Checked) {
-                                    Invoke(new Action(() => {
-                                        lblStatus.ForeColor = Color.Orange;
-                                        lblStatus.Text = fileStatusMessages[4];
-                                        okFiles[id] = true;
-                                    }));
-                                } else {
-                                    Invoke(new Action(() => {
-                                        lblStatus.ForeColor = Color.Red;
-                                        lblStatus.Text = fileStatusMessages[3];
-                                        okFiles[id] = false;
-                                    }));
-                                }
-                            }
+                    bool fileValid = false;
+                    string hash = Utility.MD5Checksum(txtFile.Text);
+                    foreach (string k in Reference.hashes[id]) {
+                        if (k == hash) fileValid = true;
+                    }
+                    if (fileValid) {
+                        Invoke(new Action(() => {
+                            lblStatus.ForeColor = Color.Green;
+                            lblStatus.Text = fileStatusMessages[2];
+                            okFiles[id] = true;
+                        }));
+                    } else {
+                        if (cbxIgnoreHashes.Checked) {
+                            Invoke(new Action(() => {
+                                lblStatus.ForeColor = Color.Orange;
+                                lblStatus.Text = fileStatusMessages[4];
+                                okFiles[id] = true;
+                            }));
+                        } else {
+                            Invoke(new Action(() => {
+                                lblStatus.ForeColor = Color.Red;
+                                lblStatus.Text = fileStatusMessages[3];
+                                okFiles[id] = false;
+                            }));
                         }
                     }
                     Invoke(new Action(() => TryUnlockControls(id, btnBrowse, txtFile)));
