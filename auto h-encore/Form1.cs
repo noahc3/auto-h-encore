@@ -338,5 +338,18 @@ namespace auto_h_encore {
             //Process.Start(Reference.url_issues);
             
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            //try to automatically populate needed information
+            if (FileSystem.DirectoryExists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\")) {
+                txtQCMA.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\";
+                if (FileSystem.DirectoryExists(txtQCMA.Text + "APP\\")) {
+                    string[] directories = FileSystem.GetDirectories(txtQCMA.Text + "APP\\").ToArray();
+                    if (directories.Any()) {
+                        if (directories[0].Replace('/', '\\').Split('\\').Last().Length == 16) txtAID.Text = directories[0].Replace('/', '\\').Split('\\').Last();
+                    }
+                }
+            }
+        }
     }
 }
