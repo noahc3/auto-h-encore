@@ -7,7 +7,8 @@ This application is **WINDOWS ONLY**.
 
 ## Features
 This application does everything short of installing QCMA/integrating libVitaMTP. That means:
-
+ 
+ - Gets AID and QCMA directory from QCMA automatically.
  - Automatically downloads required tools (psvimgtools, pkg2zip, bittersmile demo and h-encore itself)
  - Allows user to import necessary files if they've already downloaded them *(optional)*
  - Grabs CMA encryption key from your account ID
@@ -17,7 +18,6 @@ This application does everything short of installing QCMA/integrating libVitaMTP
  
 This application **does not**:
  
- - Get your AID automatically
  - Send h-encore to your PS Vita
  
 Basically, you still need QCMA.
@@ -40,13 +40,12 @@ Clone the repository and open the solution in Visual Studio. Build from there.
 
 ## Contributing
 
-I don't know C, so I can't reasonably integrate libVitaMTP into the application to fully automate the process. If you can do this, I would greatly appreciate it if you could fork and/or submit a pull request to implement this functionality. 
-
-The code also needs some cleanup and better error handling.
+If you know C and are willing to help out, it would be appreciated if you could help [integrate libVitaMTP into this application](https://github.com/noahc3/auto-h-encore/issues/1).
 
 Other changes are also welcome through pull requests.
 
 ## Thanks
+ - yexun1995 for the Simplified Chinese translation.
  - thefl0w for [h-encore](https://github.com/TheOfficialFloW/h-encore "h-encore") and all of their other contributions to the Vita scene.
  - yifanlu for [psvimgtools](https://github.com/yifanlu/psvimgtools/) and all of their other contributions to the Vita scene.
  - mmozeiko for [pkg2zip](https://github.com/mmozeiko/pkg2zip "pkg2zip").

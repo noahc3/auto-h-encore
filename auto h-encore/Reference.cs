@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.2.3";
-        public static readonly string config_language = Environment.CurrentDirectory + "\\language.conf";
+        public static readonly string version = "0.3.0";
+        public static readonly string config_language = Environment.CurrentDirectory + "\\settings.conf";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
