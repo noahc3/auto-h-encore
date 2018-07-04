@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.2.2";
+        public static readonly string version = "0.2.3";
+        public static readonly string config_language = Environment.CurrentDirectory + "\\language.conf";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
@@ -28,13 +29,22 @@ namespace auto_h_encore {
         public static readonly string url_cma = "http://cma.henkaku.xyz/?aid=";
         public static readonly string url_issues = "https://github.com/noahc3/auto-h-encore/issues";
 
-        public static readonly string hash_hencore = "d0b1bad1b52d8e2464ebf3aab5fc5401";
-        public static readonly string hash_pkg2zip = "10cf8255126521ee59fd884cf09c1e30";
-        public static readonly string hash_psvimgtools = "44696426da9440b45fcef9ec2845a042";
-        public static readonly string hash_bittersmile = "ce3badfc04ae24e7c209f1a2fd565943";
+        public static readonly string[][] hashes = new string[][] {
+            new string[] {
+                "d0b1bad1b52d8e2464ebf3aab5fc5401"
+            },
+            new string[] {
+                "10cf8255126521ee59fd884cf09c1e30",
+                "16666dc72746107e9ee5f788bd1f6455"
+            },
+            new string[] {
+                "44696426da9440b45fcef9ec2845a042",
+                "c10c18ef37664da6a36bdbb961215b16"
+            },
+            new string[] {
+                "ce3badfc04ae24e7c209f1a2fd565943"
+            }
 
-        public static readonly string[] hashes = new string[] {
-            hash_hencore, hash_pkg2zip, hash_psvimgtools, hash_bittersmile
         };
 
         public static readonly string[] raws = new string[] {

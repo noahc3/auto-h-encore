@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using Microsoft.VisualBasic.FileIO;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
 
 namespace auto_h_encore {
     public static class ErrorHandling {
@@ -50,12 +55,35 @@ namespace auto_h_encore {
                 02: Form1.cs
         */
 
+        public static void HandleException(string errorSuffix, Exception ex) {
+            //ha ha ha this doesnt seem like good practice
+            try {
+                throw ex;
+            } catch (WebException) {
+                ShowError("1001-" + errorSuffix, Language.MountedLanguage["error_WebException"]);
+            } catch (HttpRequestException) {
+                ShowError("10FF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
+            } catch (DirectoryNotFoundException) {
+                ShowError("2001-" + errorSuffix, Language.MountedLanguage["error_DirectoryNotFoundException"]);
+            } catch (UnauthorizedAccessException) {
+                ShowError("2002-" + errorSuffix, Language.MountedLanguage["error_UnauthorizedAccessException"]);
+            } catch (FileNotFoundException) {
+                ShowError("2003-" + errorSuffix, Language.MountedLanguage["error_FileNotFoundException"]);
+            } catch (InvalidDataException) {
+                ShowError("2004-" + errorSuffix, Language.MountedLanguage["error_InvalidOperationException"]);
+            } catch (IOException) {
+                ShowError("20FF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
+            } catch (TargetInvocationException) {
+                ShowError("3001-" + errorSuffix, Language.MountedLanguage["error_TargetInvocationException"]);
+            } catch (Exception) {
+                ShowError("FFFF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
+            } finally {
+                throw ex;
+            }
+        }
+
         public static void ShowError(string code, string message) {
-            MessageBox.Show(
-                "Error " + code + " occurred.\r\n\r\n"
-                + message + "\r\n\r\n"
-                + "If you can't solve the issue, please create an issue on the issue tracker with this error code."
-                , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(string.Format(Language.MountedLanguage["error_Template"], code, message), Language.MountedLanguage["title_Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

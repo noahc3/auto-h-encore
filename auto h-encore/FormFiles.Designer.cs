@@ -105,9 +105,9 @@
             this.lblPkg2zipName.AutoSize = true;
             this.lblPkg2zipName.Location = new System.Drawing.Point(9, 130);
             this.lblPkg2zipName.Name = "lblPkg2zipName";
-            this.lblPkg2zipName.Size = new System.Drawing.Size(119, 13);
+            this.lblPkg2zipName.Size = new System.Drawing.Size(216, 13);
             this.lblPkg2zipName.TabIndex = 7;
-            this.lblPkg2zipName.Text = "pkg2zip_32bit.zip (v1.8)";
+            this.lblPkg2zipName.Text = "pkg2zip_32bit.zip or pkg2zip_64bit.zip (v1.8)";
             // 
             // btnBrowsePkg2zip
             // 
@@ -141,9 +141,9 @@
             this.lblPsvimgtoolsName.AutoSize = true;
             this.lblPsvimgtoolsName.Location = new System.Drawing.Point(9, 196);
             this.lblPsvimgtoolsName.Name = "lblPsvimgtoolsName";
-            this.lblPsvimgtoolsName.Size = new System.Drawing.Size(157, 13);
+            this.lblPsvimgtoolsName.Size = new System.Drawing.Size(292, 13);
             this.lblPsvimgtoolsName.TabIndex = 11;
-            this.lblPsvimgtoolsName.Text = "psvimgtools-0.1-win32.zip (v0.1)";
+            this.lblPsvimgtoolsName.Text = "psvimgtools-0.1-win32.zip or psvimgtools-0.1-win64.zip (v0.1)";
             // 
             // btnBrowsePsvimgtools
             // 

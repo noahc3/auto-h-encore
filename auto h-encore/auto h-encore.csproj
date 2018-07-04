@@ -71,7 +71,14 @@
     <Compile Include="FormFiles.Designer.cs">
       <DependentUpon>FormFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLanguage.Designer.cs">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
+    <Compile Include="Language.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reference.cs" />
@@ -84,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFiles.resx">
       <DependentUpon>FormFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLanguage.resx">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
