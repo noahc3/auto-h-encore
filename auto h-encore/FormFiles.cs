@@ -23,16 +23,30 @@ namespace auto_h_encore {
         private bool[] okFiles = new bool[4];
 
         private static string[] fileStatusMessages = new string[] {
-            "No file selected, will download.",
-            "File path is invalid",
-            "File selected and hash matches, will import.",
-            "File selected but hash does not match, will download",
-            "File selected but hash does not match. Hash override enabled, will import",
-            "Calculating checksum..."
+            Language.MountedLanguage["status_NoFile"],
+            Language.MountedLanguage["status_Invalid"],
+            Language.MountedLanguage["status_Valid"],
+            Language.MountedLanguage["status_BadHash"],
+            Language.MountedLanguage["status_Override"],
+            Language.MountedLanguage["status_Calculating"],
         };
 
         public FormFiles() {
             InitializeComponent();
+
+            lblBittersmileStatus.Text = fileStatusMessages[0];
+            lblHencoreStatus.Text = fileStatusMessages[0];
+            lblPkg2zipStatus.Text = fileStatusMessages[0];
+            lblPsvimgtoolsStatus.Text = fileStatusMessages[0];
+
+            this.Text = Language.MountedLanguage["title_Import"];
+            btnBrowseBittersmile.Text = Language.MountedLanguage["btn_Browse"];
+            btnBrowseHencore.Text = Language.MountedLanguage["btn_Browse"];
+            btnBrowsePkg2zip.Text = Language.MountedLanguage["btn_Browse"];
+            btnBrowsePsvimgtools.Text = Language.MountedLanguage["btn_Browse"];
+            btnOk.Text = Language.MountedLanguage["btn_Done"];
+            cbxIgnoreHashes.Text = Language.MountedLanguage["cbx_OverrideHashes"];
+            lblInfo.Text = Language.MountedLanguage["txtblock_Import"];
         }
 
         private void LockControls(int id, Button btn, TextBox txt) {
@@ -138,26 +152,26 @@ namespace auto_h_encore {
         }
 
         private void btnBrowseHencore_Click(object sender, EventArgs e) {
-            txtHencore.Text = Utility.BrowseFile("Browse for h-encore.zip v1.0", ".zip", "Zip files (*.zip)|*.zip");
+            txtHencore.Text = Utility.BrowseFile(Language.MountedLanguage["browse_Generic"] + "h-encore.zip v1.0", ".zip", "Zip files (*.zip)|*.zip");
         }
 
         private void btnBrowsePkg2zip_Click(object sender, EventArgs e) {
-            txtPkg2zip.Text = Utility.BrowseFile("Browse for pkg2zip_32bit.zip or pkg2zip_64bit.zip v1.8", ".zip", "Zip files (*.zip)|*.zip");
+            txtPkg2zip.Text = Utility.BrowseFile(Language.MountedLanguage["browse_Generic"] + "pkg2zip_32bit.zip or pkg2zip_64bit.zip v1.8", ".zip", "Zip files (*.zip)|*.zip");
         }
 
         private void btnBrowsePsvimgtools_Click(object sender, EventArgs e) {
-            txtPsvimgtools.Text = Utility.BrowseFile("psvimgtools-0.1-win32.zip or psvimgtools-0.1-win64.zip v0.1", ".zip", "Zip files (*.zip)|*.zip");
+            txtPsvimgtools.Text = Utility.BrowseFile(Language.MountedLanguage["browse_Generic"] + "psvimgtools -0.1-win32.zip or psvimgtools-0.1-win64.zip v0.1", ".zip", "Zip files (*.zip)|*.zip");
         }
 
         private void btnBrowseBittersmile_Click(object sender, EventArgs e) {
-            txtBittersmile.Text = Utility.BrowseFile("Browse for BitterSmile demo pkg", ".pkg", "All files (*)|*");
+            txtBittersmile.Text = Utility.BrowseFile(Language.MountedLanguage["browse_Generic"] + "BitterSmile demo pkg", ".pkg", "All files (*)|*");
         }
 
         private void cbxIgnoreHashes_CheckedChanged(object sender, EventArgs e) {
             if (!UserChecked) {
                 if (cbxIgnoreHashes.Checked) {
                     UserChecked = true;
-                    if (MessageBox.Show("Compatibility is not guranteed when using versions of files this application was not designed for. Continue anyways?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+                    if (MessageBox.Show(Language.MountedLanguage["warn_HashCompat"], Language.MountedLanguage["title_Warning"] , MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                         cbxIgnoreHashes.BackColor = Color.Red;
                         UserChecked = false;
 
@@ -233,6 +247,8 @@ namespace auto_h_encore {
             txtPkg2zip.Text = Global.fileOverrides[1];
             txtPsvimgtools.Text = Global.fileOverrides[2];
             txtBittersmile.Text = Global.fileOverrides[3];
+
+            UserChecked = false;
         }
     }
 }

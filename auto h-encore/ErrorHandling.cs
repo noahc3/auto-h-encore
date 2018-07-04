@@ -60,34 +60,30 @@ namespace auto_h_encore {
             try {
                 throw ex;
             } catch (WebException) {
-                ShowError("1001-" + errorSuffix, "Failed to download file. Please check your internet connection.");
+                ShowError("1001-" + errorSuffix, Language.MountedLanguage["error_WebException"]);
             } catch (HttpRequestException) {
-                ShowError("10FF-" + errorSuffix, "Something went wrong: " + ex.Message);
+                ShowError("10FF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
             } catch (DirectoryNotFoundException) {
-                ShowError("2001-" + errorSuffix, "A directory that was created seem to have disappeared (did they get deleted?) OR a directory failed to extract earlier OR you are using an unsupported file import.");
+                ShowError("2001-" + errorSuffix, Language.MountedLanguage["error_DirectoryNotFoundException"]);
             } catch (UnauthorizedAccessException) {
-                ShowError("2002-" + errorSuffix, "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+                ShowError("2002-" + errorSuffix, Language.MountedLanguage["error_UnauthorizedAccessException"]);
             } catch (FileNotFoundException) {
-                ShowError("2003-" + errorSuffix, "A file that was created seem to have disappeared (did they get deleted?) OR a file failed to extract earlier OR you are using an unsupported file import.");
+                ShowError("2003-" + errorSuffix, Language.MountedLanguage["error_FileNotFoundException"]);
             } catch (InvalidDataException) {
-                ShowError("2004-" + errorSuffix, "A download is corrupt. Make sure your network is stable.");
+                ShowError("2004-" + errorSuffix, Language.MountedLanguage["error_InvalidOperationException"]);
             } catch (IOException) {
-                ShowError("20FF-" + errorSuffix, "Something went wrong: " + ex.Message);
+                ShowError("20FF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
             } catch (TargetInvocationException) {
-                ShowError("3001-" + errorSuffix, "Failed to create MD5 calculator. Please retry.");
+                ShowError("3001-" + errorSuffix, Language.MountedLanguage["error_TargetInvocationException"]);
             } catch (Exception) {
-                ShowError("FFFF-" + errorSuffix, "Something went wrong: " + ex.Message);
+                ShowError("FFFF-" + errorSuffix, string.Format(Language.MountedLanguage["error_Unknown"], ex.Message));
             } finally {
                 throw ex;
             }
         }
 
         public static void ShowError(string code, string message) {
-            MessageBox.Show(
-                "Error " + code + " occurred.\r\n\r\n"
-                + message + "\r\n\r\n"
-                + "Please retry the process. If you can't solve the issue, please create an issue on the issue tracker with this error code."
-                , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(string.Format(Language.MountedLanguage["error_Template"], code, message), Language.MountedLanguage["title_Error"], MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

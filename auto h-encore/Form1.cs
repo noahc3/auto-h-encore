@@ -25,8 +25,18 @@ namespace auto_h_encore {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            lblVersion.Text = "auto h-encore version " + Reference.version;
-            lblInfo.Text = "Before running: \r\n1. Install QCMA\r\n2. Open QCMA\r\n3. Connect your Vita to your PC using USB and launch Content Manager\r\n4. Select Copy Content to connect your Vita to your PC\r\n   If your Vita says you need to update, turn off Wifi and restart the console\r\n\r\nEverything is now ready. Enter the above information correctly to enable the start button\r\n\r\nIf the start button does not enable, make sure your AID is 16 characters long and that you've selected the correct PS Vita folder (it should have an APP directory in it).";
+            this.Text = Language.MountedLanguage["title_Main"];
+            lblVersion.Text = Language.MountedLanguage["lbl_VersionText"] + Reference.version;
+            lblInfo.Text = Language.MountedLanguage["txtblock_BeforeRunning"];
+            lblAID.Text = Language.MountedLanguage["lbl_AID"];
+            lblHowToAID.Text = Language.MountedLanguage["lbl_HowToAID"];
+            lblIssueTracker.Text = Language.MountedLanguage["lbl_Issues"];
+            lblQCMA.Text = Language.MountedLanguage["lbl_QCMADir"];
+            btnImport.Text = Language.MountedLanguage["btn_Import"];
+            btnStart.Text = Language.MountedLanguage["btn_Start"];
+            btnBrowseQCMA.Text = Language.MountedLanguage["btn_Browse"];
+            cbxDelete.Text = Language.MountedLanguage["cbx_DeleteExisting"];
+            cbxTrim.Text = Language.MountedLanguage["cbx_Trim"];
         }
 
         private void VerifyUserInfo() {
@@ -39,7 +49,7 @@ namespace auto_h_encore {
         private void generateDirectories(string AID) {
             if (cbxDelete.Checked) {
                 try {
-                    info("Deleting old files...");
+                    info(Language.MountedLanguage["log_WipeFiles"]);
                     if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
                     for (int i = 0; i < 4; i++) {
                         if (!FileSystem.FileExists(Global.fileOverrides[i])) Global.fileOverrides[i] = "";
@@ -73,7 +83,7 @@ namespace auto_h_encore {
                     cleanName = path.Replace('/', '\\').Split('\\').Last();
 
                     if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
-                        info("File import for file " + cleanName + " valid.");
+                        info(string.Format(Language.MountedLanguage["log_Import"], cleanName));
                         continue;
                     }
 
@@ -84,13 +94,13 @@ namespace auto_h_encore {
                             if (k == md5) fileValid = true;
                         }
                         if (fileValid) {
-                            info("File " + cleanName + " already downloaded and valid, won't redownload");
+                            info(string.Format(Language.MountedLanguage["log_DownloadValid"], cleanName));
                             Global.fileOverrides[id] = path;
                         } else {
-                            info("File " + cleanName + " already downloaded but hash doesn't match, will redownload.");
+                            info(string.Format(Language.MountedLanguage["log_DownloadInvalid"], cleanName));
                         }
                     } else {
-                        info("File " + cleanName + " not downloaded or imported, will download.");
+                        info(string.Format(Language.MountedLanguage["log_NotDownloaded"], cleanName));
                     }
                 }
 
@@ -99,7 +109,7 @@ namespace auto_h_encore {
             }
 
             if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
-                if (MessageBox.Show("You must remove the existing bittersmile backup from your QCMA directory. If you want to keep it, move it now. Delete?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
                     FileSystem.DeleteDirectory(txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
                 } else {
                     throw new IOException("Directory Already Exists");
@@ -107,7 +117,7 @@ namespace auto_h_encore {
             }
 
             try {
-                info("Generating working directories...");
+                info(Language.MountedLanguage["log_WorkingDirs"]);
                 if (FileSystem.FileExists(Reference.fpath_pkg2zip)) FileSystem.DeleteFile(Reference.fpath_pkg2zip);
                 if (FileSystem.DirectoryExists(Reference.path_downloads + "app\\PCSG90096\\")) FileSystem.DeleteDirectory(Reference.path_downloads + "app\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
                 Directory.CreateDirectory(Reference.path_data);
@@ -126,12 +136,12 @@ namespace auto_h_encore {
             for (int id = 0; id < 4; id++) {
                 string cleanName = Reference.raws[id].Replace('/', '\\').Split('\\').Last();
                 if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
-                    if (Global.fileOverrides[id] == Reference.raws[id]) info("File " + cleanName + " in correct location, skipping");
+                    if (Global.fileOverrides[id] == Reference.raws[id]) info(string.Format(Language.MountedLanguage["log_CorrectLocation"], cleanName));
                     else {
                         try {
-                            info("Importing " + cleanName);
+                            info(string.Format(Language.MountedLanguage["log_Importing"], cleanName));
                             FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
-                            info("      Done!");
+                            info(Language.MountedLanguage["log_Done"]);
                         } catch (Exception ex) {
                             ErrorHandling.HandleException("0202", ex);
                         }
@@ -202,14 +212,14 @@ namespace auto_h_encore {
 
 
                     try {
-                        info("Extracting bittersmile demo with pkg2zip...");
+                        info(Language.MountedLanguage["log_ExtractingPKG"]);
                         ProcessStartInfo psi = new ProcessStartInfo();
                         psi.WorkingDirectory = Reference.path_downloads;
                         psi.Arguments = "-x bittersmile.pkg";
                         psi.FileName = Reference.fpath_pkg2zip;
                         Process process = Process.Start(psi);
                         process.WaitForExit();
-                        info("      Done!");
+                        info(Language.MountedLanguage["log_Done"]);
                         incrementProgress();
                     } catch (Exception ex) {
                         ErrorHandling.HandleException("0203", ex);
@@ -218,12 +228,12 @@ namespace auto_h_encore {
 
                     if (cbxTrim.Checked) {
                         try {
-                            info("Trimming excess content from bitter smile demo...");
+                            info(Language.MountedLanguage["log_Trimming"]);
                             string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
                             foreach (string k in Reference.trims) {
                                 FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
                             }
-                            info("      Done!");
+                            info(Language.MountedLanguage["log_Done"]);
                         } catch (Exception ex) {
                             ErrorHandling.HandleException("0204", ex);
                         }
@@ -231,7 +241,7 @@ namespace auto_h_encore {
 
                     try {
                         foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
-                            info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                            info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
                             FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                         }
                     } catch (Exception ex) {
@@ -240,7 +250,7 @@ namespace auto_h_encore {
 
                     try {
                         foreach (string k in FileSystem.GetDirectories(Reference.path_downloads + "app\\PCSG90096\\")) {
-                            info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                            info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
                             FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
                         }
                     } catch (Exception ex) {
@@ -250,9 +260,9 @@ namespace auto_h_encore {
                     incrementProgress();
 
                     try {
-                        info("Moving license file...");
+                        info(Language.MountedLanguage["log_MoveLicense"]);
                         FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
-                        info("      Done!");
+                        info(Language.MountedLanguage["log_Done"]);
                         incrementProgress();
                     } catch (Exception ex) {
                         ErrorHandling.HandleException("0207", ex);
@@ -261,10 +271,10 @@ namespace auto_h_encore {
                     string encKey = "";
 
                     try {
-                        info("Getting CMA encryption key using AID " + txtAID.Text);
+                        info(string.Format(Language.MountedLanguage["log_GetCMA"], txtAID.Text));
                         encKey = Utility.GetEncKey(txtAID.Text);
                         if (encKey.Length != 64) return;
-                        info("Got CMA encryption key " + encKey);
+                        info(string.Format(Language.MountedLanguage["log_GotCMA"], encKey));
                         incrementProgress();
                     } catch (Exception ex) {
                         ErrorHandling.HandleException("0208", ex);
@@ -277,26 +287,15 @@ namespace auto_h_encore {
                     }
 
                     try {
-                        info("Moving h-encore files to QCMA APP directory...\r\n");
+                        info(Language.MountedLanguage["log_MoveToQCMA"]);
                         FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
                         incrementProgress();
-                        info("auto h-encore Done!!");
+                        info(Language.MountedLanguage["log_Finished"]);
                     } catch (Exception ex) {
                         ErrorHandling.HandleException("020A", ex);
                     }
 
-                    Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"
-                        + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
-                        + "2. Connect your PS Vita to your PC using USB\r\n"
-                        + "3. Open Content Manager on your PS Vita and select Copy Content\r\n"
-                        + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
-                        + "4. In Content Manager, choose PC -> PS Vita System\r\n"
-                        + "5. Select Applications\r\n"
-                        + "6. Select PS Vita\r\n"
-                        + "7. Select h-encore and hit Copy\r\n"
-                        + "8. Run the h-encore app from the Live Area\r\n"
-                        + "     If it crashes the first time, try restarting your Vita and launching the bubble again\r\n\r\n"
-                        + "Done!")));
+                    Invoke(new Action(() => MessageBox.Show(Language.MountedLanguage["info_Finish"])));
 
                     toggleControls(true);
                 }));
@@ -320,7 +319,7 @@ namespace auto_h_encore {
 
         private void btnBrowseQCMA_Click(object sender, EventArgs e) {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = "Locate your PS Vita/APP folder (find it in QCMA settings)";
+            dialog.Description = Language.MountedLanguage["browse_QCMA"];
             dialog.ShowDialog();
             txtQCMA.Text = dialog.SelectedPath;
         }
@@ -350,6 +349,10 @@ namespace auto_h_encore {
                     }
                 }
             }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            Application.Exit();
         }
     }
 }

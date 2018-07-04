@@ -30,13 +30,13 @@ namespace auto_h_encore {
         public static void DownloadFile(Form1 form, string url, string output) {
             while (true)
                 try {
-                    form.info("Downloading " + output.Replace('/', '\\').Split('\\').Last());
+                    form.info(string.Format(Language.MountedLanguage["log_Downloading"], output.Replace('/', '\\').Split('\\').Last()));
                     web.DownloadFile(url, output);
-                    form.info("      Done!");
+                    form.info(Language.MountedLanguage["log_Done"]);
                     return;
                 } catch (WebException ex) {
                     //gets special handling to allow retry without reset
-                    if (MessageBox.Show("Error 1001-0105\r\n\r\nFailed to download file " + url + "\r\n\r\nMake sure your internet is connected and/or retry. If it still doesn't work, create an issue on the Github issue tracker.", "Error", MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
+                    if (MessageBox.Show(string.Format(Language.MountedLanguage["error_Redownload"], url), Language.MountedLanguage["title_Error"], MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
                         throw ex;
                 } catch (Exception ex) {
                     ErrorHandling.HandleException("0104", ex);
@@ -45,9 +45,9 @@ namespace auto_h_encore {
 
         public static void ExtractFile(Form1 form, bool incrementProgress, string filePath, string outputDirectory) {
             try {
-                form.info("Extracting " + filePath.Replace('/', '\\').Split('\\').Last());
+                form.info(string.Format(Language.MountedLanguage["log_Extracting"], filePath.Replace('/', '\\').Split('\\').Last()));
                 ZipFile.ExtractToDirectory(filePath, outputDirectory);
-                form.info("      Done!");
+                form.info(Language.MountedLanguage["log_Done"]);
                 if (incrementProgress) form.incrementProgress();
                 return;
             } catch (Exception ex) {
@@ -58,14 +58,14 @@ namespace auto_h_encore {
 
         public static void PackageFiles(Form1 form, bool incrementProgress, string workingDirectory, string encryptionKey, string type) {
             try {
-                form.info("Packaging h-encore " + type + " using psvimgtools...");
+                form.info(string.Format(Language.MountedLanguage["log_Packaging"], type));
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.WorkingDirectory = workingDirectory;
                 psi.FileName = Reference.path_psvimgtools + "psvimg-create.exe";
                 psi.Arguments = "-n " + type + " -K " + encryptionKey + " " + type + " PCSG90096/" + type;
                 Process process = Process.Start(psi);
                 process.WaitForExit();
-                form.info("      Done!");
+                form.info(Language.MountedLanguage["log_Done"]);
                 form.incrementProgress();
                 return;
             } catch (Exception ex) {
