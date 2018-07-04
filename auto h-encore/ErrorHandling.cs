@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using Microsoft.VisualBasic.FileIO;
+using System.Net;
+using System.Net.Http;
+using System.Reflection;
 
 namespace auto_h_encore {
     public static class ErrorHandling {
@@ -50,11 +55,38 @@ namespace auto_h_encore {
                 02: Form1.cs
         */
 
+        public static void HandleException(string errorSuffix, Exception ex) {
+            //ha ha ha this doesnt seem like good practice
+            try {
+                throw ex;
+            } catch (WebException) {
+                ShowError("1001-" + errorSuffix, "Failed to download file. Please check your internet connection.");
+            } catch (HttpRequestException) {
+                ShowError("10FF-" + errorSuffix, "Something went wrong: " + ex.Message);
+            } catch (DirectoryNotFoundException) {
+                ShowError("2001-" + errorSuffix, "A directory that was created seem to have disappeared (did they get deleted?) OR a directory failed to extract earlier OR you are using an unsupported file import.");
+            } catch (UnauthorizedAccessException) {
+                ShowError("2002-" + errorSuffix, "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
+            } catch (FileNotFoundException) {
+                ShowError("2003-" + errorSuffix, "A file that was created seem to have disappeared (did they get deleted?) OR a file failed to extract earlier OR you are using an unsupported file import.");
+            } catch (InvalidDataException) {
+                ShowError("2004-" + errorSuffix, "A download is corrupt. Make sure your network is stable.");
+            } catch (IOException) {
+                ShowError("20FF-" + errorSuffix, "Something went wrong: " + ex.Message);
+            } catch (TargetInvocationException) {
+                ShowError("3001-" + errorSuffix, "Failed to create MD5 calculator. Please retry.");
+            } catch (Exception) {
+                ShowError("FFFF-" + errorSuffix, "Something went wrong: " + ex.Message);
+            } finally {
+                throw ex;
+            }
+        }
+
         public static void ShowError(string code, string message) {
             MessageBox.Show(
                 "Error " + code + " occurred.\r\n\r\n"
                 + message + "\r\n\r\n"
-                + "If you can't solve the issue, please create an issue on the issue tracker with this error code."
+                + "Please retry the process. If you can't solve the issue, please create an issue on the issue tracker with this error code."
                 , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }

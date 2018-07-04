@@ -44,18 +44,8 @@ namespace auto_h_encore {
                     for (int i = 0; i < 4; i++) {
                         if (!FileSystem.FileExists(Global.fileOverrides[i])) Global.fileOverrides[i] = "";
                     }
-                } catch (UnauthorizedAccessException ex) {
-                    //20020200
-                    ErrorHandling.ShowError("20020200", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    throw ex;
-                } catch (IOException ex) {
-                    //20FF0201
-                    ErrorHandling.ShowError("20FF0201", "Unexpected Exception: " + ex.Message);
-                    throw ex;
                 } catch (Exception ex) {
-                    //FFFF0202
-                    ErrorHandling.ShowError("FFFF0202", "Unexpected Exception: " + ex.Message);
-                    throw ex;
+                    ErrorHandling.HandleException("0200", ex);
                 }
             } else {
 
@@ -120,17 +110,8 @@ namespace auto_h_encore {
                 Directory.CreateDirectory(Reference.path_hencore);
                 Directory.CreateDirectory(Reference.path_psvimgtools);
                 Directory.CreateDirectory(Reference.path_downloads);
-            } catch (UnauthorizedAccessException ex) {
-                //20020203
-                ErrorHandling.ShowError("20020203", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-            } catch (IOException ex) {
-                //20FF0204
-                ErrorHandling.ShowError("20FF0204", "Unexpected Exception: " + ex.Message);
-                throw ex;
             } catch (Exception ex) {
-                //FFFF0205
-                ErrorHandling.ShowError("FFFF0205", "Unexpected Exception: " + ex.Message);
-                throw ex;
+                ErrorHandling.HandleException("0201", ex);
             }
 
             incrementProgress();
@@ -147,22 +128,8 @@ namespace auto_h_encore {
                             info("Importing " + cleanName);
                             FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
                             info("      Done!");
-                        } catch (FileNotFoundException ex) {
-                            //20030205
-                            ErrorHandling.ShowError("20030205", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                            throw ex;
-                        } catch (UnauthorizedAccessException ex) {
-                            //20020206
-                            ErrorHandling.ShowError("20020206", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                            throw ex;
-                        } catch (IOException ex) {
-                            //20FF0207
-                            ErrorHandling.ShowError("20FF0207", "Unexpected Exception: " + ex.Message);
-                            throw ex;
                         } catch (Exception ex) {
-                            //FFFF0208
-                            ErrorHandling.ShowError("FFFF0208", "Unexpected Exception: " + ex.Message);
-                            throw ex;
+                            ErrorHandling.HandleException("0202", ex);
                         }
 
                     }
@@ -220,265 +187,119 @@ namespace auto_h_encore {
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            toggleControls(false);
+            try {
+                toggleControls(false);
 
-            //run code on new thread to keep UI responsive
-            Task.Factory.StartNew(new Action(() => {
-                
-                try {
+                //run code on new thread to keep UI responsive
+                Task.Factory.StartNew(new Action(() => {
+
                     generateDirectories(txtAID.Text);
                     downloadFiles();
-                } catch (Exception ex) {
-                    //MessageBox.Show(ex.Message);
-                    toggleControls(true);
-                    return;
-                }
-                
-
-                try {
-                    info("Extracting bittersmile demo with pkg2zip...");
-                    ProcessStartInfo psi = new ProcessStartInfo();
-                    psi.WorkingDirectory = Reference.path_downloads;
-                    psi.Arguments = "-x bittersmile.pkg";
-                    psi.FileName = Reference.fpath_pkg2zip;
-                    Process process = Process.Start(psi);
-                    process.WaitForExit();
-                    info("      Done!");
-                    incrementProgress();
-                } catch (FileNotFoundException ex) {
-                    //20030209
-                    ErrorHandling.ShowError("20030209", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (Exception ex) {
-                    //FFFF020A
-                    ErrorHandling.ShowError("FFFF020A", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                }
 
 
-                if (cbxTrim.Checked) {
                     try {
-                        info("Trimming excess content from bitter smile demo...");
-                        string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
-                        foreach(string k in Reference.trims) {
-                            FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
-                        }
+                        info("Extracting bittersmile demo with pkg2zip...");
+                        ProcessStartInfo psi = new ProcessStartInfo();
+                        psi.WorkingDirectory = Reference.path_downloads;
+                        psi.Arguments = "-x bittersmile.pkg";
+                        psi.FileName = Reference.fpath_pkg2zip;
+                        Process process = Process.Start(psi);
+                        process.WaitForExit();
                         info("      Done!");
-                    } catch (DirectoryNotFoundException ex) {
-                        //2001020B
-                        ErrorHandling.ShowError("2001020B", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                        toggleControls(true);
-                        return;
-                    } catch (UnauthorizedAccessException ex) {
-                        //2002020C
-                        ErrorHandling.ShowError("2002020C", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                        toggleControls(true);
-                        return;
-                    } catch (FileNotFoundException ex) {
-                        //2003020D
-                        ErrorHandling.ShowError("2003020D", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                        toggleControls(true);
-                        return;
-                    } catch (InvalidDataException ex) {
-                        //2004020E
-                        ErrorHandling.ShowError("2004020E", "A download is corrupt. Make sure your network is stable, then retry.");
-                        toggleControls(true);
-                        return;
-                    } catch (IOException ex) {
-                        //20FF020F
-                        ErrorHandling.ShowError("20FF020F", "Unexpected Exception: " + ex.Message);
-                        toggleControls(true);
-                        return;
+                        incrementProgress();
                     } catch (Exception ex) {
-                        //FFFF0210
-                        ErrorHandling.ShowError("FFFF0210", "Unexpected Exception: " + ex.Message);
-                        toggleControls(true);
-                        return;
+                        ErrorHandling.HandleException("0203", ex);
                     }
-                }
 
-                try {
-                    foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
-                        info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                        FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+
+                    if (cbxTrim.Checked) {
+                        try {
+                            info("Trimming excess content from bitter smile demo...");
+                            string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
+                            foreach (string k in Reference.trims) {
+                                FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
+                            }
+                            info("      Done!");
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0204", ex);
+                        }
                     }
-                } catch (DirectoryNotFoundException ex) {
-                    //20010211
-                    ErrorHandling.ShowError("20010211", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (UnauthorizedAccessException ex) {
-                    //20020212
-                    ErrorHandling.ShowError("20020212", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    toggleControls(true);
-                    return;
-                } catch (FileNotFoundException ex) {
-                    //20030213
-                    ErrorHandling.ShowError("20030213", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (InvalidDataException ex) {
-                    //20040214
-                    ErrorHandling.ShowError("20040214", "A download is corrupt. Make sure your network is stable, then retry.");
-                    toggleControls(true);
-                    return;
-                } catch (IOException ex) {
-                    //20FF0215
-                    ErrorHandling.ShowError("20FF0215", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                } catch (Exception ex) {
-                    //FFFF0216
-                    ErrorHandling.ShowError("FFFF0216", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                }
 
-                try {
-                    foreach (string k in FileSystem.GetDirectories(Reference.path_downloads + "app\\PCSG90096\\")) {
-                        info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
-                        FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                    try {
+                        foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
+                            info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                            FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        }
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("0205", ex);
                     }
-                } catch (DirectoryNotFoundException ex) {
-                    //20010217
-                    ErrorHandling.ShowError("20010217", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (UnauthorizedAccessException ex) {
-                    //20020218
-                    ErrorHandling.ShowError("20020218", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    toggleControls(true);
-                    return;
-                } catch (FileNotFoundException ex) {
-                    //20030219
-                    ErrorHandling.ShowError("20030219", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (InvalidDataException ex) {
-                    //2004021A
-                    ErrorHandling.ShowError("2004021A", "A download is corrupt. Make sure your network is stable, then retry.");
-                    toggleControls(true);
-                    return;
-                } catch (IOException ex) {
-                    //20FF021B
-                    ErrorHandling.ShowError("20FF021B", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                } catch (Exception ex) {
-                    //FFFF021C
-                    ErrorHandling.ShowError("FFFF021C", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                }
 
-                incrementProgress();
+                    try {
+                        foreach (string k in FileSystem.GetDirectories(Reference.path_downloads + "app\\PCSG90096\\")) {
+                            info("Moving " + k.Split('\\').Last() + " to h-encore working directory...");
+                            FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        }
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("0206", ex);
+                    }
 
-                try {
-                    info("Moving license file...");
-                    FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
-                    info("      Done!");
                     incrementProgress();
-                } catch (UnauthorizedAccessException ex) {
-                    //2002021D
-                    ErrorHandling.ShowError("2002021D", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    toggleControls(true);
-                    return;
-                } catch (FileNotFoundException ex) {
-                    //2003021E
-                    ErrorHandling.ShowError("2003021E", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (InvalidDataException ex) {
-                    //2004021F
-                    ErrorHandling.ShowError("2004021F", "A download is corrupt. Make sure your network is stable, then retry.");
-                    toggleControls(true);
-                    return;
-                } catch (IOException ex) {
-                    //20FF0220
-                    ErrorHandling.ShowError("20FF0220", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                } catch (Exception ex) {
-                    //FFFF0221
-                    ErrorHandling.ShowError("FFFF0221", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                }
 
-                string encKey;
+                    try {
+                        info("Moving license file...");
+                        FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
+                        info("      Done!");
+                        incrementProgress();
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("0207", ex);
+                    }
 
-                try {
-                    info("Getting CMA encryption key using AID " + txtAID.Text);
-                    encKey = Utility.GetEncKey(txtAID.Text);
-                    if (encKey.Length != 64) return;
-                    info("Got CMA encryption key " + encKey);
-                    incrementProgress();
-                } catch (Exception) {
-                    toggleControls(true);
-                    return;
-                }
-                
-                try {
-                    PackageHencore(encKey);
-                } catch (Exception) {
-                    toggleControls(true);
-                    return;
-                }
+                    string encKey = "";
 
-                try {
-                    info("Moving h-encore files to QCMA APP directory...\r\n");
-                    FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
-                    incrementProgress();
-                    info("auto h-encore Done!!");
-                } catch (DirectoryNotFoundException ex) {
-                    //20010222
-                    ErrorHandling.ShowError("20010222", "Directories that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (UnauthorizedAccessException ex) {
-                    //20020223
-                    ErrorHandling.ShowError("20020223", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator.");
-                    toggleControls(true);
-                    return;
-                } catch (FileNotFoundException ex) {
-                    //20030224
-                    ErrorHandling.ShowError("20030224", "Files that were created seem to have disappeared. Please retry and avoid touching the application directory.");
-                    toggleControls(true);
-                    return;
-                } catch (InvalidDataException ex) {
-                    //20040225
-                    ErrorHandling.ShowError("20040225", "A download is corrupt. Make sure your network is stable, then retry.");
-                    toggleControls(true);
-                    return;
-                } catch (IOException ex) {
-                    //20FF0226
-                    ErrorHandling.ShowError("20FF0226", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                } catch (Exception ex) {
-                    //FFFF0227
-                    ErrorHandling.ShowError("FFFF0227", "Unexpected Exception: " + ex.Message);
-                    toggleControls(true);
-                    return;
-                }
+                    try {
+                        info("Getting CMA encryption key using AID " + txtAID.Text);
+                        encKey = Utility.GetEncKey(txtAID.Text);
+                        if (encKey.Length != 64) return;
+                        info("Got CMA encryption key " + encKey);
+                        incrementProgress();
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("0208", ex);
+                    }
 
-                Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"
-                    + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
-                    + "2. Connect your PS Vita to your PC using USB\r\n"
-                    + "3. Open Content Manager on your PS Vita and select Copy Content\r\n"
-                    + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
-                    + "4. In Content Manager, choose PC -> PS Vita System\r\n"
-                    + "5. Select Applications\r\n"
-                    + "6. Select PS Vita\r\n"
-                    + "7. Select h-encore and hit Copy\r\n"
-                    + "8. Run the h-encore app from the Live Area\r\n"
-                    + "     If it crashes the first time, try restarting your Vita and launching the bubble again\r\n\r\n"
-                    + "Done!")));
+                    try {
+                        PackageHencore(encKey);
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("0209", ex);
+                    }
 
+                    try {
+                        info("Moving h-encore files to QCMA APP directory...\r\n");
+                        FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
+                        incrementProgress();
+                        info("auto h-encore Done!!");
+                    } catch (Exception ex) {
+                        ErrorHandling.HandleException("020A", ex);
+                    }
+
+                    Invoke(new Action(() => MessageBox.Show("To finish your h-encore installation:\r\n"
+                        + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
+                        + "2. Connect your PS Vita to your PC using USB\r\n"
+                        + "3. Open Content Manager on your PS Vita and select Copy Content\r\n"
+                        + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
+                        + "4. In Content Manager, choose PC -> PS Vita System\r\n"
+                        + "5. Select Applications\r\n"
+                        + "6. Select PS Vita\r\n"
+                        + "7. Select h-encore and hit Copy\r\n"
+                        + "8. Run the h-encore app from the Live Area\r\n"
+                        + "     If it crashes the first time, try restarting your Vita and launching the bubble again\r\n\r\n"
+                        + "Done!")));
+
+                    toggleControls(true);
+                }));
+            } catch {
                 toggleControls(true);
-            }));
+                return;
+            }
             
         }
 
@@ -510,7 +331,8 @@ namespace auto_h_encore {
         }
 
         private void lblIssueTracker_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start(Reference.url_issues);
+            //Process.Start(Reference.url_issues);
+            
         }
     }
 }
