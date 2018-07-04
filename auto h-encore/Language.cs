@@ -178,6 +178,91 @@ namespace auto_h_encore {
                 { "title_Warning", "警告" },
                 { "title_Error", "错误" }
             } }
+            { "Italiano",  new Dictionary<string, string> {
+               { "lbl_ChooseLanguage", "Scegli la lingua:" },
+               { "lbl_AID", "Account ID (AID)" },
+               { "lbl_QCMADir", "Cartella QCMA PS Vita " },
+                { "lbl_HowToAID", "Come ottengo queste informazioni?" },
+                { "lbl_VersionText", "versione auto h-encore " },
+                { "lbl_Issues", "Tracker dei problemi" },
+
+                { "status_NoFile", "Nessun file selezionato, verrà scaricato." },
+                { "status_Invalid", "Il percorso del file non è valido." },
+                { "status_Valid", "Il file selezionato e le corrispondenze hash verranno importate." },
+                { "status_BadHash", "Il file selezionato, ma l'hash non corrisponde, verrà scaricato." },
+                { "status_Override", "File selezionato ma l'hash non corrisponde. Hash override abilitato, verrà importato." },
+                { "status_Calculating", "Calcolo dell'hash del file..." },
+
+                { "txtblock_BeforeRunning", "Prima di avviare: \r\n1. Installa il QCMA\r\n2. Apri il QCMA\r\n3. Collega la PSVita al PC tramite USB e avvia Gestione Contenuto\r\n4. Seleziona Copia contenuto per connettere la tua PSVita al tuo PC\r\n   Se la tua PSVita dice che devi aggiornare, spegni il Wifi e riavvia la console\r\n\r\nTutto è ora pronto. Immettere correttamente le informazioni sopra per abilitare il pulsante di avvio\r\n\r\nSe il pulsante di avvio non è abilitato, assicurati che il tuo AID sia lungo 16 caratteri e che tu abbia selezionato la cartella PS Vita corretta (dovrebbe avere una directory APP in esso)."},
+                { "txtblock_Import", "Se hai già scaricato alcuni o tutti i file necessari, e non vuoi che l'applicazione li scarichi di nuovo, qui puoi selezionare i file da importare per il programma." },
+                { "txtblock_HowToInfo",  "Il programma dovrebbe aver cercato di ottenere queste informazioni automaticamente. In caso contrario o se si desidera verificare che sia corretto: \r\n\r\n1. Installa il QCMA\r\n2. Apri il QCMA\r\n3. Collega la PSVita al PC tramite USB e avvia Gestione Contenuto\r\n4. Seleziona Copia contenuto per connettere la tua PSVita al tuo PC\r\n   Se la tua PSVita dice che devi aggiornare, spegni la Wifi e riavvia la console\r\n5. Fare clic con il tasto destro del mouse su QCMA nella barra delle applicazioni(in basso a destra del tuo pc), selezionare le impostazioni\r\n6.Copia la cartella denominata Applicazioni / Backup in questa applicazione come cartella di PS Vita \r\n7. Passare alla cartella appena copiata e andare nella cartella APP\r\n8. Il tuo AID è il nome della cartella all'interno di questa directory (dovrebbe essere di 16 caratteri)"},
+
+                { "btn_Import", "Ho già scaricato alcuni o tutti i file e vorrei utilizzarli invece di riscaricarli" },
+                { "btn_Ok", "OK" },
+                { "btn_Close", "Chiudi" },
+                { "btn_Start", "Start" },
+                { "btn_Done", "Fatto" },
+                { "btn_Browse", "Browse" },
+
+                { "cbx_Trim", "Ritaglia il contenuto in eccesso dalla demo bitter smile (riduce le dimensioni delle app h-encore da ~ 240 MB a ~ 13 MB)" },
+                { "cbx_DeleteExisting", "Elimina i file esistenti (fai questo se qualcosa è andato storto prima)" },
+                { "cbx_OverrideHashes", "Ignora hash di file non corrispondenti" },
+
+                { "browse_QCMA", "Individua la directory QCMA PS Vita (trovala nelle impostazioni QCMA in Applicazioni / Backup)" },
+                { "browse_Generic", "Browse per " },
+
+                { "info_Finish",  "Per finire l'installazione di h-encore:\r\n"
+                         "1. Fare clic con il pulsante destro del mouse sull'icona QCMA nella barra delle applicazioni e selezionare Aggiorna database\r\n"
+                         "2. Collega la tua PS Vita al PC tramite USB\r\n"
+                         "3. Apri Gestione Contenuto su PS Vita e seleziona Copia contenuto\r\n"
+                         "     Se dice che è necessario aggiornare il firmware, disattivare la Wifi su PSVita e riavviare la PSVita\r\n"
+                         "4. In Gestione Contenuto, scegli PC -> Sistema PS Vita\r\n"
+                         "5. Seleziona Applicazioni\r\n"
+                         "6. Seleziona PS Vita\r\n"
+                         "7. Seleziona h-encore e premere su Copia\r\n"
+                         "8. Eseguire l'applicazione di h-encore dal Live Area\r\n"
+                         "     Se si blocca per la prima volta, prova a riavviare la PSVita e a lanciare nuovamente la bolla\r\n\r\n"
+                         "Fatto!"},
+
+                { "warn_HashCompat", "La compatibilità non è garantita quando si utilizzano versioni di file per cui questa applicazione non è stata progettata. Continuare comunque?" },
+                { "warn_DeleteExistingBittersmile", "È necessario rimuovere il backup bittersmile esistente dalla directory QCMA. Se vuoi tenerlo, spostalo ora. Elimina?" },
+
+                { "error_WebException", "Impossibile scaricare il file. Per favore controlla la tua connessione Internet." },
+                { "error_Unknown", "Qualcosa è andato storto: {0}" },
+                { "error_DirectoryNotFoundException", "Una cartella che è stata creata sembra essere scomparsa (è stata eliminata?) OPPURE una cartella non è stata in grado di estrarre prima O si sta utilizzando un'importazione di file non supportata." },
+                { "error_UnauthorizedAccessException", "L'applicazione non ha accesso in scrittura alla directory in cui è stata installata. Prova a rieseguire l'applicazione come amministratore." },
+                { "error_FileNotFoundException",  "Un file che è stato creato sembra essere scomparso (sono stati cancellati?) OPPURE un file non è stato in grado di estrarre prima O si sta utilizzando un'importazione di file non supportata."},
+                { "error_InvalidOperationException",  "Un download è corrotto. Assicurati che la tua rete sia stabile."},
+                { "error_TargetInvocationException", "Impossibile creare il calcolatore MD5." },
+                { "error_Template", "Errore {0} occurred.\r\n\r\n{1}\r\n\r\nSi prega di riprovare il processo. Se non riesci a risolvere il problema, crea un problema sul tracker dei problemi con questo codice di errore." },
+                { "error_Redownload",  "Errore 1001-0105\r\n\r\nImpossibile scaricare il file {0}\r\n\r\nAssicurati che la tua connessione a Internet sia connessa e / o riprova. Se continua a non funzionare, crea un problema sul tracker dei problemi di Github."},
+
+                { "log_Done", "        Fatto!" },
+                { "log_WipeFiles", "Eliminazione dei vecchi file..." },
+                { "log_Import", "Importazione file per file {0} valido." },
+                { "log_DownloadValid", "File {0} già scaricato e valido, non verrà riscaricato." },
+                { "log_DownloadInvalid", "File {0} già scaricato ma l'hash non corrisponde, verrà riscaricato." },
+                { "log_NotDownloaded", "File {0} non scaricato o importato, verrà scaricato." },
+                { "log_WorkingDirs", "Generazione di cartelle di lavoro..." },
+                { "log_CorrectLocation", "File {0} nella posizione corretta, saltando." },
+                { "log_Importing", "Importazione {0}" },
+                { "log_Downloading", "Downloading {0}" },
+                { "log_Extracting", "Estrazione {0}" },
+                { "log_ExtractingPKG", "Estrazione della demo di bittersmile con pkg2zip..." },
+                { "log_Trimming", "Ritaglio di contenuti in eccesso dalla demo di bittersmile..." },
+                { "log_MoveToHencore", "Spostamento di {0} alle cartelle di lavoro di h-encore..." },
+                { "log_MoveLicense", "Spostamento del file di licenza..." },
+                { "log_GetCMA", "Ottenimento della chiave di crittografia CMA utilizzando l'AID{0}" },
+                { "log_GotCMA", "Ho la chiave di crittografia CMA {0}" },
+                { "log_Packaging", "Rimpachettamento di h-encore {0} utilizzando psvimgtools..." },
+                { "log_MoveToQCMA", "Spostamento dei file h-encore nella directory APP del QCMA...\r\n" },
+                { "log_Finished", "auto h-encore Finito!!\r\n" },
+
+                { "title_Main", "auto h-encore" },
+                { "title_Import", "Importa file esistenti" },
+                { "title_Warning", "Attenzione" },
+                { "title_Error", "Errore" }
+            } },
         };
 
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
