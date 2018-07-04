@@ -300,7 +300,11 @@ namespace auto_h_encore {
 
                     toggleControls(true);
                 }));
-            } catch {
+            } catch (KeyNotFoundException ex) {
+                ErrorHandling.ShowError("AAAA020B", "An error occurred with language substitution: \r\n" + ex.Message + "\r\nThis is a bug! Please report this on the issue tracker with the message provided above!");
+                toggleControls(true);
+                return;
+            } catch (Exception) {
                 toggleControls(true);
                 return;
             }

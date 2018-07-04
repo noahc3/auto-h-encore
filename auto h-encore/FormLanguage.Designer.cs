@@ -68,7 +68,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormLanguage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormLanguage";
             this.Load += new System.EventHandler(this.FormLanguage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
