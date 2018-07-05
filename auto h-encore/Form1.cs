@@ -339,7 +339,7 @@ namespace auto_h_encore {
         }
 
         private void lblIssueTracker_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            //Process.Start(Reference.url_issues);
+            Process.Start(Reference.url_issues);
             
         }
 
