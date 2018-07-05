@@ -432,7 +432,7 @@ namespace auto_h_encore {
                 { "title_Import", "Импорт существующих файлов" },
                 { "title_Warning", "Внимание" },
                 { "title_Error", "Ошибка" }
-            } }
+            } },
             { "Português-BR",  new Dictionary<string, string> {
                 { "lbl_ChooseLanguage", "Escolha o idioma:" },
                 { "lbl_AID", "ID da Conta (AID)" },
