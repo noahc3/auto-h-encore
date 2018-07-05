@@ -45,8 +45,17 @@ If you know C and are willing to help out, it would be appreciated if you could 
 Other changes are also welcome through pull requests.
 
 ## Thanks
+
+### Translators
  - yexun1995 for the Simplified Chinese translation.
+ - RY0M43CH1Z3N for the Spanish translation.
+ - M2l2koPOWER, [portablegaming](https://vk.com/portablegaming) and pvc1 for the Russian translation.
+ - theheroGAC for the Italian translation.
+ - barbabarros for the Brazilian Portuguese translaiton.
+ 
+### Scene
  - thefl0w for [h-encore](https://github.com/TheOfficialFloW/h-encore "h-encore") and all of their other contributions to the Vita scene.
- - yifanlu for [psvimgtools](https://github.com/yifanlu/psvimgtools/) and all of their other contributions to the Vita scene.
+ - yifanlu for [psvimgtools](https://github.com/yifanlu/psvimgtools/ "psvimgtools") and all of their other contributions to the Vita scene.
+ - codestation for [QCMA](https://github.com/codestation/qcma "QCMA").
  - mmozeiko for [pkg2zip](https://github.com/mmozeiko/pkg2zip "pkg2zip").
  - Everyone else that positively contributes to the Vita scene.
