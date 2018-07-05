@@ -517,7 +517,7 @@ namespace auto_h_encore {
                 { "title_Import", "Importar Arquivos Existentes" },
                 { "title_Warning", "Atenção" },
                 { "title_Error", "Erro" }
-            } },
+            } }
         };
 
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
