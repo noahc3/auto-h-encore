@@ -452,24 +452,25 @@ namespace auto_h_encore {
                 { "txtblock_Import", "Si vous avez deja telecharger une partie ou tout les fichiers necessaire, et que vous voulez pas que lapplication les telecharge a nouveau, vous pouvez la selectionner ici pour que le programme les importe." },
                 { "txtblock_HowToInfo",  "The program should have tried to get this info automatically. If it didn't or you want to verify that it is correct: \r\n\r\n1. Install QCMA\r\n2. Open QCMA\r\n3. Connect your Vita to your PC using USB and launch Content Manager\r\n4. Select Copy Content to connect your Vita to your PC\r\n   If your Vita says you need to update, turn off Wifi and restart the console\r\n5. Right click QCMA in task tray, select settings\r\n6.Copy the directory named Applications / Backups into this application as the PS Vita directory \r\n7. Navigate to the directory you just copied and go into the APP folder\r\n8. Your AID is the name of the folder inside this directory (it should be 16 characters)"},
 
-                { "btn_Import", "I've already downloaded some or all of the files and would like to use them rather than redownload them" },
+                { "btn_Import", "J'ai déjà télécharger une partie ou tout les fichiers et je préfère les utiliser que de les télécharger a nouveau." },
+                { "btn_Ok", "OK" }," },
                 { "btn_Ok", "OK" },
-                { "btn_Close", "Close" },
-                { "btn_Start", "Start" },
-                { "btn_Done", "Done" },
-                { "btn_Browse", "Browse" },
+                { "btn_Close", "Fermer" },
+                { "btn_Start", "Démarrer" },
+                { "btn_Done", "Fini" },
+                { "btn_Browse", "Parcourir" },
 
                 { "cbx_Trim", "Trim excess content from bitter smile demo (reduces h-encore app size from ~240MB to ~13MB)" },
-                { "cbx_DeleteExisting", "Delete existing files (do this if something went wrong before)" },
-                { "cbx_OverrideHashes", "Ignore Mismatch File Hashes" },
+                { "cbx_DeleteExisting", "Supprimer les fichiers existants (Faire ceci si vous avez une erreur)" },
+                { "cbx_OverrideHashes", "Ignorer les Hashes non conformes" },
 
-                { "browse_QCMA", "Locate your QCMA PS Vita directory (find it in QCMA settings under Applications / Backups)" },
-                { "browse_Generic", "Browse for " },
+                { "browse_QCMA", "Trouve la répertoire QCMA PS Vita (Trouver ceci dans les paramètres de QCMA sous Applications / Backups)" },
+                { "browse_Generic", "Parcourir pour " },
 
-                { "info_Finish",  "To finish your h-encore installation:\r\n"
-                        + "1. Right click the QCMA icon in task tray and select refresh database\r\n"
-                        + "2. Connect your PS Vita to your PC using USB\r\n"
-                        + "3. Open Content Manager on your PS Vita and select Copy Content\r\n"
+                { "info_Finish",  " Pour finir l'installation de h-encore:\r\n"
+                        + "1. Un click droit sur l'icône de QCMA barre de tâche et sélectionner refresh database\r\n"
+                        + "2. Connecter La PS Vita au PC en USB\r\n"
+                        + "3. Ouvrir le gestionnaire de contenu dans la PS Vita et sélectionner copie de contenu \r\n"
                         + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
                         + "4. In Content Manager, choose PC -> PS Vita System\r\n"
                         + "5. Select Applications\r\n"
