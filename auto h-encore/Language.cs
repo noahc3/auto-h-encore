@@ -450,7 +450,7 @@ namespace auto_h_encore {
 
                 { "txtblock_BeforeRunning", "Avant l’execution: \r\n1. Installer QCMA\r\n2. Ouvrir QCMA\r\n3. Connecter votre Vita a votre PC en USB et lancer le gestionnaire de contenu sur votre vita\r\n4. Selectioner Copier du Contenu pour connecter votre Vita a votre PC\r\n   Si votre vita demande une mise a jour, desactiver le wifi dans la vita et redemarrer la\r\n\r\nTout est pret maintenant. Entrer les informations si dessus correctement pour activer le bouton Demarrer\r\n\r\nSi le boutton Demarrer n’est pas encore actif, assurer vous que votre AID a une longueur de 16 characteres et que vous avez bien choisi la bonne repertoire de la Ps Vita(Il faut qu’il y est une repertoire APP dedans )."},
                 { "txtblock_Import", "Si vous avez deja telecharger une partie ou tout les fichiers necessaire, et que vous voulez pas que lapplication les telecharge a nouveau, vous pouvez la selectionner ici pour que le programme les importe." },
-                { "txtblock_HowToInfo",  "Le programme doit déja essayé d'obtenir cette information automatiquement. Si ca n'a pas marcher ou vous voulez verifier que cest correcte: \r\n\r\n1. Installez QCMA\r\n2. Ouvrez QCMA\r\n3. Connectez votre Vita a votre PC en USB et lancer le gestionnaire de contenu sur votre vita\r\n4. Select Copy Content to connect your Vita to your PC\r\n   If your Vita says you need to update, turn off Wifi and restart the console\r\n5. Right click QCMA in task tray, select settings\r\n6.Copy the directory named Applications / Backups into this application as the PS Vita directory \r\n7. Navigate to the directory you just copied and go into the APP folder\r\n8. Your AID is the name of the folder inside this directory (it should be 16 characters)"},
+                { "txtblock_HowToInfo",  "Le programme doit déja essayé d'obtenir cette information automatiquement. Si ca n'a pas marcher ou vous voulez verifier que cest correcte: \r\n\r\n1. Installez QCMA\r\n2. Ouvrez QCMA\r\n3. Connectez votre Vita a votre PC en USB et lancer le gestionnaire de contenu sur votre vita\r\n4. Selectionez Copier du Contenu pour connecter votre Vita a votre PC\r\n  Si votre vita demande une mise a jour, desactiver le wifi dans la vita et redemarrer la\r\n5. click droit sur QCMA dans la barre de tache, selectionner settings\r\n6.Copier la repertoire nommé Applications / Backups dans cette application dans le champs Repertoire PS Vita  \r\n7. Naviguer jusqu'a la repertoire que vous avez copier et acceder la repertoire APP\r\n8. Votre AID est le nom de la repertoire dedans (il doit etre composer de 16 characteres)"},
 
                 { "btn_Import", "J'ai déjà télécharger une partie ou tout les fichiers et je préfère les utiliser que de les télécharger a nouveau." },
                 { "btn_Ok", "OK" },
@@ -459,7 +459,7 @@ namespace auto_h_encore {
                 { "btn_Done", "Fini" },
                 { "btn_Browse", "Parcourir" },
 
-                { "cbx_Trim", "Trim excess content from bitter smile demo (reduces h-encore app size from ~240MB to ~13MB)" },
+                { "cbx_Trim", "Réduir l'excess de contenu depuis la demo bitter smile (reduire la taille de l'application h-encore de ~240MB a ~13MB)" },
                 { "cbx_DeleteExisting", "Supprimer les fichiers existants (Faire ceci si vous avez une erreur)" },
                 { "cbx_OverrideHashes", "Ignorer les Hashes non conformes" },
 
@@ -470,27 +470,27 @@ namespace auto_h_encore {
                         + "1. Un click droit sur l'icône de QCMA barre de tâche et sélectionner refresh database\r\n"
                         + "2. Connecter La PS Vita au PC en USB\r\n"
                         + "3. Ouvrir le gestionnaire de contenu dans la PS Vita et sélectionner copie de contenu \r\n"
-                        + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
-                        + "4. In Content Manager, choose PC -> PS Vita System\r\n"
-                        + "5. Select Applications\r\n"
-                        + "6. Select PS Vita\r\n"
-                        + "7. Select h-encore and hit Copy\r\n"
-                        + "8. Run the h-encore app from the Live Area\r\n"
-                        + "     If it crashes the first time, try restarting your Vita and launching the bubble again\r\n\r\n"
-                        + "Done!"},
+                        + "     Si votre vita demande une mise a jour, desactiver le wifi dans la vita et redemarrer la\r\n"
+                        + "4. Dans le gestionnaire de contenu, choisir PC -> PS Vita System\r\n"
+                        + "5. Choisir Applications\r\n"
+                        + "6. Choisir PS Vita\r\n"
+                        + "7. Choisir h-encore et appuier sur Copier\r\n"
+                        + "8. Executer la bulle h-encore app depuis Le Live Area\r\n"
+                        + "     Si ca crache a la 1ere utilisation, redemarrer votre VITA et lancer la bulle de nouveau\r\n\r\n"
+                        + "Fini!"},
 
-                { "warn_HashCompat", "Compatibility is not guranteed when using versions of files this application was not designed for. Continue anyways?" },
-                { "warn_DeleteExistingBittersmile", "You must remove the existing bittersmile backup from your QCMA directory. If you want to keep it, move it now. Delete?" },
+                { "warn_HashCompat", "La compatibilité avec cette version n'est pas sure. On continue quand meme?" },
+                { "warn_DeleteExistingBittersmile", "Vous devez supprimer le backup existant de bittersmile backup de la repertoire QCMA . Si vous voulez la garder, deplacez la maintenant. Supprimer?" },
 
-                { "error_WebException", "Failed to download file. Please check your internet connection." },
-                { "error_Unknown", "Something went wrong: {0}" },
-                { "error_DirectoryNotFoundException", "A directory that was created seem to have disappeared (did they get deleted?) OR a directory failed to extract earlier OR you are using an unsupported file import." },
-                { "error_UnauthorizedAccessException", "The application doesn't have write access to the directory it was installed in. Try rerunning the application as administrator." },
-                { "error_FileNotFoundException",  "A file that was created seem to have disappeared (did they get deleted?) OR a file failed to extract earlier OR you are using an unsupported file import."},
-                { "error_InvalidOperationException",  "A download is corrupt. Make sure your network is stable."},
-                { "error_TargetInvocationException", "Failed to create MD5 calculator." },
-                { "error_Template", "Error {0} occurred.\r\n\r\n{1}\r\n\r\nPlease retry the process. If you can't solve the issue, please create an issue on the issue tracker with this error code." },
-                { "error_Redownload",  "Error 1001-0105\r\n\r\nFailed to download file {0}\r\n\r\nMake sure your internet is connected and/or retry. If it still doesn't work, create an issue on the Github issue tracker."},
+                { "error_WebException", "Erreur dans le telechargement du fichier. Verifier votre connexion internet." },
+                { "error_Unknown", "Quelque chose ne vas pas: {0}" },
+                { "error_DirectoryNotFoundException", "Les repertoires qui ont etait cree ont disparru (ont till etait supprimer ) Ou bien Une repertoire n'a pas pu etre extraite Ou bien Vous etes entrain d'utiliser une version de fichier non supporté." },
+                { "error_UnauthorizedAccessException", "L'application n'a pas le droit d'acces a la repertoire ou elle a etait installé. Essayer de lancer l'application en mode Administateur." },
+                { "error_FileNotFoundException",  "Les fichiers qui ont etait cree ont disparru (ont till etait supprimer ) Ou bien Un fichier n'a pas pu etre extrait Ou bien Vous etes entrain d'utiliser une version de fichier non supporté."},
+                { "error_InvalidOperationException",  "Un telechargement est corrompu. Verifier que votre connexion internet est Stable."},
+                { "error_TargetInvocationException", "Erreur dans la creation du calculateur MD5." },
+                { "error_Template", "Erreur {0} apparu.\r\n\r\n{1}\r\n\r\nReessayer le processus. Si vous pouvez pas resoudre ce probleme, S'il vous plait cree un rapport d'erreur dans l'issue Tracker avec ce code d'erreur." },
+                { "error_Redownload",  "Errur 1001-0105\r\n\r\nIncappable de telecharger le fichier {0}\r\n\r\nAssurer vous que vous etes connecter a internet et reessayer. Si ca marche toujours pas , s'il vous plait créé un rapport d'erreur sur le GitHub de l'application."},
 
                 { "log_Done", "        Fini!" },
                 { "log_WipeFiles", "Suppression des anciennes fichiers..." },
