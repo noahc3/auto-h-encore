@@ -50,6 +50,9 @@ namespace auto_h_encore {
         private void generateDirectories(string AID) {
             if (cbxDelete.Checked) {
                 try {
+                    if (Global.path_QCMA != "") {
+                        Global.fileOverrides[4] = "SKIP";
+                    }
                     info(Language.MountedLanguage["log_WipeFiles"]);
                     if (Directory.Exists(Reference.path_data)) Directory.Delete(Reference.path_data, true);
                     for (int i = 0; i < 4; i++) {
@@ -64,7 +67,7 @@ namespace auto_h_encore {
                 string cleanName;
                 string md5;
 
-                for (int id = 0; id < 4; id++) {
+                for (int id = 0; id < 5; id++) {
 
                     switch (id) {
                         case 0:
@@ -79,9 +82,17 @@ namespace auto_h_encore {
                         case 3:
                             path = Reference.path_downloads + "bittersmile.pkg";
                             break;
+                        case 4:
+                            path = Reference.path_downloads + "qcma.zip";
+                            break;
                     }
 
                     cleanName = path.Replace('/', '\\').Split('\\').Last();
+
+                    if (id == 4 && Global.path_QCMA != "") {
+                        Global.fileOverrides[4] = "SKIP";
+                        continue;
+                    }
 
                     if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
                         info(string.Format(Language.MountedLanguage["log_Import"], cleanName));
@@ -105,10 +116,12 @@ namespace auto_h_encore {
                     }
                 }
 
+                if (Directory.Exists(Reference.path_qcma)) Directory.Delete(Reference.path_qcma, true);
                 if (Directory.Exists(Reference.path_hencore)) Directory.Delete(Reference.path_hencore, true);
                 if (Directory.Exists(Reference.path_psvimgtools)) Directory.Delete(Reference.path_psvimgtools, true);
             }
 
+            //TODO move this
             if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
                 if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
                     FileSystem.DeleteDirectory(txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
@@ -124,6 +137,7 @@ namespace auto_h_encore {
                 Directory.CreateDirectory(Reference.path_data);
                 Directory.CreateDirectory(Reference.path_hencore);
                 Directory.CreateDirectory(Reference.path_psvimgtools);
+                Directory.CreateDirectory(Reference.path_qcma);
                 Directory.CreateDirectory(Reference.path_downloads);
             } catch (Exception ex) {
                 ErrorHandling.HandleException("0201", ex);
@@ -134,26 +148,33 @@ namespace auto_h_encore {
 
         private void downloadFiles() {
 
-            for (int id = 0; id < 4; id++) {
-                string cleanName = Reference.raws[id].Replace('/', '\\').Split('\\').Last();
-                if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
-                    if (Global.fileOverrides[id] == Reference.raws[id]) info(string.Format(Language.MountedLanguage["log_CorrectLocation"], cleanName));
-                    else {
-                        try {
-                            info(string.Format(Language.MountedLanguage["log_Importing"], cleanName));
-                            FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
-                            info(Language.MountedLanguage["log_Done"]);
-                        } catch (Exception ex) {
-                            ErrorHandling.HandleException("0202", ex);
+            for (int id = 0; id < 5; id++) {
+                if (Global.fileOverrides[id] != "SKIP") {
+                    string cleanName = Reference.raws[id].Replace('/', '\\').Split('\\').Last();
+                    if (Global.fileOverrides[id] != null && Global.fileOverrides[id] != "") {
+                        if (Global.fileOverrides[id] == Reference.raws[id]) info(string.Format(Language.MountedLanguage["log_CorrectLocation"], cleanName));
+                        else {
+                            try {
+                                info(string.Format(Language.MountedLanguage["log_Importing"], cleanName));
+                                FileSystem.CopyFile(Global.fileOverrides[id], Reference.raws[id], true);
+                                info(Language.MountedLanguage["log_Done"]);
+                            } catch (Exception ex) {
+                                ErrorHandling.HandleException("0202", ex);
+                            }
+
                         }
+                    } else {
+                        Utility.DownloadFile(this, Reference.downloads[id], Reference.raws[id]);
 
                     }
-                } else {
-                    Utility.DownloadFile(this, Reference.downloads[id], Reference.raws[id]);
-                }
-                incrementProgress();
+                    incrementProgress();
 
-                if (id != 3) Utility.ExtractFile(this, true, Reference.raws[id], Reference.paths[id]);
+                    if (id == 3) {
+
+                    } else {
+                        Utility.ExtractFile(this, true, Reference.raws[id], Reference.paths[id]);
+                    }
+                }
             }
         }
 
@@ -207,6 +228,8 @@ namespace auto_h_encore {
 
                 //run code on new thread to keep UI responsive
                 Task.Factory.StartNew(new Action(() => {
+
+                    Global.path_QCMA = Utility.FindQCMA(this);
 
                     generateDirectories(txtAID.Text);
                     downloadFiles();

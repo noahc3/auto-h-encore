@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.3.2";
+        public static readonly string version = "0.4.0";
         public static readonly string config_language = Environment.CurrentDirectory + "\\settings.conf";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
         public static readonly string path_downloads = Environment.CurrentDirectory + "\\data\\downloads\\";
+        public static readonly string path_qcma = Environment.CurrentDirectory + "\\data\\qcma";
         public static readonly string path_data = Environment.CurrentDirectory + "\\data\\";
 
         public static readonly string fpath_raw_hencore = path_downloads + "hencore.zip";
         public static readonly string fpath_raw_pkg2zip = path_downloads + "pkg2zip.zip";
         public static readonly string fpath_raw_psvimgtools = path_downloads + "psvimgtools.zip";
         public static readonly string fpath_raw_bittersmile = path_downloads + "bittersmile.pkg";
+        public static readonly string fpath_raw_qcma = path_downloads + "qcma.zip";
 
         public static readonly string fpath_pkg2zip = path_downloads + "pkg2zip.exe";
         public static readonly string fpath_psvimagetools = path_psvimgtools + "psvimg-create.exe";
@@ -28,6 +30,7 @@ namespace auto_h_encore {
         public static readonly string url_hencore = "https://github.com/TheOfficialFloW/h-encore/releases/download/v1.0/h-encore.zip";
         public static readonly string url_cma = "http://cma.henkaku.xyz/?aid=";
         public static readonly string url_issues = "https://github.com/noahc3/auto-h-encore/issues";
+        public static readonly string url_qcma = "https://raw.githubusercontent.com/fyr77/ZUGABE/master/download-resources/Qcma.zip"; //TEMPORARY URL
 
         public static readonly string[][] hashes = new string[][] {
             new string[] {
@@ -43,20 +46,22 @@ namespace auto_h_encore {
             },
             new string[] {
                 "ce3badfc04ae24e7c209f1a2fd565943"
+            },
+            new string[] {
+                "e52354cc2967bec4d8d1c2eb74475812"
             }
-
         };
 
         public static readonly string[] raws = new string[] {
-            fpath_raw_hencore, fpath_raw_pkg2zip, fpath_raw_psvimgtools, fpath_raw_bittersmile
+            fpath_raw_hencore, fpath_raw_pkg2zip, fpath_raw_psvimgtools, fpath_raw_bittersmile, fpath_raw_qcma
         };
 
         public static readonly string[] downloads = new string[] {
-            url_hencore, url_pkg2zip, url_psvimgtools, url_bittersmile
+            url_hencore, url_pkg2zip, url_psvimgtools, url_bittersmile, url_qcma
         };
 
         public static readonly string[] paths = new string[] {
-            path_hencore, path_downloads, path_psvimgtools
+            path_hencore, path_downloads, path_psvimgtools, "", path_qcma
         };
 
         public static readonly string[] trims = new string[] {

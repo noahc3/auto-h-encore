@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Global {
-        public static string[] fileOverrides = new string[4];
+        public static string[] fileOverrides = new string[5];
 
+        public static string path_QCMA;
     }
 }
