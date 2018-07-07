@@ -9,5 +9,8 @@ namespace auto_h_encore {
         public static string[] fileOverrides = new string[5];
 
         public static string path_QCMA;
+
+        public static string AID;
+        public static string QCMAAPPS;
     }
 }

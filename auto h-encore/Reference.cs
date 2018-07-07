@@ -12,7 +12,7 @@ namespace auto_h_encore {
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
         public static readonly string path_psvimgtools = Environment.CurrentDirectory + "\\data\\psvimgtools\\";
         public static readonly string path_downloads = Environment.CurrentDirectory + "\\data\\downloads\\";
-        public static readonly string path_qcma = Environment.CurrentDirectory + "\\data\\qcma";
+        public static readonly string path_qcma = Environment.CurrentDirectory + "\\data\\qcma\\";
         public static readonly string path_data = Environment.CurrentDirectory + "\\data\\";
 
         public static readonly string fpath_raw_hencore = path_downloads + "hencore.zip";
@@ -21,7 +21,7 @@ namespace auto_h_encore {
         public static readonly string fpath_raw_bittersmile = path_downloads + "bittersmile.pkg";
         public static readonly string fpath_raw_qcma = path_downloads + "qcma.zip";
 
-        public static readonly string fpath_reg_qcma = path_qcma + "\\registry\\import.reg";
+        public static readonly string fpath_reg_qcma = path_qcma + "registry\\import.reg";
         public static readonly string fpath_pkg2zip = path_downloads + "pkg2zip.exe";
         public static readonly string fpath_psvimagetools = path_psvimgtools + "psvimg-create.exe";
 

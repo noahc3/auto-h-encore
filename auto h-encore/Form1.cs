@@ -29,25 +29,18 @@ namespace auto_h_encore {
             this.Text = Language.MountedLanguage["title_Main"];
             lblVersion.Text = Language.MountedLanguage["lbl_VersionText"] + Reference.version;
             lblInfo.Text = Language.MountedLanguage["txtblock_BeforeRunning"];
-            lblAID.Text = Language.MountedLanguage["lbl_AID"];
-            lblHowToAID.Text = Language.MountedLanguage["lbl_HowToAID"];
+            //lblAID.Text = Language.MountedLanguage["lbl_AID"];
+            //lblHowToAID.Text = Language.MountedLanguage["lbl_HowToAID"];
             lblIssueTracker.Text = Language.MountedLanguage["lbl_Issues"];
-            lblQCMA.Text = Language.MountedLanguage["lbl_QCMADir"];
+            //lblQCMA.Text = Language.MountedLanguage["lbl_QCMADir"];
             btnImport.Text = Language.MountedLanguage["btn_Import"];
             btnStart.Text = Language.MountedLanguage["btn_Start"];
-            btnBrowseQCMA.Text = Language.MountedLanguage["btn_Browse"];
+            //btnBrowseQCMA.Text = Language.MountedLanguage["btn_Browse"];
             cbxDelete.Text = Language.MountedLanguage["cbx_DeleteExisting"];
             cbxTrim.Text = Language.MountedLanguage["cbx_Trim"];
         }
 
-        private void VerifyUserInfo() {
-
-            if (txtAID.Text.Length == 16 && Directory.Exists(txtQCMA.Text + "\\APP\\")) btnStart.Enabled = true;
-            else btnStart.Enabled = false;
-            
-        }
-
-        private void generateDirectories(string AID) {
+        private void generateDirectories() {
             if (cbxDelete.Checked) {
                 try {
                     if (Global.path_QCMA != "") {
@@ -116,18 +109,9 @@ namespace auto_h_encore {
                     }
                 }
 
-                if (Directory.Exists(Reference.path_qcma)) Directory.Delete(Reference.path_qcma, true);
-                if (Directory.Exists(Reference.path_hencore)) Directory.Delete(Reference.path_hencore, true);
-                if (Directory.Exists(Reference.path_psvimgtools)) Directory.Delete(Reference.path_psvimgtools, true);
-            }
-
-            //TODO move this
-            if (Directory.Exists(txtQCMA.Text + "\\APP\\" + AID + "\\PCSG90096\\")) {
-                if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                    FileSystem.DeleteDirectory(txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
-                } else {
-                    throw new IOException("Directory Already Exists");
-                }
+                if (Directory.Exists(Reference.path_qcma)) FileSystem.DeleteDirectory(Reference.path_qcma, DeleteDirectoryOption.DeleteAllContents);
+                if (Directory.Exists(Reference.path_hencore)) FileSystem.DeleteDirectory(Reference.path_hencore, DeleteDirectoryOption.DeleteAllContents);
+                if (Directory.Exists(Reference.path_psvimgtools)) FileSystem.DeleteDirectory(Reference.path_psvimgtools, DeleteDirectoryOption.DeleteAllContents);
             }
 
             try {
@@ -193,10 +177,6 @@ namespace auto_h_encore {
                     btnImport.Enabled = state;
                     cbxDelete.Enabled = state;
                     cbxTrim.Enabled = state;
-                    lblHowToAID.Enabled = state;
-                    txtAID.Enabled = state;
-                    txtQCMA.Enabled = state;
-                    btnBrowseQCMA.Enabled = state;
                     barProgress.Value = 0;
                 }));
             } else {
@@ -204,10 +184,6 @@ namespace auto_h_encore {
                 btnImport.Enabled = state;
                 cbxDelete.Enabled = state;
                 cbxTrim.Enabled = state;
-                lblHowToAID.Enabled = state;
-                txtAID.Enabled = state;
-                txtQCMA.Enabled = state;
-                btnBrowseQCMA.Enabled = state;
                 barProgress.Value = 0;
             }
         }
@@ -219,7 +195,7 @@ namespace auto_h_encore {
         }
 
         private void txtAID_TextChanged(object sender, EventArgs e) {
-            VerifyUserInfo();
+            
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
@@ -231,9 +207,27 @@ namespace auto_h_encore {
 
                     Global.path_QCMA = Utility.FindQCMA(this);
 
-                    generateDirectories(txtAID.Text);
+                    Utility.KillQCMA(this);
+
+                    generateDirectories();
                     downloadFiles();
 
+                    Utility.ImportRegistry(this);
+
+                    if (Global.path_QCMA == "") Global.path_QCMA = Reference.path_qcma + "qcma.exe";
+
+                    info("Prompting user for information...");
+                    FormConnector frm = new FormConnector();
+                    frm.ShowDialog();
+                    info("      Done!");
+
+                    if (Directory.Exists(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\")) {
+                        if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                            FileSystem.DeleteDirectory(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
+                        } else {
+                            throw new IOException("Directory Already Exists");
+                        }
+                    }
 
                     try {
                         info(Language.MountedLanguage["log_ExtractingPKG"]);
@@ -295,8 +289,8 @@ namespace auto_h_encore {
                     string encKey = "";
 
                     try {
-                        info(string.Format(Language.MountedLanguage["log_GetCMA"], txtAID.Text));
-                        encKey = Utility.GetEncKey(txtAID.Text);
+                        info(string.Format(Language.MountedLanguage["log_GetCMA"], Global.AID));
+                        encKey = Utility.GetEncKey(Global.AID);
                         if (encKey.Length != 64) return;
                         info(string.Format(Language.MountedLanguage["log_GotCMA"], encKey));
                         incrementProgress();
@@ -312,7 +306,7 @@ namespace auto_h_encore {
 
                     try {
                         info(Language.MountedLanguage["log_MoveToQCMA"]);
-                        FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", txtQCMA.Text + "\\APP\\" + txtAID.Text + "\\PCSG90096\\");
+                        FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\");
                         incrementProgress();
                         info(Language.MountedLanguage["log_Finished"]);
                     } catch (Exception ex) {
@@ -335,8 +329,10 @@ namespace auto_h_encore {
         }
 
         public void incrementProgress() {
-            if (InvokeRequired) Invoke(new Action(() => barProgress.Value++));
-            else barProgress.Value++;
+            if (barProgress.Value < barProgress.Maximum) {
+                if (InvokeRequired) Invoke(new Action(() => barProgress.Value++));
+                else barProgress.Value++;
+            }
         }
 
         public void info(string message) {
@@ -346,14 +342,9 @@ namespace auto_h_encore {
         }
 
         private void btnBrowseQCMA_Click(object sender, EventArgs e) {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.Description = Language.MountedLanguage["browse_QCMA"];
-            dialog.ShowDialog();
-            txtQCMA.Text = dialog.SelectedPath;
         }
 
         private void txtQCMA_TextChanged(object sender, EventArgs e) {
-            VerifyUserInfo();
         }
 
         private void btnImport_Click(object sender, EventArgs e) {
@@ -367,11 +358,6 @@ namespace auto_h_encore {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            //try to automatically populate needed information
-            string QCMA = (string) Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "appsPath", null);
-            string AID = (string) Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null);
-            if (QCMA != null && FileSystem.DirectoryExists(QCMA)) txtQCMA.Text = QCMA;
-            if (AID != null && AID.Length == 16) txtAID.Text = AID;
 
             
         }
