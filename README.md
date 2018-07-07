@@ -49,7 +49,7 @@ Other changes are also welcome through pull requests.
 ### Translators
  - yexun1995 for the Simplified Chinese translation.
  - RY0M43CH1Z3N for the Spanish translation.
- - M2l2koPOWER and [portablegaming](https://vk.com/portablegaming) for the Russian translation.
+ - M2l2koPOWER, [portablegaming](https://vk.com/portablegaming) and pvc1 for the Russian translation.
  - theheroGAC for the Italian translation.
  - barbabarros for the Brazilian Portuguese translaiton.
  
