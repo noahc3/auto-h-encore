@@ -108,14 +108,14 @@ namespace auto_h_encore {
 
         public static string FindQCMA(Form1 form) {
             form.info("Searching for QCMA...");
-            if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
-                form.info("Found QCMA");
-                return "C:\\Program Files\\Qcma\\qcma.exe";
-            }
-            if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
-                form.info("Found QCMA");
-                return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
-            }
+            //if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
+            //    form.info("Found QCMA");
+            //    return "C:\\Program Files\\Qcma\\qcma.exe";
+            //}
+            //if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
+            //    form.info("Found QCMA");
+            //    return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
+            //}
             form.info("QCMA not found, will download.");
             return "";
         }
