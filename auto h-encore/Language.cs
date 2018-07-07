@@ -607,4 +607,5 @@ namespace auto_h_encore {
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
     }
 }
-
++}
++
