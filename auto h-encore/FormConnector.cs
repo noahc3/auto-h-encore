@@ -26,16 +26,21 @@ namespace auto_h_encore {
                 lblInstructions.Text = "Unplug your Vita if it is plugged in and click Next.";
             } else {
                 btnUSB.Visible = false;
-                lblInstructions.Text = "Installing USB Driver, please wait...";
-                Task.Factory.StartNew(new Action(() => {
-                    ProcessStartInfo psi = new ProcessStartInfo();
-                    if (Environment.Is64BitOperatingSystem) psi.FileName = Reference.path_qcma + "driver\\dpinst64.exe";
-                    else psi.FileName = Reference.path_qcma + "driver\\dpinst32.exe";
-                    psi.Arguments = "/S /SE /SW";
-                    Process process = Process.Start(psi);
-                    process.WaitForExit();
-                    AfterUSB();
-                }));
+                if (!Global.QCMA_Installed) {
+                    lblInstructions.Text = "Installing USB Driver, please wait...";
+                    Task.Factory.StartNew(new Action(() => {
+                        Process process = Process.Start(Reference.path_qcma + "driver\\dpscat.exe");
+                        process.WaitForExit();
+                        ProcessStartInfo psi = new ProcessStartInfo();
+                        if (Environment.Is64BitOperatingSystem) psi.FileName = Reference.path_qcma + "driver\\dpinst64.exe";
+                        else psi.FileName = Reference.path_qcma + "driver\\dpinst32.exe";
+                        psi.Arguments = "/S /SE /SW";
+                        process = Process.Start(psi);
+                        process.WaitForExit();
+                        AfterUSB();
+                    }));
+                } else AfterUSB();
+                
             }
         }
 

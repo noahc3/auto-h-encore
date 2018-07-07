@@ -10,6 +10,7 @@ namespace auto_h_encore {
 
         public static string path_QCMA;
 
+        public static bool QCMA_Installed = false;
         public static string AID;
         public static string QCMAAPPS;
     }

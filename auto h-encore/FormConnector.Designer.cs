@@ -65,7 +65,6 @@
             this.Controls.Add(this.lblInstructions);
             this.Controls.Add(this.btnUSB);
             this.Name = "FormConnector";
-            this.Text = "FormConnector";
             this.ResumeLayout(false);
 
         }
