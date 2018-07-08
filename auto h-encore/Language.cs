@@ -629,7 +629,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Parcourir pour " },
 
                 { "info_Finish",  " Pour finir l'installation de h-encore:\r\n"
-                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
+                        + "1. Connectez votre PS Vita sur Votre PC avec le Gestionnaire de Contenu comme auparavant (si elle n'est toujours pas connectée)\r\n"
                         + "     Si votre Vita demande une mise à jour, désactiver le wifi dans la Vita et redémarrer la\r\n"
                         + "4. Dans le gestionnaire de contenu, choisir PC -> PS Vita System\r\n"
                         + "5. Choisir Applications\r\n"
