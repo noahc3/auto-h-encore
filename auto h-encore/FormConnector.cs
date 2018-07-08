@@ -23,7 +23,7 @@ namespace auto_h_encore {
                 btnUSB.Width = 484;
                 btnWifi.Visible = false;
                 btnUSB.Text = Language.MountedLanguage["btn_Next"];
-                lblInstructions.Text = Language.MountedLanguage["btn_Next"];
+                lblInstructions.Text = Language.MountedLanguage["lbl_UnplugVita"];
             } else {
                 btnUSB.Visible = false;
                 if (!Global.QCMA_Installed) {
