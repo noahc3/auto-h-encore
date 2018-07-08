@@ -54,7 +54,8 @@ namespace auto_h_encore {
         private void AfterUSB() {
 
             Process.Start(Global.path_QCMA);
-            QCMAtimer.Interval = 10000;
+            QCMAtimer.Interval = 15000;
+            QCMAtimer.Elapsed += ResetQCMA;
             QCMAtimer.Start();
 
             Action action = new Action(() => {
