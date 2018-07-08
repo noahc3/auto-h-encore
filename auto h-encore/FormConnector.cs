@@ -10,12 +10,19 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Threading;
+using System.Timers;
 
 namespace auto_h_encore {
     public partial class FormConnector : Form {
+
+        System.Timers.Timer QCMAtimer = new System.Timers.Timer();
+
         public FormConnector() {
             InitializeComponent();
+            ControlBox = false;
             lblInstructions.Text = Language.MountedLanguage["lbl_ConnectionMethod"];
+            btnUSB.Text = Language.MountedLanguage["btn_USB"];
+            btnWifi.Text = Language.MountedLanguage["btn_Wifi"];
         }
 
         private void btnUSB_Click(object sender, EventArgs e) {
@@ -23,7 +30,7 @@ namespace auto_h_encore {
                 btnUSB.Width = 484;
                 btnWifi.Visible = false;
                 btnUSB.Text = Language.MountedLanguage["btn_Next"];
-                lblInstructions.Text = Language.MountedLanguage["btn_Next"];
+                lblInstructions.Text = Language.MountedLanguage["lbl_UnplugVita"];
             } else {
                 btnUSB.Visible = false;
                 if (!Global.QCMA_Installed) {
@@ -47,6 +54,9 @@ namespace auto_h_encore {
         private void AfterUSB() {
 
             Process.Start(Global.path_QCMA);
+            QCMAtimer.Interval = 15000;
+            QCMAtimer.Elapsed += ResetQCMA;
+            QCMAtimer.Start();
 
             Action action = new Action(() => {
                 lblInstructions.Text = Language.MountedLanguage["txtblock_USBInstructions"];
@@ -56,7 +66,8 @@ namespace auto_h_encore {
                     while ((string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "") == old) {
                         Thread.Sleep(500);
                     }
-                    
+
+                    QCMAtimer.Stop();
                     Global.AID = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null);
                     Global.QCMAAPPS = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "appsPath", null);
 
@@ -96,6 +107,13 @@ namespace auto_h_encore {
 
         private void btnWifi_Click(object sender, EventArgs e) {
             AfterWifi();
+        }
+
+        private void ResetQCMA(object sender, EventArgs e) {
+            QCMAtimer.Stop();
+            Utility.KillQCMA();
+            Thread.Sleep(500);
+            Process.Start(Global.path_QCMA);
         }
     }
 }
