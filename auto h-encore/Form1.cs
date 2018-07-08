@@ -32,6 +32,7 @@ namespace auto_h_encore {
             //lblAID.Text = Language.MountedLanguage["lbl_AID"];
             //lblHowToAID.Text = Language.MountedLanguage["lbl_HowToAID"];
             lblIssueTracker.Text = Language.MountedLanguage["lbl_Issues"];
+            lblWifiProblem.Text = Language.MountedLanguage["lbl_WifiProblems"];
             //lblQCMA.Text = Language.MountedLanguage["lbl_QCMADir"];
             btnImport.Text = Language.MountedLanguage["btn_Import"];
             btnStart.Text = Language.MountedLanguage["btn_Start"];

@@ -33,6 +33,7 @@
             this.cbxDelete = new System.Windows.Forms.CheckBox();
             this.cbxTrim = new System.Windows.Forms.CheckBox();
             this.lblIssueTracker = new System.Windows.Forms.LinkLabel();
+            this.lblWifiProblem = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtLog
@@ -40,19 +41,19 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 301);
+            this.txtLog.Location = new System.Drawing.Point(12, 339);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(569, 213);
+            this.txtLog.Size = new System.Drawing.Size(569, 223);
             this.txtLog.TabIndex = 2;
             // 
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStart.Location = new System.Drawing.Point(12, 272);
+            this.btnStart.Location = new System.Drawing.Point(12, 310);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(569, 23);
             this.btnStart.TabIndex = 3;
@@ -73,7 +74,7 @@
             // 
             this.barProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barProgress.Location = new System.Drawing.Point(12, 243);
+            this.barProgress.Location = new System.Drawing.Point(12, 281);
             this.barProgress.Maximum = 17;
             this.barProgress.Name = "barProgress";
             this.barProgress.Size = new System.Drawing.Size(569, 23);
@@ -82,7 +83,7 @@
             // lblVersion
             // 
             this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.Location = new System.Drawing.Point(326, 519);
+            this.lblVersion.Location = new System.Drawing.Point(326, 567);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(255, 13);
             this.lblVersion.TabIndex = 10;
@@ -93,9 +94,9 @@
             // 
             this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImport.Location = new System.Drawing.Point(12, 170);
+            this.btnImport.Location = new System.Drawing.Point(12, 206);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(566, 23);
+            this.btnImport.Size = new System.Drawing.Size(569, 23);
             this.btnImport.TabIndex = 11;
             this.btnImport.Text = "I\'ve already download some or all of the files and would like to use them rather " +
     "than redownload them";
@@ -105,7 +106,7 @@
             // cbxDelete
             // 
             this.cbxDelete.AutoSize = true;
-            this.cbxDelete.Location = new System.Drawing.Point(15, 220);
+            this.cbxDelete.Location = new System.Drawing.Point(15, 258);
             this.cbxDelete.Name = "cbxDelete";
             this.cbxDelete.Size = new System.Drawing.Size(306, 17);
             this.cbxDelete.TabIndex = 12;
@@ -117,7 +118,7 @@
             this.cbxTrim.AutoSize = true;
             this.cbxTrim.Checked = true;
             this.cbxTrim.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxTrim.Location = new System.Drawing.Point(15, 197);
+            this.cbxTrim.Location = new System.Drawing.Point(15, 235);
             this.cbxTrim.Name = "cbxTrim";
             this.cbxTrim.Size = new System.Drawing.Size(476, 17);
             this.cbxTrim.TabIndex = 13;
@@ -129,7 +130,7 @@
             // 
             this.lblIssueTracker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIssueTracker.AutoSize = true;
-            this.lblIssueTracker.Location = new System.Drawing.Point(12, 519);
+            this.lblIssueTracker.Location = new System.Drawing.Point(12, 567);
             this.lblIssueTracker.Name = "lblIssueTracker";
             this.lblIssueTracker.Size = new System.Drawing.Size(72, 13);
             this.lblIssueTracker.TabIndex = 14;
@@ -137,11 +138,21 @@
             this.lblIssueTracker.Text = "Issue Tracker";
             this.lblIssueTracker.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblIssueTracker_LinkClicked);
             // 
+            // lblWifiProblem
+            // 
+            this.lblWifiProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWifiProblem.Location = new System.Drawing.Point(12, 157);
+            this.lblWifiProblem.Name = "lblWifiProblem";
+            this.lblWifiProblem.Size = new System.Drawing.Size(569, 46);
+            this.lblWifiProblem.TabIndex = 15;
+            this.lblWifiProblem.Text = "WIFI PROBLEMS";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 539);
+            this.ClientSize = new System.Drawing.Size(593, 587);
+            this.Controls.Add(this.lblWifiProblem);
             this.Controls.Add(this.lblIssueTracker);
             this.Controls.Add(this.cbxTrim);
             this.Controls.Add(this.cbxDelete);
@@ -172,6 +183,7 @@
         private System.Windows.Forms.CheckBox cbxDelete;
         private System.Windows.Forms.CheckBox cbxTrim;
         private System.Windows.Forms.LinkLabel lblIssueTracker;
+        private System.Windows.Forms.Label lblWifiProblem;
     }
 }
 
