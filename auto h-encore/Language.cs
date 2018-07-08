@@ -47,7 +47,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Browse for " },
 
                 { "info_Finish",  "To finish your h-encore installation:\r\n"
-                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     If it says you need to update your firmware, turn off Wifi on your Vita and restart the Vita\r\n"
                         + "2. In Content Manager, choose PC -> PS Vita System\r\n"
                         + "3. Select Applications\r\n"
@@ -142,15 +142,13 @@ namespace auto_h_encore {
                 { "browse_Generic", "Browse for " },
 
                 { "info_Finish",  "完成 h-encore 安装:\r\n"
-                        + "1. 右键点击 QCMA 任务栏图标并选择刷新数据库\r\n"
-                        + "2. 用USB连接你的电脑和 PSV\r\n"
-                        + "3. 打开Vita端 内容管理 程序并点击 复制内容\r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     如果Vita提示你需要更新系统, 关闭无线网络后重启 Vita\r\n"
-                        + "4. 在 内容管理 程序界面, 选择 电脑 -> PS Vita\r\n"
-                        + "5. 选择 应用程序\r\n"
-                        + "6. 选择 PS Vita\r\n"
-                        + "7. 选择 h-encore 并点击 复制\r\n"
-                        + "8. 启动主界面的 h-encore 程序\r\n"
+                        + "2. 在 内容管理 程序界面, 选择 电脑 -> PS Vita\r\n"
+                        + "3. 选择 应用程序\r\n"
+                        + "4. 选择 PS Vita\r\n"
+                        + "5. 选择 h-encore 并点击 复制\r\n"
+                        + "6. 启动主界面的 h-encore 程序\r\n"
                         + "     如果初次启动崩溃, 尝试重启Vita后再运行该气泡\r\n\r\n"
                         + "完成!"},
 
@@ -239,9 +237,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Buscar " },
 
                 { "info_Finish",  "Para finalizar la instalación de H-encore:\r\n"
-                        + "1. Pulsa el botón derecho sobre el icono de QCMA en la barra de tareas y selecciona refrescar base de datos.\r\n"
-                        + "2. Conecta tu PS Vita a tu PC usando USB.\r\n"
-                        + "3. Abre .Gestor de Contenido en tu PS Vita y selecciona Copiar Contenido.\r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     (Si pone que tienes que actualizar el firmware, apaga el wifi en tu PS Vita y reiniciala.)\r\n"
                         + "4. En Gestor Contenido, elige PC -> PS Vita.\r\n"
                         + "5. Selecciona Aplicaciones.\r\n"
@@ -336,9 +332,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Sfoglia per " },
 
                 { "info_Finish",  "Per finire l'installazione di h-encore:\r\n"
-                         + "1. Fare clic con il pulsante destro del mouse sull'icona QCMA nella barra delle applicazioni e selezionare Aggiorna database\r\n"
-                         + "2. Collega la tua PS Vita al PC tramite USB\r\n"
-                         + "3. Apri Gestione Contenuto su PS Vita e seleziona Copia contenuto\r\n"
+                         + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                          + "     Se dice che è necessario aggiornare il firmware, disattivare la Wifi su PSVita e riavviare la PSVita\r\n"
                          + "4. In Gestione Contenuto, scegli PC -> Sistema PS Vita\r\n"
                          + "5. Seleziona Applicazioni\r\n"
@@ -433,9 +427,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Обзор " },
 
                 { "info_Finish",  "Чтобы закончить установку h-encore:\r\n"
-                        + "1. Нажмите правой кнопкой мыши на иконку QCMA в трее и нажмите Refresh database\r\n"
-                        + "2. Подключите вашу PS Vita к компьютеру через USB\r\n"
-                        + "3. Откройте Управление данными на вашей PS Vita и нажмите Скопировать данные\r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     Если требуется обновить прошивку, то выключите Wi-Fi на Vita и перезагрузите её\r\n"
                         + "4. В Управлении данными, нажмите Компьютер -> Система PS Vita\r\n"
                         + "5. Нажмите Приложения\r\n"
@@ -530,9 +522,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Procure por " },
 
                 { "info_Finish",  "Para finalizar a instalação do h-encore:\r\n"
-                        + "1. Clique com o botão direito no ícone do QCMA na bandeja e selecione Refresh database\r\n"
-                        + "2. Conecte seu PS Vita em seu PC usando USB\r\n"
-                        + "3. Abra o Gerenciador de Conteúdo no seu PS Vita e selecione Copiar Conteúdo\r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     Se seu VITA disser que precisa atualizar, desligue o Wifi no seu Vita e reinicie o Vita\r\n"
                         + "4. No Gerenciador de Conteúdo, escolha PC -> Sistema PS Vita\r\n"
                         + "5. Selecione Aplicações\r\n"
@@ -628,9 +618,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Parcourir pour " },
 
                 { "info_Finish",  " Pour finir l'installation de h-encore:\r\n"
-                        + "1. Un clic droit sur l'icône de QCMA barre de tâches et sélectionnez `refresh database`\r\n"
-                        + "2. Connectez La PS Vita au PC en USB\r\n"
-                        + "3. Ouvrir le gestionnaire de contenu dans la PS Vita et sélectionnez copie de contenu \r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     Si votre Vita demande une mise à jour, désactiver le wifi dans la Vita et redémarrer la\r\n"
                         + "4. Dans le gestionnaire de contenu, choisir PC -> PS Vita System\r\n"
                         + "5. Choisir Applications\r\n"
@@ -725,9 +713,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Suche nach " },
 
                 { "info_Finish",  "Um deine h-encore-Installation abzuschließen:\r\n"
-                        + "1. Rechtsklicke das QCMA-Icon in der Taskleiste und wähle refresh database\r\n"
-                        + "2. Verbinde deine PS Vita mittels USB mit dem PC\r\n"
-                        + "3. Öffne den Content Manager auf deiner PS Vita und wähle Kopiere Inhalte\r\n"
+                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
                         + "     Wenn die Vita meldet, dass du die Firmware aktualisieren musst, deaktiviere das WLAN auf deiner Vita und starte die Konsole neu.\r\n"
                         + "4. Wähle im Content Manager, PC -> PS Vita System\r\n"
                         + "5. Wähle Applikationen\r\n"
