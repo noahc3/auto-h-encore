@@ -109,16 +109,16 @@ namespace auto_h_encore {
 
         public static string FindQCMA(Form1 form) {
             form.info(Language.MountedLanguage["log_SearchingForQCMA"]);
-            if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
-                form.info(Language.MountedLanguage["log_FoundQCMA"]);
-                Global.QCMA_Installed = true;
-                return "C:\\Program Files\\Qcma\\qcma.exe";
-            }
-            if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
-                form.info(Language.MountedLanguage["log_FoundQCMA"]);
-                Global.QCMA_Installed = true;
-                return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
-            }
+            //if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
+            //    form.info(Language.MountedLanguage["log_FoundQCMA"]);
+            //    Global.QCMA_Installed = true;
+            //    return "C:\\Program Files\\Qcma\\qcma.exe";
+            //}
+            //if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
+            //    form.info(Language.MountedLanguage["log_FoundQCMA"]);
+            //    Global.QCMA_Installed = true;
+            //    return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
+            //}
             form.info(Language.MountedLanguage["log_QCMANotFound"]);
             Global.QCMA_Installed = false;
             return "";
@@ -128,6 +128,10 @@ namespace auto_h_encore {
             form.info(Language.MountedLanguage["log_KillingQCMA"]);
             foreach (Process k in Process.GetProcessesByName("qcma")) k.Kill();
             form.info(Language.MountedLanguage["log_Done"]);
+        }
+
+        public static void KillQCMA() {
+            foreach (Process k in Process.GetProcessesByName("qcma")) k.Kill();
         }
 
         public static void ImportRegistry(Form1 form) {
