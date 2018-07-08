@@ -13,7 +13,7 @@ This application does everything short of installing QCMA/integrating libVitaMTP
  - Allows user to import necessary files if they've already downloaded them *(optional)*
  - Grabs CMA encryption key from your account ID
  - Unpackages bittersmile and repackages it with your encryption key and h-encore
- - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~17MB *(optional)*
+ - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~13MB *(optional)*
  - Moves finished files to your QCMA directory for copying to your PS Vita
  
 This application **does not**:
