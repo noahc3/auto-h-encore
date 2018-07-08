@@ -488,10 +488,10 @@ namespace auto_h_encore {
                 { "lbl_ChooseLanguage", "Escolha o idioma:" },
                 { "lbl_VersionText", "Versão auto h-encore " },
                 { "lbl_Issues", "Rastreador de Erros" },
-				        { "lbl_ConnectionMethod", "How do you plan to connect your PS Vita to transfer h-encore?" },
-                { "lbl_UnplugVita", "If your Vita is plugged in, unplug it, then click next." },
-                { "lbl_InstallingUSB", "Installing USB driver, please wait..." },
-                { "lbl_WifiProblems", "If your Vita says you need to update your firmware, turn off Wifi and restart your Vita. This also means you cannot transfer h-encore over Wifi without updating!" },
+				        { "lbl_ConnectionMethod", "Como você irá conectar seu PS VITA para transferir o h-encore?" },
+                { "lbl_UnplugVita", "Se seu Vita está conectado, desconecte e clique em Próximo." },
+                { "lbl_InstallingUSB", "Instalando driver USB, por favor aguarde..." },
+                { "lbl_WifiProblems", "Se seu Vita disser que precisa atualizar o firmware, desligue o Wifi e reinicie seu Vita. Isso também significa que você não pode transferir o h-encore através do Wifi sem atualizar!" },
 
                 { "status_NoFile", "Nenhum arquivo selecionado, vai baixar." },
                 { "status_Invalid", "Caminho do arquivo inválido." },
@@ -500,10 +500,10 @@ namespace auto_h_encore {
                 { "status_Override", "Arquivo selecionado mas hash não corresponde. Reescrita de hash habilitada, vai importar." },
                 { "status_Calculating", "Calculando hash do arquivo..." },
 
-                { "txtblock_BeforeRunning", "The application will automatically download QCMA if it is not installed. It will also automatically launch and manage it. That means:\r\n    If QCMA is not installed:\r\n        QCMA will be downloaded for local use by this program.\r\n        A USB driver will be installed if you choose to transfer via USB\r\n    If QCMA is installed:\r\n        Your existing QCMA installation will be used.\r\n        No new USB drivers will be installed, and your configuration will not be overwritten.\r\n\r\nBasically, you no longer need to interact with QCMA unless there are problems. If you have issues, please submit a report on the issue tracker."},
+                { "txtblock_BeforeRunning", "O aplicativo irá baixar automaticamente o QCMA caso ainda não esteja instalado. O aplicativo irá abrir o QCMA e configurar automaticamente. Isso significa:\r\n    Se o QCMA não está instalado:\r\n        QCMA será baixado para uso local por esse programa.\r\n        Um driver USB será instalado se você escolher transferir por USB\r\n    Se o QCMA está instalado:\r\n        Sua instalação existente do QCMA será utilizada.\r\n        Nenhum driver USB será instalado e suas configurações não serão reescritas.\r\n\r\Basicamente, você não precisa mais interagir com o QCMA a não ser que tenha problemas. Se tiver problemas, por favor reporte ao Rastreador de Erros."},
                 { "txtblock_Import", "Se você já baixou algum ou todos os arquivos necessários, e não quer que baixe novamente, você pode selecioná-los aqui, para que seja feita a importação." },
-                { "txtblock_USBInstructions", "Connect your PS Vita now.\r\n\r\nIf nothing happens:\r\n1. Launch Content Manager on your PS Vita\r\n2. Select Copy Content\r\n3. If prompted: Select PC and USB\r\n\r\nIf it still doesn't work, try restarting your computer and PS Vita and retry (and do the steps above again).\r\n\r\nIf it still doesn't work, you may need to install QCMA manually and pick a driver other than libusbk." },
-                { "txtblock_WifiInstructions", "On your PS Vita:\r\n1. Launch Content Manager\r\n2. Select Copy Content\r\n3. Choose PC\r\n4. Choose Wifi\r\n5. Select the name of your PC\r\n6. Enter the code that appears on your PC\r\n7. Select Register\r\n\r\nIf it doesn't work, make sure your Vita and PC are on the same network, or rerun this application and try USB." },
+                { "txtblock_USBInstructions", "Conecte seu PS Vita agora.\r\n\r\nSe nada acontecer:\r\n1. Abra o Gerenciador de Conteúdo no seu PS Vita\r\n2. Selecione Copiar Conteúdo\r\n3. Se solicitado: Selecione PC e USB\r\n\r\nSe ainda não funcionar, tente reiniciar seu computador e seu PS Vita e tente novamente (refaça os passos acima).\r\n\r\nSe ainda não funcionar, você deverá instalar o QCMA manualmente e escolher um driver usb que não seja o libusbk." },
+                { "txtblock_WifiInstructions", "No seu PS Vita:\r\n1. Abra o Gerenciador de Conteúdo\r\n2. Selecione Copiar Conteúdo\r\n3. Escolha PC\r\n4. Escolha Wifi\r\n5. Escolha Registrar\r\n6.Selecione o nome do seu PC\r\n7. Coloque o código que aparece no seu PC\r\n\r\nSe não funcionar, tenha certeza que seu Vita e PC estão na mesma rede, ou reabra o aplicativo e tente por USB." },
 
                 { "btn_Import", "Eu já baixei um ou todos os arquivos e gostaria de usá-los ao invés de baixá-los novamente" },
                 { "btn_Ok", "OK" },
@@ -511,9 +511,9 @@ namespace auto_h_encore {
                 { "btn_Start", "Iniciar" },
                 { "btn_Done", "Feito" },
                 { "btn_Browse", "Procurar" },
-				        { "btn_Next", "Next" },
+				        { "btn_Next", "Próximo" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (Firmware 3.68 ONLY)" },
+                { "btn_Wifi", "WiFi (Firmware 3.68 SOMENTE)" },
 
                 { "cbx_Trim", "Tirar o conteúdo excessivo do demo bitter smile (reduz o tamanho do app h-encore de ~240MB para ~13MB)" },
                 { "cbx_DeleteExisting", "Deletar arquivos existentes (faça isso se alguma coisa deu errada antes)" },
@@ -523,7 +523,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Procure por " },
 
                 { "info_Finish",  "Para finalizar a instalação do h-encore:\r\n"
-                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
+                        + "1. Conecte seu PS Vita no seu PC usando o Gerenciador de Conteúdo como fez anteriormente (se ainda não foi conectado)\r\n"
                         + "     Se seu VITA disser que precisa atualizar, desligue o Wifi no seu Vita e reinicie o Vita\r\n"
                         + "4. No Gerenciador de Conteúdo, escolha PC -> Sistema PS Vita\r\n"
                         + "5. Selecione Aplicações\r\n"
@@ -546,13 +546,13 @@ namespace auto_h_encore {
                 { "error_Template", "Erro {0} ocorrido.\r\n\r\n{1}\r\n\r\nPor favor reinicie o processo. Se você não conseguir resolver o problema, por favor crie um Problema no Rastreador de Erros (GitHub) com esse código." },
                 { "error_Redownload",  "Erro 1001-0105\r\n\r\nFalha ao baixar arquivo {0}\r\n\r\nTenha certeza que sua Internet está conectada e/ou tente novamente. Se o erro persistir, por favor crie um Problema no Rastreador de Erros (GitHub)."},
 
-                { "log_SearchingForQCMA", "Searching for QCMA..." },
-                { "log_FoundQCMA", "Found QCMA." },
-                { "log_QCMANotFound", "QCMA not found, will download." },
-                { "log_KillingQCMA", "Killing any running QCMA processes..." },
-                { "log_QCMARegistry", "Importing QCMA registry information..." },
-                { "log_ScrubAID", "Scrubbing AID value" },
-                { "log_Prompt", "Prompting user for information..." },
+                { "log_SearchingForQCMA", "Procurando por QCMA..." },
+                { "log_FoundQCMA", "Achou QCMA." },
+                { "log_QCMANotFound", "QCMA não encontrado, irá baixar." },
+                { "log_KillingQCMA", "Fechando todos os processos QCMA..." },
+                { "log_QCMARegistry", "Importando o registro de informações do QCMA..." },
+                { "log_ScrubAID", "Limpando o valor AID" },
+                { "log_Prompt", "Pedindo informações ao usuário..." },
                 { "log_Done", "        Feito!" },
                 { "log_WipeFiles", "Deletando arquivos antigos..." },
                 { "log_Import", "Importação do arquivo {0} válida." },
