@@ -15,6 +15,7 @@ using Microsoft.VisualBasic.FileIO;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using Microsoft.Win32;
+using System.Threading;
 
 namespace auto_h_encore {
     public partial class Form1 : Form {
@@ -315,6 +316,10 @@ namespace auto_h_encore {
                         } catch (Exception ex) {
                             ErrorHandling.HandleException("020A", ex);
                         }
+
+                        Utility.KillQCMA();
+                        Thread.Sleep(1500);
+                        Process.Start(Global.path_QCMA);
 
                         Invoke(new Action(() => MessageBox.Show(Language.MountedLanguage["info_Finish"])));
 
