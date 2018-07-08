@@ -187,13 +187,6 @@ namespace auto_h_encore {
                 barProgress.Value = 0;
             }
         }
-        
-
-        private void lblHowToAID_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            FormAID frmAid = new FormAID();
-            frmAid.ShowDialog();
-        }
-
         private void txtAID_TextChanged(object sender, EventArgs e) {
             
         }
@@ -216,10 +209,10 @@ namespace auto_h_encore {
 
                     if (Global.path_QCMA == "") Global.path_QCMA = Reference.path_qcma + "qcma.exe";
 
-                    info("Prompting user for information...");
+                    info(Language.MountedLanguage["log_Prompt"]);
                     FormConnector frm = new FormConnector();
                     frm.ShowDialog();
-                    info("      Done!");
+                    info(Language.MountedLanguage["log_Done"]);
 
                     if (Directory.Exists(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\")) {
                         if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {

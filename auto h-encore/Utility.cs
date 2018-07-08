@@ -108,26 +108,26 @@ namespace auto_h_encore {
         }
 
         public static string FindQCMA(Form1 form) {
-            form.info("Searching for QCMA...");
+            form.info(Language.MountedLanguage["log_SearchingForQCMA"]);
             if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
-                form.info("Found QCMA");
+                form.info(Language.MountedLanguage["log_FoundQCMA"]);
                 Global.QCMA_Installed = true;
                 return "C:\\Program Files\\Qcma\\qcma.exe";
             }
             if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
-                form.info("Found QCMA");
+                form.info(Language.MountedLanguage["log_FoundQCMA"]);
                 Global.QCMA_Installed = true;
                 return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
             }
-            form.info("QCMA not found, will download.");
+            form.info(Language.MountedLanguage["log_QCMANotFound"]);
             Global.QCMA_Installed = false;
             return "";
         }
 
         public static void KillQCMA(Form1 form) {
-            form.info("Killing QCMA processes...");
+            form.info(Language.MountedLanguage["log_KillingQCMA"]);
             foreach (Process k in Process.GetProcessesByName("qcma")) k.Kill();
-            form.info("         Done!");
+            form.info(Language.MountedLanguage["log_Done"]);
         }
 
         public static void ImportRegistry(Form1 form) {
@@ -153,7 +153,7 @@ namespace auto_h_encore {
                 process.WaitForExit();
             }
 
-            form.info("Cleaning AID value...");
+            form.info(Language.MountedLanguage["log_ScrubAID"]);
             Registry.SetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
 
         }

@@ -15,19 +15,19 @@ namespace auto_h_encore {
     public partial class FormConnector : Form {
         public FormConnector() {
             InitializeComponent();
-            lblInstructions.Text = "How do you plan to connect your vita to your PC?";
+            lblInstructions.Text = Language.MountedLanguage["lbl_ConnectionMethod"];
         }
 
         private void btnUSB_Click(object sender, EventArgs e) {
             if (btnUSB.Width != 484) {
                 btnUSB.Width = 484;
                 btnWifi.Visible = false;
-                btnUSB.Text = "Next";
-                lblInstructions.Text = "Unplug your Vita if it is plugged in and click Next.";
+                btnUSB.Text = Language.MountedLanguage["btn_Next"];
+                lblInstructions.Text = Language.MountedLanguage["btn_Next"];
             } else {
                 btnUSB.Visible = false;
                 if (!Global.QCMA_Installed) {
-                    lblInstructions.Text = "Installing USB Driver, please wait...";
+                    lblInstructions.Text = Language.MountedLanguage["lbl_InstallingUSB"];
                     Task.Factory.StartNew(new Action(() => {
                         Process process = Process.Start(Reference.path_qcma + "driver\\dpscat.exe");
                         process.WaitForExit();
@@ -49,7 +49,7 @@ namespace auto_h_encore {
             Process.Start(Global.path_QCMA);
 
             Action action = new Action(() => {
-                lblInstructions.Text = "Connect your PS Vita now.\r\n\r\nIf nothing happens:\r\n1. Launch Content Manager on your PS Vita\r\n2. Select Copy Content\r\n3. If prompted: Select PC and USB\r\n\r\nIf it still doesn't work, try restarting your computer and PS Vita and retry (including the steps above).";
+                lblInstructions.Text = Language.MountedLanguage["txtblock_USBInstructions"];
                 Task.Factory.StartNew(new Action(() => {
                     string old = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
 
@@ -75,7 +75,7 @@ namespace auto_h_encore {
             btnWifi.Visible = false;
             btnUSB.Visible = false;
             Action action = new Action(() => {
-                lblInstructions.Text = "On your PS Vita:\r\n1. Launch Content Manager\r\n2. Select Copy Content\r\n3. Choose PC\r\n4. Choose Wifi\r\n5. Select Register\r\n6.Select the name of your PC\r\n7. Enter the code that appears on your PC\r\n\r\nIf it doesn't work, make sure your Vita and PC are on the same network, or rerun this application and try USB.";
+                lblInstructions.Text = Language.MountedLanguage["txtblock_WifiInstructions"];
                 Task.Factory.StartNew(new Action(() => {
                     string old = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "xxxxxxxxxxxxxxxx");
 
