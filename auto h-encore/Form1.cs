@@ -18,8 +18,6 @@ using Microsoft.Win32;
 
 namespace auto_h_encore {
     public partial class Form1 : Form {
-        //TODO: Move ALL text into lang resource file to make translating easier
-        //TODO: Make exception catches reusable
         public Form1() {
             InitializeComponent();
 
@@ -193,132 +191,143 @@ namespace auto_h_encore {
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            try {
+            
                 toggleControls(false);
 
                 //run code on new thread to keep UI responsive
                 Task.Factory.StartNew(new Action(() => {
-
-                    Global.path_QCMA = Utility.FindQCMA(this);
-
-                    Utility.KillQCMA(this);
-
-                    generateDirectories();
-                    downloadFiles();
-
-                    Utility.ImportRegistry(this);
-
-                    if (Global.path_QCMA == "") Global.path_QCMA = Reference.path_qcma + "qcma.exe";
-
-                    info(Language.MountedLanguage["log_Prompt"]);
-                    FormConnector frm = new FormConnector();
-                    frm.ShowDialog();
-                    info(Language.MountedLanguage["log_Done"]);
-
-                    if (Directory.Exists(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\")) {
-                        if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
-                            FileSystem.DeleteDirectory(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
-                        } else {
-                            throw new IOException("Directory Already Exists");
-                        }
-                    }
-
                     try {
-                        info(Language.MountedLanguage["log_ExtractingPKG"]);
-                        ProcessStartInfo psi = new ProcessStartInfo();
-                        psi.WorkingDirectory = Reference.path_downloads;
-                        psi.Arguments = "-x bittersmile.pkg";
-                        psi.FileName = Reference.fpath_pkg2zip;
-                        Process process = Process.Start(psi);
-                        process.WaitForExit();
-                        info(Language.MountedLanguage["log_Done"]);
-                        incrementProgress();
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0203", ex);
-                    }
-
-
-                    if (cbxTrim.Checked) {
                         try {
-                            info(Language.MountedLanguage["log_Trimming"]);
-                            string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
-                            foreach (string k in Reference.trims) {
-                                FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
-                            }
-                            info(Language.MountedLanguage["log_Done"]);
+                            Global.path_QCMA = Utility.FindQCMA(this);
+                            Utility.KillQCMA(this);
                         } catch (Exception ex) {
-                            ErrorHandling.HandleException("0204", ex);
+                            ErrorHandling.HandleException("020B", ex);
                         }
-                    }
 
-                    try {
-                        foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
-                            info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
-                            FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        try {
+                            generateDirectories();
+                            downloadFiles();
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("020C", ex);
                         }
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0205", ex);
-                    }
 
-                    try {
-                        foreach (string k in FileSystem.GetDirectories(Reference.path_downloads + "app\\PCSG90096\\")) {
-                            info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
-                            FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                        try {
+                            Utility.ImportRegistry(this);
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("020D", ex);
                         }
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0206", ex);
-                    }
 
-                    incrementProgress();
+                        if (Global.path_QCMA == "") Global.path_QCMA = Reference.path_qcma + "qcma.exe";
 
-                    try {
-                        info(Language.MountedLanguage["log_MoveLicense"]);
-                        FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
+                        info(Language.MountedLanguage["log_Prompt"]);
+                        FormConnector frm = new FormConnector();
+                        frm.ShowDialog();
                         info(Language.MountedLanguage["log_Done"]);
+
+                        if (Directory.Exists(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\")) {
+                            if (MessageBox.Show(Language.MountedLanguage["warn_DeleteExistingBittersmile"], Language.MountedLanguage["title_Warning"], MessageBoxButtons.YesNo) == DialogResult.Yes) {
+                                FileSystem.DeleteDirectory(Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\", DeleteDirectoryOption.DeleteAllContents);
+                            } else {
+                                throw new IOException("Directory Already Exists");
+                            }
+                        }
+
+                        try {
+                            info(Language.MountedLanguage["log_ExtractingPKG"]);
+                            ProcessStartInfo psi = new ProcessStartInfo();
+                            psi.WorkingDirectory = Reference.path_downloads;
+                            psi.Arguments = "-x bittersmile.pkg";
+                            psi.FileName = Reference.fpath_pkg2zip;
+                            Process process = Process.Start(psi);
+                            process.WaitForExit();
+                            info(Language.MountedLanguage["log_Done"]);
+                            incrementProgress();
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0203", ex);
+                        }
+
+
+                        if (cbxTrim.Checked) {
+                            try {
+                                info(Language.MountedLanguage["log_Trimming"]);
+                                string path = Reference.path_downloads + "app\\PCSG90096\\resource\\";
+                                foreach (string k in Reference.trims) {
+                                    FileSystem.DeleteDirectory(path + k, DeleteDirectoryOption.DeleteAllContents);
+                                }
+                                info(Language.MountedLanguage["log_Done"]);
+                            } catch (Exception ex) {
+                                ErrorHandling.HandleException("0204", ex);
+                            }
+                        }
+
+                        try {
+                            foreach (string k in FileSystem.GetFiles(Reference.path_downloads + "app\\PCSG90096\\")) {
+                                info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
+                                FileSystem.MoveFile(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                            }
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0205", ex);
+                        }
+
+                        try {
+                            foreach (string k in FileSystem.GetDirectories(Reference.path_downloads + "app\\PCSG90096\\")) {
+                                info(string.Format(Language.MountedLanguage["log_MoveToHencore"], k.Split('\\').Last()));
+                                FileSystem.MoveDirectory(k, Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\" + k.Split('\\').Last());
+                            }
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0206", ex);
+                        }
+
                         incrementProgress();
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0207", ex);
+
+                        try {
+                            info(Language.MountedLanguage["log_MoveLicense"]);
+                            FileSystem.MoveFile(Reference.path_hencore + "\\h-encore\\app\\ux0_temp_game_PCSG90096_app_PCSG90096\\sce_sys\\package\\temp.bin", Reference.path_hencore + "\\h-encore\\license\\ux0_temp_game_PCSG90096_license_app_PCSG90096\\6488b73b912a753a492e2714e9b38bc7.rif");
+                            info(Language.MountedLanguage["log_Done"]);
+                            incrementProgress();
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0207", ex);
+                        }
+
+                        string encKey = "";
+
+                        try {
+                            info(string.Format(Language.MountedLanguage["log_GetCMA"], Global.AID));
+                            encKey = Utility.GetEncKey(Global.AID);
+                            if (encKey.Length != 64) return;
+                            info(string.Format(Language.MountedLanguage["log_GotCMA"], encKey));
+                            incrementProgress();
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0208", ex);
+                        }
+
+                        try {
+                            PackageHencore(encKey);
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("0209", ex);
+                        }
+
+                        try {
+                            info(Language.MountedLanguage["log_MoveToQCMA"]);
+                            FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\");
+                            incrementProgress();
+                            info(Language.MountedLanguage["log_Finished"]);
+                        } catch (Exception ex) {
+                            ErrorHandling.HandleException("020A", ex);
+                        }
+
+                        Invoke(new Action(() => MessageBox.Show(Language.MountedLanguage["info_Finish"])));
+
+                        toggleControls(true);
+                    } catch (KeyNotFoundException ex) {
+                        ErrorHandling.ShowError("AAAA020B", "An error occurred with language substitution: \r\n" + ex.Message + "\r\nThis is a bug! Please report this on the issue tracker with the message provided above!");
+                        toggleControls(true);
+                        return;
+                    } catch (Exception) {
+                        toggleControls(true);
+                        return;
                     }
-
-                    string encKey = "";
-
-                    try {
-                        info(string.Format(Language.MountedLanguage["log_GetCMA"], Global.AID));
-                        encKey = Utility.GetEncKey(Global.AID);
-                        if (encKey.Length != 64) return;
-                        info(string.Format(Language.MountedLanguage["log_GotCMA"], encKey));
-                        incrementProgress();
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0208", ex);
-                    }
-
-                    try {
-                        PackageHencore(encKey);
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("0209", ex);
-                    }
-
-                    try {
-                        info(Language.MountedLanguage["log_MoveToQCMA"]);
-                        FileSystem.MoveDirectory(Reference.path_hencore + "h-encore\\PCSG90096\\", Global.QCMAAPPS + "\\APP\\" + Global.AID + "\\PCSG90096\\");
-                        incrementProgress();
-                        info(Language.MountedLanguage["log_Finished"]);
-                    } catch (Exception ex) {
-                        ErrorHandling.HandleException("020A", ex);
-                    }
-
-                    Invoke(new Action(() => MessageBox.Show(Language.MountedLanguage["info_Finish"])));
-
-                    toggleControls(true);
                 }));
-            } catch (KeyNotFoundException ex) {
-                ErrorHandling.ShowError("AAAA020B", "An error occurred with language substitution: \r\n" + ex.Message + "\r\nThis is a bug! Please report this on the issue tracker with the message provided above!");
-                toggleControls(true);
-                return;
-            } catch (Exception) {
-                toggleControls(true);
-                return;
-            }
             
         }
 
