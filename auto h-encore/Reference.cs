@@ -49,7 +49,7 @@ namespace auto_h_encore {
                 "ce3badfc04ae24e7c209f1a2fd565943"
             },
             new string[] {
-                "e52354cc2967bec4d8d1c2eb74475812"
+                "f720eb46f72926d3d1cb0b6d0a7bda8d"
             }
         };
 
