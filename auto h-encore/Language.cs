@@ -597,7 +597,7 @@ namespace auto_h_encore {
 				        { "lbl_ConnectionMethod", "Comment vous voulez connecter votre Vita pour transférer h-encore ?" },
                 { "lbl_UnplugVita", "Si votre Vita est branché, débranché la, et cliquer sur suivant." },
                 { "lbl_InstallingUSB", "Installation du pilote USB, Veuillez patientez svp..." },
-                { "lbl_WifiProblems", "Si Votre Vita demande une mise à jour du firmware, veuillez désactivez la connexion Wifi et redémarré là. Ça signifie aussi que vous ne pouvez pas transférer h-encore via Wifi sans mettre à jour votre Vita !" },
+                { "lbl_WifiProblems", "Si Votre Vita demande une mise à jour du firmware, veuillez désactiver la connexion Wifi et redémarré là. Ça signifie aussi que vous ne pouvez pas transférer h-encore via Wifi sans mettre à jour votre Vita !" },
 
                 { "status_NoFile", "Aucun fichier n’a été sélectionné, pour être téléchargé." },
                 { "status_Invalid", "Le chemin du fichier est invalide." },
@@ -606,7 +606,7 @@ namespace auto_h_encore {
                 { "status_Override", "Le fichier sélectionné et le Hash ne correspondant pas, mais le forcing est activé, importation." },
                 { "status_Calculating", "Calcul du Hash du fichier..." },
                 
-                { "txtblock_BeforeRunning", "Cette application va télécharger QCMA automatiquement s'il n'est pas déjà installé. Elle va aussi la lancer et la contrôler. Ça veut dire:\r\n    Si QCMA n'est pas installé : \r\n        QCMA va être télécharger pour un usage local par cette application. \r\n        Un pilote USB va être installer si vous choisirez de transféré via USB\r\n    Si QCMA est installé : \r\n        Votre installation QCMA existante va être utiliser. \r\n        Aucun pilote USB va être installer, et votre configuration ne va pas être modifier. \r\n\r\nVous n'avez plus besoin d'interagir avec QCMA sauf s'il y a des problèmes. Si vous avez un problème, Veuillez soumettre un rapport dans l'issue tracker."},
+                { "txtblock_BeforeRunning", "Cette application va télécharger QCMA automatiquement s'il n'est pas déjà installé. Elle va aussi le lancer et le contrôler. Ça veut dire:\r\n    Si QCMA n'est pas installé : \r\n        QCMA va être téléchargé pour un usage local par cette application. \r\n        Un pilote USB va être installé si vous choisirez de transférer via USB\r\n    Si QCMA est installé : \r\n        Votre installation QCMA existante va être utilisée. \r\n        Aucun pilote USB va être installé, et votre configuration ne va pas être modifiée. \r\n\r\nVous n'avez plus besoin d'interagir avec QCMA sauf s'il y a des problèmes. Si vous avez un problème, Veuillez soumettre un rapport dans l'issue Tracker."},
                 { "txtblock_Import", "Si vous avez déjà téléchargé une partie ou tous les fichiers nécessaires, et que vous ne voulez pas que l’application les télécharge à nouveau, vous pouvez la sélectionner ici pour que le programme les importe." },
                 { "txtblock_USBInstructions", "Connecter Votre PS Vita maintenant. \r\n\r\nSi rien ne se passe:\r\n1. Lancer le gestionnaire de contenu sur votre PS Vita \r\n2. Sélectionner Copier Du Contenu\r\n3. Si Demandé : Sélectionner PC et USB\r\n\r\nSi ça ne marche toujours pas, essayer de redémarrer Pc et votre Vita et ressayer (refaite les même étapes a nouveau).\r\n\r\nSi ça ne marche toujours pas, installer manuellement QCMA et sélectionner un autre pilote autre que libusbk." },
                 { "txtblock_WifiInstructions", "Sur votre PS Vita:\r\n1. Lancer le gestionnaire de contenu sur votre PS Vita \r\n2. Sélectionner Copier Du Contenu\r\n3. Choisir PC\r\n4. Choisir Wifi\r\n5.Choisir votre PC\r\n6. Enter le code qui apparait sur votre PC\r\n\r\nSi ça ne marche pas, vérifier que votre PS Vita et votre PC sont sur le même réseau, ou relancer cette application et essayer la méthode USB." },
@@ -621,8 +621,8 @@ namespace auto_h_encore {
                 { "btn_USB", "USB" },
                 { "btn_Wifi", "Wi-Fi (Firmware 3.68 SEULEMENT)" },
 
-                { "cbx_Trim", "Réduit l’excès de contenu depuis la démo bitter smile (réduire la taille de l'application h-encore de ~240MB a ~13MB)" },
-                { "cbx_DeleteExisting", "Supprimer les fichiers existants (Faites ceci si vous avez une erreur)" },
+                { "cbx_Trim", "Réduit l’excès de contenu de la démo bitter smile (réduire la taille de l'application h-encore de ~240MB a ~13MB)" },
+                { "cbx_DeleteExisting", "Supprimer les fichiers existants (Faites ceci en cas d'erreur)" },
                 { "cbx_OverrideHashes", "Ignorer les Hashes non conformes" },
 
                 { "browse_QCMA", "Trouve le répertoire QCMA PS Vita (Trouvez ceci dans les paramètres de QCMA sous Applications / Backups)" },
@@ -635,7 +635,7 @@ namespace auto_h_encore {
                         + "5. Choisir Applications\r\n"
                         + "6. Choisir PS Vita\r\n"
                         + "7. Choisir h-encore et appuyez sur Copier\r\n"
-                        + "8. Exécutez la bulle h-encore app depuis Le Live Area\r\n"
+                        + "8. Exécutez la bulle h-encore app depuis Live Area\r\n"
                         + "     Si ça plante à la 1ere utilisation, redémarrer votre Vita et lancez la bulle de nouveau\r\n\r\n"
                         + "Fini !"},
 
@@ -667,9 +667,9 @@ namespace auto_h_encore {
                 { "log_NotDownloaded", "Fichier {0} pas encore téléchargé ou bien importé, téléchargement." },
                 { "log_WorkingDirs", "Génération des répertoires temporaires..." },
                 { "log_CorrectLocation", "Fichier {0} dans le bon répertoire, saut du fichier." },
-                { "log_Importing", "Importation {0}" },
-                { "log_Downloading", "Téléchargement {0}" },
-                { "log_Extracting", "Extraction {0}" },
+                { "log_Importing", "Importation de {0}" },
+                { "log_Downloading", "Téléchargement de {0}" },
+                { "log_Extracting", "Extraction de {0}" },
                 { "log_ExtractingPKG", "Extraction de la démo bittersmile avec pkg2zip..." },
                 { "log_Trimming", "Suppression des fichiers non nécessaires de la demo bittersmile..." },
                 { "log_MoveToHencore", "Déplacement de {0} a le répertoire temporaire de h-encore..." },
