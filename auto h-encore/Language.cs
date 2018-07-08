@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -372,7 +373,7 @@ namespace auto_h_encore {
                 { "btn_Start", "Начать" },
                 { "btn_Done", "Готово" },
                 { "btn_Browse", "Обзор" },
-
+              
                 { "cbx_Trim", "Обрезать лишний контент из bittersmile demo (размер h-encore уменьшается с ~240MБ до ~13MБ)" },
                 { "cbx_DeleteExisting", "Удаление лишних файлов (сделайте это, если ранее что-то пошло не так)" },
                 { "cbx_OverrideHashes", "Игнорировать несоответствие хэша" },
@@ -601,6 +602,91 @@ namespace auto_h_encore {
                 { "title_Import", "Importer les fichiers existants" },
                 { "title_Warning", "Attention" },
                 { "title_Error", "Erreur" }
+            } },
+            { "German",  new Dictionary<string, string> {
+                { "lbl_ChooseLanguage", "Wähle eine Sprache:" },
+                { "lbl_AID", "Account ID (AID)" },
+                { "lbl_QCMADir", "QCMA PS Vita Ordner" },
+                { "lbl_HowToAID", "Wie bekomme ich diese Informationen?" },
+                { "lbl_VersionText", "auto h-encore version " },
+                { "lbl_Issues", "Issue Tracker" },
+
+                { "status_NoFile", "Keine Datei ausgewählt, wird heruntergeladen." },
+                { "status_Invalid", "Dateipfad ist ungültig." },
+                { "status_Valid", "Datei ausgewählt und Hash stimmt überein, wird importiert." },
+                { "status_BadHash", "Datei ausgewählt, aber Hash stimmt nicht überein, wird heruntergeladen." },
+                { "status_Override", "Datei ausgewählt, aber Hash stimmt nicht überein. Übergehen des Hashs aktiviert, Datei wird importiert." },
+                { "status_Calculating", "Berechne Hash..." },
+
+                { "txtblock_BeforeRunning", "Vor dem Ausführen: \r\n1. Installiere QCMA\r\n2. Öffne QCMA\r\n3. Verbinde deine PS Vita mit deinem PC mittels USB und starte den Content Manager\r\n4. Wähle Inhalt kopieren, um deine Vita mit dem PC zu verbinden\r\n   Wenn deine Vita meldet, dass du updaten sollst, deaktiviere das WLAN und starte die Konsole neu\r\n\r\nAlles ist jetzt bereit. Gib die oben stehenden Informationen korrekt ein, um den Start-Knopf zu aktivieren\r\n\r\nWenn der Start-Knopf nicht aktiviert wird, stelle sicher, dass deine AID 16 Zeichen lang ist und dass du den richtigen PS Vita-Ordner ausgewählt hast (Er sollte einen APP-Ordner beinhalten)"},
+                { "txtblock_Import", "Wenn du bereits einige oder alle der benötigten Dateien heruntergeladen hast und du nicht möchtest, dass das Programm sie erneut herunterlädt, dann kannst du sie hier auswählen, damit das Programm sie importiert." },
+                { "txtblock_HowToInfo",  "Das Programm sollte versucht haben, die Informationen automatisch zu beziehen. Falls das nicht passiert ist oder du verifizieren willst, ob sie korrekt sind:\r\n\r\n1. Installiere QCMA\r\n2. Öffne QCMA\r\n3. Verbinde deine PS Vita mit deinem PC mittels USB und starte den Content Manager\r\n4. Wähle Inhalt kopieren, um deine Vita mit dem PC zu verbinden\r\n   Wenn deine Vita meldet, dass du updaten sollst, deaktiviere das WLAN und starte die Konsole neu\r\n5. Rechtsklicke QCMA und wähle Settings\r\n6. Kopiere den Ordner, der Applications / Backups heißt in dieses Programm als den PS Vita-Ordner\r\n7. Navigiere zu dem Ordner, den du gerade kopiert hast und gehe in den APP-Ordner\r\n8. Deine AID ist der Name des Ordners in diesem Ordner (er sollte 16 Zeichen lang sein)"},
+
+                { "btn_Import", "Ich habe bereits einige oder alle Dateien heruntergeladen" },
+                { "btn_Ok", "OK" },
+                { "btn_Close", "Schließen" },
+                { "btn_Start", "Start" },
+                { "btn_Done", "Fertig" },
+                { "btn_Browse", "Durchsuchen" },
+
+                { "cbx_Trim", "Überflüssigen Inhalt der Bitter Smile Demo entfernen (Reduziert die Größe der h-encore-App von ~240MB auf ~13MB)" },
+                { "cbx_DeleteExisting", "Bestehende Dateien löschen (tue dies, falls zuvor etwas schiefgelaufen ist)" },
+                { "cbx_OverrideHashes", "Ignoriere Prüfsummen-Fehler" },
+
+                { "browse_QCMA", "Finde deinen QCMA-PS-Vita-Ordner (Du findest ihn in den QCMA-Einstellungen unter Applications / Backups)" },
+                { "browse_Generic", "Suche nach " },
+
+                { "info_Finish",  "Um deine h-encore-Installation abzuschließen:\r\n"
+                        + "1. Rechtsklicke das QCMA-Icon in der Taskleiste und wähle refresh database\r\n"
+                        + "2. Verbinde deine PS Vita mittels USB mit dem PC\r\n"
+                        + "3. Öffne den Content Manager auf deiner PS Vita und wähle Kopiere Inhalte\r\n"
+                        + "     Wenn die Vita meldet, dass du die Firmware aktualisieren musst, deaktiviere das WLAN auf deiner Vita und starte die Konsole neu.\r\n"
+                        + "4. Wähle im Content Manager, PC -> PS Vita System\r\n"
+                        + "5. Wähle Applikationen\r\n"
+                        + "6. Wähle PS Vita\r\n"
+                        + "7. Selektiere h-encore und drücke Kopieren\r\n"
+                        + "8. Starte die h-encore-App von der Live Area aus\r\n"
+                        + "     Wenn sie beim ersten Mal abstürzt, starte die Vita neu und starte die App erneut\r\n\r\n"
+                        + "Fertig!"},
+
+                { "warn_HashCompat", "Die Kompatibilität wird nicht gewährleistet, wenn du Versionen von Dateien verwendest, die dafür nicht vorgesehen waren. Trotzdem fortfahren?" },
+                { "warn_DeleteExistingBittersmile", "Du musst das bestehende Backup von Bitter Smile aus deinem QCMA-Ordner entfernen. Falls du es behalten willst, verschiebe es jetzt. Soll es gelöscht werden?" },
+
+                { "error_WebException", "Fehler beim Download. Bitte überprüfe deine Internet-Verbindung." },
+                { "error_Unknown", "Irgendwas ist schiefgelaufen: {0}" },
+                { "error_DirectoryNotFoundException", "Ein Ordner, der erstellt wurde scheint verschwunden zu sein (Wurde er gelöscht?) ODER ein Ordner konnte zuvor nicht entpackt werden ODER du verwendest einen nicht unterstützten Datei-Import." },
+                { "error_UnauthorizedAccessException", "Das Programm hat keinen Schreibzugriff auf den Ordner, in dem es installiert wurde. Führe das Programm als Administrator erneut aus." },
+                { "error_FileNotFoundException",  "Eine Datei, die erstellt wurde, scheint verschwunden zu sein. (Wurde sie gelöscht?) ODER eine Datei konnte nicht entpackt werden ODER du verwendest einen nicht unterstützten Datei-Import."},
+                { "error_InvalidOperationException",  "Ein Download ist defekt. Stelle sicher, dass dein Internetzugang fehlerfrei funktioniert."},
+                { "error_TargetInvocationException", "Fehler beim Erstellen des MD5-Rechners." },
+                { "error_Template", "Fehler {0} aufgetreten.\r\n\r\n{1}\r\n\r\nBitte versuche es erneut. Falls du das Problem nicht lösen kannst, dann erstelle einen Fehlerbericht im Issue Tracker mit diesem Code." },
+                { "error_Redownload",  "Fehler 1001-0105\r\n\r\nFehler beim Download der Datei {0}\r\n\r\nStelle sicher, dass du Zugang zum Internet hast und/oder versuche es nochmal. Wenn es immer noch nicht klappt, dann erstelle einen Fehlerbericht im Issue Tracker."},
+
+                { "log_Done", "        Fertig!" },
+                { "log_WipeFiles", "Lösche alte Dateien..." },
+                { "log_Import", "Datei-Import für {0} gültig." },
+                { "log_DownloadValid", "Datei {0} bereits heruntergeladen und gültig, sie wird nicht erneut heruntergeladen." },
+                { "log_DownloadInvalid", "Datei {0} bereits heruntergeladen, aber der Hash stimmt nicht überein, Datei wird erneut heruntergeladen." },
+                { "log_NotDownloaded", "Datei {0} nicht heruntergeladen oder importiert, Datei wird heruntergeladen." },
+                { "log_WorkingDirs", "Erstelle Arbeitsverzeichnisse..." },
+                { "log_CorrectLocation", "Datei {0} an der richtigen Stelle, überspringen." },
+                { "log_Importing", "Importiere {0}" },
+                { "log_Downloading", "Downloade {0}" },
+                { "log_Extracting", "Entpacke {0}" },
+                { "log_ExtractingPKG", "Entpacke Bitter smile Demo mit pkg2zip..." },
+                { "log_Trimming", "Entferne überflüssigen Inhalt aus der Bitter smile Demo..." },
+                { "log_MoveToHencore", "Bewege {0} ins h-encore Arbeitsverzeichnis..." },
+                { "log_MoveLicense", "Verschiebe Lizenzdatei..." },
+                { "log_GetCMA", "Hole CMA-Verschlüsselungs-Key mit der AID {0}" },
+                { "log_GotCMA", "CMA-Verschlüsselungs-Key erhalten: {0}" },
+                { "log_Packaging", "Verpacke h-encore {0} mittels psvimgtools..." },
+                { "log_MoveToQCMA", "Verschiebe h-encore-Dateien in den QCMA APP-Ordner...\r\n" },
+                { "log_Finished", "auto h-encore fertig!!\r\n" },
+
+                { "title_Main", "auto h-encore" },
+                { "title_Import", "Importiere bestehende Dateien" },
+                { "title_Warning", "Warnung" },
+                { "title_Error", "Fehler" }
             } }
         };
 
