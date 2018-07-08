@@ -617,7 +617,7 @@ namespace auto_h_encore {
                 { "btn_Start", "Démarrer" },
                 { "btn_Done", "Fini" },
                 { "btn_Browse", "Parcourir" },
-				        { "btn_Next", "Next" },
+		{ "btn_Next", "Suivant" },
                 { "btn_USB", "USB" },
                 { "btn_Wifi", "Wi-Fi (Firmware 3.68 SEULEMENT)" },
 
