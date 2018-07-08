@@ -725,7 +725,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "Suche nach " },
 
                 { "info_Finish",  "Um deine h-encore-Installation abzuschließen:\r\n"
-                        + "1. Connect your PS Vita to your PC using Content Manager like you did before (if it isn't still connected)\r\n"
+                        + "1. Verbinde deine PS Vita mit deinem Computer mithilfe des Inhaltsmanagers, wie du es bereits getan hast (Falls sie nicht noch immer verbunden ist).\r\n"
                         + "     Wenn die Vita meldet, dass du die Firmware aktualisieren musst, deaktiviere das WLAN auf deiner Vita und starte die Konsole neu.\r\n"
                         + "4. Wähle im Content Manager, PC -> PS Vita System\r\n"
                         + "5. Wähle Applikationen\r\n"
