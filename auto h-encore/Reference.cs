@@ -31,7 +31,7 @@ namespace auto_h_encore {
         public static readonly string url_hencore = "https://github.com/TheOfficialFloW/h-encore/releases/download/v1.0/h-encore.zip";
         public static readonly string url_cma = "http://cma.henkaku.xyz/?aid=";
         public static readonly string url_issues = "https://github.com/noahc3/auto-h-encore/issues";
-        public static readonly string url_qcma = "https://raw.githubusercontent.com/noahc3/auto-h-encore/feature-qcma/resources/qcma.zip";
+        public static readonly string url_qcma = "https://github.com/noahc3/auto-h-encore/raw/master/resources/qcma.zip";
 
         public static readonly string[][] hashes = new string[][] {
             new string[] {
