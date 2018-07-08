@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.VisualBasic.FileIO;
 using System.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace auto_h_encore {
     public static class Utility {
@@ -103,6 +104,57 @@ namespace auto_h_encore {
             }
 
             return "";
+
+        }
+
+        public static string FindQCMA(Form1 form) {
+            form.info(Language.MountedLanguage["log_SearchingForQCMA"]);
+            if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
+                form.info(Language.MountedLanguage["log_FoundQCMA"]);
+                Global.QCMA_Installed = true;
+                return "C:\\Program Files\\Qcma\\qcma.exe";
+            }
+            if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
+                form.info(Language.MountedLanguage["log_FoundQCMA"]);
+                Global.QCMA_Installed = true;
+                return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
+            }
+            form.info(Language.MountedLanguage["log_QCMANotFound"]);
+            Global.QCMA_Installed = false;
+            return "";
+        }
+
+        public static void KillQCMA(Form1 form) {
+            form.info(Language.MountedLanguage["log_KillingQCMA"]);
+            foreach (Process k in Process.GetProcessesByName("qcma")) k.Kill();
+            form.info(Language.MountedLanguage["log_Done"]);
+        }
+
+        public static void ImportRegistry(Form1 form) {
+            if (Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null) == null) {
+                form.info("Importing QCMA Registry Information...");
+                string text = File.ReadAllText(Reference.fpath_reg_qcma);
+                text = text.Replace("${psvita}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\");
+                text = text.Replace("${psvu}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PSV Updates\\");
+                text = text.Replace("${psvp}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PSV Packages\\");
+                text = text.Replace("${pictures}", Environment.GetFolderPath(Environment.SpecialFolder.MyPictures));
+                text = text.Replace("${videos}", Environment.GetFolderPath(Environment.SpecialFolder.MyVideos));
+                text = text.Replace("${music}", Environment.GetFolderPath(Environment.SpecialFolder.MyMusic));
+                text = text.Replace("\\", "/");
+                text = text.Replace("HKEY_CURRENT_USER/Software/codestation/qcma", @"HKEY_CURRENT_USER\Software\codestation\qcma");
+                File.WriteAllText(Reference.fpath_reg_qcma, text);
+
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.RedirectStandardOutput = true;
+                psi.UseShellExecute = false;
+                psi.Arguments = "/C reg import \"" + Reference.fpath_reg_qcma + "\"";
+                psi.FileName = "cmd.exe";
+                Process process = Process.Start(psi);
+                process.WaitForExit();
+            }
+
+            form.info(Language.MountedLanguage["log_ScrubAID"]);
+            Registry.SetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
 
         }
     }
