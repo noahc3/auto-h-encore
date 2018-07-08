@@ -3,11 +3,13 @@ A C# (.NET) application to automate (most of) the process of getting h-encore ru
 
 This application is **WINDOWS ONLY**.
 
-![screenshot](https://puu.sh/AQ17U/b204b8f5fa.png "screenshot")
+![screenshot](https://puu.sh/AT1YE/8d33549df5.png "screenshot")
 
 ## Features
-This application does everything short of installing QCMA/integrating libVitaMTP. That means:
+This application does everything required for h-encore related to your PC. This means:
  
+ - Automatically installs and configures QCMA if it is not already installed.
+ - Automatically installs QCMA USB drivers if necessary.
  - Gets AID and QCMA directory from QCMA automatically.
  - Automatically downloads required tools (psvimgtools, pkg2zip, bittersmile demo and h-encore itself)
  - Allows user to import necessary files if they've already downloaded them *(optional)*
@@ -15,22 +17,19 @@ This application does everything short of installing QCMA/integrating libVitaMTP
  - Unpackages bittersmile and repackages it with your encryption key and h-encore
  - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~13MB *(optional)*
  - Moves finished files to your QCMA directory for copying to your PS Vita
+ - Holds your hand along the way.
  
-This application **does not**:
- 
- - Send h-encore to your PS Vita
- 
-Basically, you still need QCMA.
+Basically, you just need to read and interact with your Vita.
 
 ## Usage
 
 The average user should probably follow [vita.hacks.guide](https://vita.hacks.guide/), which includes the process of using this application. Otherwise:
 
-The application has been verified working on 1000 and 2000 series Vita's as well as PSTV.
+The application has been verified working on all PS Vita models (including PSTV).
 
-Requires .NET 4.5.2 or higher (Windows should automatically download it or link you to it if you don't have it)
+Requires .NET 4.5.2 or higher (Windows should automatically download it or link you to it if you don't have it).
 
-Download and extract the [latest release](https://github.com/noahc3/auto-h-encore/releases "latest release") and run it. Further instructions are included in the application itself. QCMA is required to get your AID and transfer h-encore to your Vita.
+Download and extract the [latest release](https://github.com/noahc3/auto-h-encore/releases "latest release") and run it. Further instructions are included in the application itself.
 
 If the application crashes or h-encore fails to install, please [submit an issue](http://https://github.com/noahc3/auto-h-encore/issues "submit an issue"), **do not create an issue on the h-encore Github**, it probably isn't their fault.
 
@@ -53,9 +52,10 @@ Other changes are also welcome through pull requests.
  - theheroGAC for the Italian translation.
  - barbabarros for the Brazilian Portuguese translation.
  - wababc and Retsukun for the French translation.
- - barooney for the German translation.
+ - barooney and fyr77 for the German translation.
  
 ### Scene
+ - fyr77 for giving me a good reference for getting QCMA automation working.
  - thefl0w for [h-encore](https://github.com/TheOfficialFloW/h-encore "h-encore") and all of their other contributions to the Vita scene.
  - yifanlu for [psvimgtools](https://github.com/yifanlu/psvimgtools/ "psvimgtools") and all of their other contributions to the Vita scene.
  - codestation for [QCMA](https://github.com/codestation/qcma "QCMA").
