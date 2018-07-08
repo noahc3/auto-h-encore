@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -692,4 +693,3 @@ namespace auto_h_encore {
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
     }
 }
-

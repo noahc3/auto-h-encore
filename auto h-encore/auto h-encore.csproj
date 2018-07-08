@@ -59,11 +59,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAID.cs">
+    <Compile Include="FormConnector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAID.Designer.cs">
-      <DependentUpon>FormAID.cs</DependentUpon>
+    <Compile Include="FormConnector.Designer.cs">
+      <DependentUpon>FormConnector.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFiles.cs">
       <SubType>Form</SubType>
@@ -86,8 +86,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAID.resx">
-      <DependentUpon>FormAID.cs</DependentUpon>
+    <EmbeddedResource Include="FormConnector.resx">
+      <DependentUpon>FormConnector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFiles.resx">
       <DependentUpon>FormFiles.cs</DependentUpon>
