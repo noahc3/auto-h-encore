@@ -52,6 +52,8 @@ Other changes are also welcome through pull requests.
  - M2l2koPOWER, [portablegaming](https://vk.com/portablegaming) and pvc1 for the Russian translation.
  - theheroGAC for the Italian translation.
  - barbabarros for the Brazilian Portuguese translaiton.
+ - wababc and Retsukun for the French translation.
+ - barooney for the German translation.
  
 ### Scene
  - thefl0w for [h-encore](https://github.com/TheOfficialFloW/h-encore "h-encore") and all of their other contributions to the Vita scene.
