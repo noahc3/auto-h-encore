@@ -690,7 +690,7 @@ namespace auto_h_encore {
                 { "lbl_VersionText", "auto h-encore version " },
                 { "lbl_Issues", "Issue Tracker" },
 				        { "lbl_ConnectionMethod", "Wie möchtest du deine PS Vita verbinden, um h-encore zu übertragen?" },
-                { "lbl_UnplugVita", "Wenn deine Vita angeschlossen ist, stecke sie ab und klicke dann Weiter." },
+                { "lbl_UnplugVita", "Wenn deine Vita am PC angeschlossen ist, entferne sie und klicke dann auf Weiter." },
                 { "lbl_InstallingUSB", "USB Treiber wird installiert, bitte warten..." },
                 { "lbl_WifiProblems", "Wenn deine Vita ein Update ausführen möchte, deaktiviere WiFi und starte deine Vita neu. Das bedeutet auch, dass du h-encore nicht über WiFi übertragen kannst, ohne ein Update durchzuführen!" },
 
@@ -701,9 +701,9 @@ namespace auto_h_encore {
                 { "status_Override", "Datei ausgewählt, aber Hash stimmt nicht überein. Übergehen des Hashs aktiviert, Datei wird importiert." },
                 { "status_Calculating", "Berechne Hash..." },
 
-                { "txtblock_BeforeRunning", "Die Anwendung wird automatisch QCMA herunterladen, sollte es nicht installiert sein. Außerdem wird sie es automatisch starten und verwalten. Das bedeutet:\r\n    Wenn QCMA nicht installiert ist:\r\n    QCMA wird für die lokale Nutzung dieses Programms heruntergeladen.\r\n    Ein USB Treiber wird installiert, falls du die Übertragung via USB wählst.\r\n    Wenn QCMA installiert ist:\r\n    Deine existierende QCMA-Installation wird genutzt.\r\n    Keine neuen Treiber werden installiert und deine Einstellungen werden nicht überschrieben.\r\n\r\nDu musst im Grunde nicht mehr mit QCMA interagieren, außer es gibt Probleme. Wenn die Schwierigkeiten hast, füge bitte eine Issue im Issue Tracker hinzu."},
+                { "txtblock_BeforeRunning", "Die Anwendung wird automatisch QCMA herunterladen, sollte es nicht installiert sein. Außerdem wird sie es automatisch starten und verwalten. Das bedeutet:\r\n    Wenn QCMA nicht installiert ist:\r\n    QCMA wird für die lokale Nutzung dieses Programms heruntergeladen.\r\n    Ein USB Treiber wird installiert, falls du die Übertragung via USB wählst.\r\n    Wenn QCMA installiert ist:\r\n    Deine existierende QCMA-Installation wird genutzt.\r\n    Keine neuen Treiber werden installiert und deine Einstellungen werden nicht überschrieben.\r\n\r\nDu musst nicht mehr mit QCMA interagieren, außer es gibt Probleme. Wenn die Schwierigkeiten hast, füge bitte ein Issue im Issue Tracker hinzu."},
                 { "txtblock_Import", "Wenn du bereits einige oder alle der benötigten Dateien heruntergeladen hast und du nicht möchtest, dass das Programm sie erneut herunterlädt, dann kannst du sie hier auswählen, damit das Programm sie importiert." },
-                { "txtblock_USBInstructions", "Verbinde deine PS Vita jetzt.\r\n\r\nWenn nichts passiert:\r\n1. Starte den Inhaltsmanager auf deiner PS Vita.\r\n2. Wähle Inhalte kopieren\r\n3. Wenn gefragt wird: Wähle PC und USB\r\n\r\nFalls es nun noch immer nicht funktioniert, versuche deinen Computer und PS Vita neu zu starten und den ganzen Vorgang nochmal zu versuchen.\r\n\r\nFalls es dann noch immer nicht funktioniert, muss du möglicherweise QCMA manuell installieren und einen Treiber außer libusbk auswählen." },
+                { "txtblock_USBInstructions", "Verbinde deine PS Vita jetzt.\r\n\r\nWenn nichts passiert:\r\n1. Starte den Inhaltsmanager auf deiner PS Vita.\r\n2. Wähle Inhalte kopieren\r\n3. Wenn gefragt wird: Wähle PC und USB\r\n\r\nFalls es nun noch immer nicht funktioniert, starte deinen Computer und PS Vita neu und versuche den Vorgang erneut.\r\n\r\nFalls es immer nicht funktioniert, muss du möglicherweise QCMA manuell installieren und einen anderen Treiber als libusbk auswählen." },
                 { "txtblock_WifiInstructions", "Auf deiner PS Vita:\r\n1. Starte den Inhaltsmanager\r\n2. Wähle Inhalte kopieren\r\n3. Wähle PC\r\n4. Wähle WiFi\r\n5. Wähle den Namen deines PCs\r\n6. Gib den Code ein, der auf deinem PC erscheint.\r\n7. Wähle Registrieren\r\n\r\nFalls es nicht funktioniert, stelle sicher dass dein PC und deine Vita mit dem selben Netzwerk verbunden sind, oder starte diese Programm neu und wähle USB." },
 
                 { "btn_Import", "Ich habe bereits einige oder alle Dateien heruntergeladen" },
@@ -714,7 +714,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "Durchsuchen" },
 				        { "btn_Next", "Weiter" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (nur Vita version 3.68)" },
+                { "btn_Wifi", "WiFi (nur PS Vita System-Version 3.68)" },
 
                 { "cbx_Trim", "Überflüssigen Inhalt der Bitter Smile Demo entfernen (Reduziert die Größe der h-encore-App von ~240MB auf ~13MB)" },
                 { "cbx_DeleteExisting", "Bestehende Dateien löschen (tue dies, falls zuvor etwas schiefgelaufen ist)" },
@@ -752,7 +752,7 @@ namespace auto_h_encore {
                 { "log_QCMANotFound", "QCMA nicht gefunden. Es wird heruntergeladen." },
                 { "log_KillingQCMA", "Laufende QCMA Prozesse werden geschlossen..." },
                 { "log_QCMARegistry", "QCMA Registry Informationen werden importiert..." },
-                { "log_ScrubAID", "Scrubbing AID value" }, //What exactly is meant with this? Can't translate -fyr77
+                { "log_ScrubAID", "Setze AID-Wert zurück" },
                 { "log_Prompt", "Nutzer wird nach Informationen gefragt..." },
                 { "log_Done", "        Fertig!" },
                 { "log_WipeFiles", "Lösche alte Dateien..." },
@@ -765,8 +765,8 @@ namespace auto_h_encore {
                 { "log_Importing", "Importiere {0}" },
                 { "log_Downloading", "Downloade {0}" },
                 { "log_Extracting", "Entpacke {0}" },
-                { "log_ExtractingPKG", "Entpacke Bitter smile Demo mit pkg2zip..." },
-                { "log_Trimming", "Entferne überflüssigen Inhalt aus der Bitter smile Demo..." },
+                { "log_ExtractingPKG", "Entpacke Bitter Smile Demo mit pkg2zip..." },
+                { "log_Trimming", "Entferne überflüssigen Inhalt aus der Bitter Smile Demo..." },
                 { "log_MoveToHencore", "Bewege {0} ins h-encore Arbeitsverzeichnis..." },
                 { "log_MoveLicense", "Verschiebe Lizenzdatei..." },
                 { "log_GetCMA", "Hole CMA-Verschlüsselungs-Key mit der AID {0}" },
