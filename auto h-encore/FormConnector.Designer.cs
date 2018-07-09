@@ -65,6 +65,7 @@
             this.Controls.Add(this.lblInstructions);
             this.Controls.Add(this.btnUSB);
             this.Name = "FormConnector";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormConnector_FormClosing);
             this.ResumeLayout(false);
 
         }

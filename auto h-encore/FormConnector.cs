@@ -112,10 +112,14 @@ namespace auto_h_encore {
         }
 
         private void ResetQCMA(object sender, EventArgs e) {
-            QCMAtimer.Stop();
             Utility.KillQCMA();
             Thread.Sleep(500);
             Process.Start(Global.path_QCMA);
+        }
+
+        private void FormConnector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            QCMAtimer.Stop();
         }
     }
 }
