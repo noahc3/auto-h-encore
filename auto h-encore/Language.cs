@@ -779,20 +779,20 @@ namespace auto_h_encore {
                 { "title_Import", "Importiere bestehende Dateien" },
                 { "title_Warning", "Warnung" },
                 { "title_Error", "Fehler" }
-                            { "日本語(Japanes)",  new Dictionary<string, string> {
+                            { "日本語(Japanese)",  new Dictionary<string, string> {
                 { "lbl_ChooseLanguage", "言語を選択:" },
                 { "lbl_VersionText", "auto h-encore Ver." },
                 { "lbl_Issues", "Issue Tracker(バグ情報/提供)" },
-                { "lbl_ConnectionMethod", "どうやってPS VitaをPCに接続しますか？" },
-                { "lbl_UnplugVita", "Vitaが接続されている場合はUSBを抜いて「次へ」をクリックします。" },
+                { "lbl_ConnectionMethod", "PSVitaのPCへの接続方法を選択して下さい" },
+                { "lbl_UnplugVita", "Vitaが接続されている場合はUSBを抜いて「次へ」をクリックします" },
                 { "lbl_InstallingUSB", "USBドライバをPCにインストールしています。しばらくお待ちください..." },
-                { "lbl_WifiProblems", "h-encoreはPS Vitaが最新のFWでない場合はWi-Fi接続で転送する事は出来ません。もし、接続中に本体更新が要求されたら、Wi-Fi接続を切ってPS Vitaを再起動して下さい。" },
+                { "lbl_WifiProblems", "h-encoreはPS Vitaが最新のFWでない場合はWi-Fi接続で転送する事は出来ません。もし、接続中に本体更新が要求されたらWi-Fiを切ってPS Vitaを再起動して下さい" },
 
                 { "status_NoFile", "ファイルが選択されていません。ダウンロードします" },
                 { "status_Invalid", "ファイルパスが無効です" },
-                { "status_Valid", "選択したファイルとハッシュの一致を確認し、インポートします" },
-                { "status_BadHash", "ファイルは選択されていますが、ハッシュが一致しません" },
-                { "status_Override", "ファイルは選択されていますが、ハッシュが一致しません。ハッシュオーバーライドを有効化してインポートします" },
+                { "status_Valid", "選択したファイルとハッシュの一致を確認してインポートします" },
+                { "status_BadHash", "ファイルは選択されていますがハッシュが一致しません" },
+                { "status_Override", "ファイルは選択されていますがハッシュが一致しません。ハッシュオーバーライドを有効化してインポートします" },
                 { "status_Calculating", "ファイルハッシュを計算中..." },
 
                 { "txtblock_BeforeRunning", "QCMAがインストールされていない場合、[auto h-encore]は自動的にQCMAをダウンロードしますし、自動的に起動して管理します:\r\n    QCMAがインストールされていない場合:\r\n        このプログラムは、QCMAを使用するためにダウンロードします\r\n        USB経由で転送する場合はUSBドライバがインストールされます\r\n    QCMAがインストールされている場合:\r\n        既存のQCMAが使用されます\r\n        USBドライバはインストールされず、設定は上書きされません\r\n\r\n基本的にQCMAを操作する必要は有りません。 問題がある場合は「Issue Tracker」にレポートを提出して下さい"},
@@ -817,7 +817,7 @@ namespace auto_h_encore {
                 { "browse_Generic", "参照 " },
 
                 { "info_Finish",  "h-encoreのインストールを完了するには:\r\n"
-                        + "1. 前回同様「コンテンツ管理」を使用してPS VitaをPCに接続(まだ接続されていない場合)\r\n"
+                        + "1. 前回同様「コンテンツ管理」を使用してPS VitaをPCに接続(まだ接続していない場合)\r\n"
                         + "     Vitaを更新する必要が有ると表示されたら、WiFiをオフにしてコンソールを再起動\r\n"
                         + "2. コンテンツ管理で「パソコン→PS Vita」を選択\r\n"
                         + "3. 「アプリケーション」を選択\r\n"
@@ -850,7 +850,7 @@ namespace auto_h_encore {
                 { "log_Done", "        完了" },
                 { "log_WipeFiles", "古いファイルを削除中..." },
                 { "log_Import", "ファイル {0} のインポートが有効です" },
-                { "log_DownloadValid", "ファイル {0} は既にダウンロードされ、有効ですがダウンロードは再開されません" },
+                { "log_DownloadValid", "ファイル {0} は既にダウンロードているためダウンロードされません" },
                 { "log_DownloadInvalid", "ファイル {0} は既にダウンロードされていますが、ハッシュが一致しません" },
                 { "log_NotDownloaded", "ファイル {0} はダウンロードまたはインポートされていないため、ダウンロードします" },
                 { "log_WorkingDirs", "作業用ディレクトリを生成中..." },
