@@ -536,11 +536,11 @@ namespace auto_h_encore {
                 { "info_Finish",  "Para finalizar a instalação do h-encore:\r\n"
                         + "1. Conecte seu PS Vita no seu PC usando o Gerenciador de Conteúdo como fez anteriormente (se ainda não foi conectado)\r\n"
                         + "     Se seu VITA disser que precisa atualizar, desligue o Wifi no seu Vita e reinicie o Vita\r\n"
-                        + "4. No Gerenciador de Conteúdo, escolha PC -> Sistema PS Vita\r\n"
-                        + "5. Selecione Aplicações\r\n"
-                        + "6. Selecione PS Vita\r\n"
-                        + "7. Selecione h-encore e clique em Copiar\r\n"
-                        + "8. Abra o app h-encore na sua Live Area\r\n"
+                        + "2. No Gerenciador de Conteúdo, escolha PC -> Sistema PS Vita\r\n"
+                        + "3. Selecione Aplicações\r\n"
+                        + "4. Selecione PS Vita\r\n"
+                        + "5. Selecione h-encore e clique em Copiar\r\n"
+                        + "6. Abra o app h-encore na sua Live Area\r\n"
                         + "     Se travar na primeira vez, tente reiniciar seu Vita e inicie o app de novo\r\n\r\n"
                         + "Está feito!"},
 
