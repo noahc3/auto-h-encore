@@ -1,5 +1,5 @@
 # auto h-encore
-A C# (.NET) application to automate (most of) the process of getting h-encore running on your PS Vita system!
+A C# (.NET) application to automate the PC process of getting h-encore running on your PS Vita system!
 
 This application is **WINDOWS ONLY**.
 
@@ -15,7 +15,7 @@ This application does everything required for h-encore related to your PC. This 
  - Allows user to import necessary files if they've already downloaded them *(optional)*.
  - Grabs CMA encryption key from your account ID.
  - Unpackages bittersmile and repackages it with your encryption key and h-encore.
- - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~13MB **without impeding trophy fix** *(optional)*.
+ - Trims excess bittersmile demo files to reduce h-encore file size from ~240MB to ~13MB **without breaking trophy fix** *(optional)*.
  - Moves finished files to your QCMA directory for copying to your PS Vita.
  - Holds your hand along the way.
  
