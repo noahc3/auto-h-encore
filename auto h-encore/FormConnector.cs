@@ -38,12 +38,12 @@ namespace auto_h_encore {
                     Task.Factory.StartNew(new Action(() => {
                         ProcessStartInfo psi = new ProcessStartInfo();
                         psi.WorkingDirectory = Reference.path_qcma + "driver\\";
-                        psi.FileName = "cmd.exe";
-                        psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpscat.exe";
+                        psi.FileName = Reference.path_qcma + "driver\\dpscat.exe";
                         Process process = Process.Start(psi);
                         process.WaitForExit();
-                        if (Environment.Is64BitOperatingSystem) psi.FileName = psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpinst64.exe /SE /SW";
-                        else psi.FileName = psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpinst32.exe /SE /SW";
+                        if (Environment.Is64BitOperatingSystem) psi.FileName = Reference.path_qcma + "driver\\dpinst64.exe";
+                        else psi.FileName = Reference.path_qcma + "driver\\dpinst32.exe";
+                        psi.Arguments = "/SE /SW";
                         process = Process.Start(psi);
                         process.WaitForExit();
                         AfterUSB();
