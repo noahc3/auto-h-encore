@@ -36,12 +36,14 @@ namespace auto_h_encore {
                 if (!Global.QCMA_Installed) {
                     lblInstructions.Text = Language.MountedLanguage["lbl_InstallingUSB"];
                     Task.Factory.StartNew(new Action(() => {
-                        Process process = Process.Start(Reference.path_qcma + "driver\\dpscat.exe");
-                        process.WaitForExit();
                         ProcessStartInfo psi = new ProcessStartInfo();
-                        if (Environment.Is64BitOperatingSystem) psi.FileName = Reference.path_qcma + "driver\\dpinst64.exe";
-                        else psi.FileName = Reference.path_qcma + "driver\\dpinst32.exe";
-                        psi.Arguments = "/S /SE /SW";
+                        psi.WorkingDirectory = Reference.path_qcma + "driver\\";
+                        psi.FileName = "cmd.exe";
+                        psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpscat.exe";
+                        Process process = Process.Start(psi);
+                        process.WaitForExit();
+                        if (Environment.Is64BitOperatingSystem) psi.FileName = psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpinst64.exe /SE /SW";
+                        else psi.FileName = psi.Arguments = "/C " + Reference.path_qcma + "driver\\dpinst32.exe /SE /SW";
                         process = Process.Start(psi);
                         process.WaitForExit();
                         AfterUSB();
