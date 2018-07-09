@@ -11,12 +11,12 @@ This application does everything required for h-encore related to your PC. This 
  - Automatically installs and configures QCMA if it is not already installed.
  - Automatically installs QCMA USB drivers if necessary.
  - Gets AID and QCMA directory from QCMA automatically.
- - Automatically downloads required tools (psvimgtools, pkg2zip, bittersmile demo and h-encore itself)
- - Allows user to import necessary files if they've already downloaded them *(optional)*
- - Grabs CMA encryption key from your account ID
- - Unpackages bittersmile and repackages it with your encryption key and h-encore
- - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~13MB *(optional)*
- - Moves finished files to your QCMA directory for copying to your PS Vita
+ - Automatically downloads required tools (psvimgtools, pkg2zip, bittersmile demo and h-encore itself).
+ - Allows user to import necessary files if they've already downloaded them *(optional)*.
+ - Grabs CMA encryption key from your account ID.
+ - Unpackages bittersmile and repackages it with your encryption key and h-encore.
+ - Trims excess bittersmile demo files to reduce h-encore filesize from ~240MB to ~13MB **without impeding trophy fix** *(optional)*.
+ - Moves finished files to your QCMA directory for copying to your PS Vita.
  - Holds your hand along the way.
  
 Basically, you just need to read and interact with your Vita.
