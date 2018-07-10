@@ -109,16 +109,16 @@ namespace auto_h_encore {
 
         public static string FindQCMA(Form1 form) {
             form.info(Language.MountedLanguage["log_SearchingForQCMA"]);
-            if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
-                form.info(Language.MountedLanguage["log_FoundQCMA"]);
-                Global.QCMA_Installed = true;
-                return "C:\\Program Files\\Qcma\\qcma.exe";
-            }
-            if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
-                form.info(Language.MountedLanguage["log_FoundQCMA"]);
-                Global.QCMA_Installed = true;
-                return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
-            }
+            //if (FileSystem.FileExists("C:\\Program Files\\Qcma\\qcma.exe")) {
+            //    form.info(Language.MountedLanguage["log_FoundQCMA"]);
+            //    Global.QCMA_Installed = true;
+            //    return "C:\\Program Files\\Qcma\\qcma.exe";
+            //}
+            //if (FileSystem.FileExists("C:\\Program Files (x86)\\Qcma\\qcma.exe")) {
+            //    form.info(Language.MountedLanguage["log_FoundQCMA"]);
+            //    Global.QCMA_Installed = true;
+            //    return "C:\\Program Files (x86)\\Qcma\\qcma.exe";
+            //}
             form.info(Language.MountedLanguage["log_QCMANotFound"]);
             Global.QCMA_Installed = false;
             return "";
@@ -135,7 +135,7 @@ namespace auto_h_encore {
         }
 
         public static void ImportRegistry(Form1 form) {
-            if (Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null) == null) {
+            if (!Global.QCMA_Installed) {
                 form.info("Importing QCMA Registry Information...");
                 string text = File.ReadAllText(Reference.fpath_reg_qcma);
                 text = text.Replace("${psvita}", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\PS Vita\\");
