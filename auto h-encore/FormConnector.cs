@@ -65,8 +65,14 @@ namespace auto_h_encore {
                 Task.Factory.StartNew(new Action(() => {
                     string old = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
 
-                    while ((string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "") == old) {
-                        Thread.Sleep(500);
+                    while (true)
+                    {
+                        string value = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
+                        if (value != old)
+                        {
+                            if (value.Length == 16) break;
+                            else old = value;
+                        }
                     }
 
                     QCMAtimer.Stop();
