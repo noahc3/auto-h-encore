@@ -787,21 +787,21 @@ namespace auto_h_encore {
                 { "lbl_ConnectionMethod", "PSVitaのPCへの接続方法を選択して下さい" },
                 { "lbl_UnplugVita", "Vitaが接続されている場合はUSBを抜いて「次へ」をクリックします" },
                 { "lbl_InstallingUSB", "USBドライバをPCにインストールしています。しばらくお待ちください..." },
-                { "lbl_WifiProblems", "h-encoreはPS Vitaが最新のFWでない場合はWi-Fi接続で転送する事は出来ません。もし、接続中に本体更新が要求されたらWi-Fiを切ってPS Vitaを再起動して下さい" },
+                { "lbl_WifiProblems", "h-encoreはPS Vitaが最新のFWでない場合はWi-Fi接続で転送する事は出来ません。接続中に本体更新が要求されたらWi-Fiを切ってPS Vitaを再起動して下さい" },
 
                 { "status_NoFile", "ファイルが選択されていません。ダウンロードします" },
                 { "status_Invalid", "ファイルパスが無効です" },
                 { "status_Valid", "選択したファイルとハッシュの一致を確認してインポートします" },
-                { "status_BadHash", "ファイルは選択されていますがハッシュが一致しません" },
-                { "status_Override", "ファイルは選択されていますがハッシュが一致しません。ハッシュオーバーライドを有効化してインポートします" },
+                { "status_BadHash", "選択したファイルのハッシュが一致しません" },
+                { "status_Override", "選択したファイルのハッシュが一致しません。ハッシュオーバーライドを有効化してインポートします" },
                 { "status_Calculating", "ファイルハッシュを計算中..." },
 
-                { "txtblock_BeforeRunning", "QCMAがインストールされていない場合、[auto h-encore]は自動的にQCMAをダウンロードしますし、自動的に起動して管理します:\r\n    QCMAがインストールされていない場合:\r\n        このプログラムは、QCMAを使用するためにダウンロードします\r\n        USB経由で転送する場合はUSBドライバがインストールされます\r\n    QCMAがインストールされている場合:\r\n        既存のQCMAが使用されます\r\n        USBドライバはインストールされず、設定は上書きされません\r\n\r\n基本的にQCMAを操作する必要は有りません。 問題がある場合は「Issue Tracker」にレポートを提出して下さい"},
-                { "txtblock_Import", "既に必要なファイルの一部をダウンロードしていて、ダウンロードする必要の無いプログラムが有る場合は、ここでインポートするプログラムファイルを選択できます" },
+                { "txtblock_BeforeRunning", "QCMAがインストールされていない場合、[auto h-encore]は自動的にQCMAをダウンロード、起動して管理します:\r\n    QCMAがインストールされていない場合:\r\n        [auto h-encore]はQCMAを使用するためにダウンロードします\r\n        USB経由で転送する場合はUSBドライバがインストールされます\r\n    QCMAがインストールされている場合:\r\n        既存のQCMAが使用されます\r\n        USBドライバはインストールされず、設定は上書きされません\r\n\r\n基本的にQCMAを操作する必要は有りません。 問題がある場合は「Issue Tracker」にレポートを提出して下さい"},
+                { "txtblock_Import", "既に必要なファイルの一部を用意していてダウンロードする必要の無いファイルが有る場合は、ここでインポートするファイルを選択できます" },
                 { "txtblock_USBInstructions", "PS Vitaを接続して下さい\r\n\r\n何も起こらない場合:\r\n1. PS Vitaで「コンテンツ管理」を起動\r\n2. 「コンテンツをコピーする」を選択\r\n3. プロンプトが表示されたら: 「パソコン→PS Vita」を選択\r\n\r\n動作しない場合はPCとPS Vitaを再起動して再試行（上記の手順を再度実行）\r\n\r\nそれでも動作しない場合はQCMAを手動でインストールし、libusbk以外のドライバを選択する必要があります" },
-                { "txtblock_WifiInstructions", "PS Vita側の作業:\r\n1. コンテンツ管理を起動\r\n2. 「コンテンツをコピーする」を選択\r\n3. 「パソコン→PS Vita」を選択\r\n4. 「WiFi」を選択\r\n5. 接続したいPCを選択\r\n6. PCに表示されるコードを入力\r\n7. 「登録」を選択\r\n\r\n動作しない場合はVitaとPCが同じネットワークに接続されているか確認するか、このアプリケーションを再実行してUSB接続を試して下さい" },
+                { "txtblock_WifiInstructions", "PS Vita側の作業:\r\n1. コンテンツ管理を起動\r\n2. 「コンテンツをコピーする」を選択\r\n3. 「パソコン→PS Vita」を選択\r\n4. 「WiFi」を選択\r\n5. 接続したいPCを選択\r\n6. PCに表示されるコードを入力\r\n7. 「登録」を選択\r\n\r\n動作しない場合はVitaとPCが同じネットワークに接続されているか確認するか[auto h-encore]を再実行してUSB接続を試して下さい" },
 
-                { "btn_Import", "I've already downloaded some or all of the files and would like to use them rather than redownload them" },
+                { "btn_Import", "既に用意されているファイルを使用する" },
                 { "btn_Ok", "はい" },
                 { "btn_Close", "閉じる" },
                 { "btn_Start", "スタート" },
@@ -812,13 +812,13 @@ namespace auto_h_encore {
                 { "btn_Wifi", "WiFi (FW3.68のみ)" },
 
                 { "cbx_Trim", "bitter smile.体験版から余分なデータを削除(h-encoreアプリのサイズを240MBから13MBに減らす)" },
-                { "cbx_DeleteExisting", "既存のファイルを削除(以前何らかの問題があった場合に行う)" },
+                { "cbx_DeleteExisting", "既存のファイルを削除(エラーが起きた場合)" },
                 { "cbx_OverrideHashes", "不一致のファイルハッシュを無視" },
 
                 { "browse_Generic", "参照 " },
 
                 { "info_Finish",  "h-encoreのインストールを完了するには:\r\n"
-                        + "1. 前回同様「コンテンツ管理」を使用してPS VitaをPCに接続(まだ接続していない場合)\r\n"
+                        + "1. 前回同様「コンテンツ管理」を使用してPS VitaをPCに接続(接続していない場合)\r\n"
                         + "     Vitaを更新する必要が有ると表示されたら、WiFiをオフにしてコンソールを再起動\r\n"
                         + "2. コンテンツ管理で「パソコン→PS Vita」を選択\r\n"
                         + "3. 「アプリケーション」を選択\r\n"
@@ -828,18 +828,18 @@ namespace auto_h_encore {
                         + "     クラッシュした場合は、Vitaを再起動してもう一度起動\r\n\r\n"
                         + "以上です"},
 
-                { "warn_HashCompat", "このアプリケーションが想定していないバージョンのアプリケーションを使用している場合、互換性は保証できません。続けますか?" },
-                { "warn_DeleteExistingBittersmile", "「bittersmile.」のバックアップをQCMAディレクトリから削除します。保護したい場合は今すぐ移動して下さい" },
+                { "warn_HashCompat", "[auto h-encore]が想定していないバージョンのアプリを使用している場合、互換性は保証できません。続けますか?" },
+                { "warn_DeleteExistingBittersmile", "「bittersmile.体験版」のバックアップをQCMAディレクトリから削除します。保護したい場合は今すぐ移動して下さい" },
 
                 { "error_WebException", "ダウンロードできませんでした。インターネット接続を確認して下さい" },
-                { "error_Unknown", "例外なエラーが発生しました: {0}" },
-                { "error_DirectoryNotFoundException", "作成されたディレクトリは削除されています。またはディレクトリが抽出されなかったか、サポートされていないファイルインポートを使用しています" },
-                { "error_UnauthorizedAccessException", "このアプリケーションはインストールされたディレクトリへのアクセス権がありません。アプリケーションを管理者として再起動して下さい" },
-                { "error_FileNotFoundException",  "作成されたディレクトリは削除されています。またはディレクトリが抽出されなかったか、サポートされていないファイルインポートを使用しています"},
+                { "error_Unknown", "例外的なエラーが発生しました: {0}" },
+                { "error_DirectoryNotFoundException", "作成されたディレクトリは削除されているか、抽出されなかったか、サポートされていないファイルインポートを使用しています" },
+                { "error_UnauthorizedAccessException", "[auto h-encore]にはインストールされたディレクトリへのアクセス権がありません。アプリケーションを管理者として再実行して下さい" },
+                { "error_FileNotFoundException",  "作成されたディレクトリは削除されています。またはディレクトリが抽出されなかったかサポートされていないファイルインポートを使用しています"},
                 { "error_InvalidOperationException",  "ダウンロードに失敗しました。ネットワークの安定性を確認して下さい"},
                 { "error_TargetInvocationException", "MD5の作成に失敗しました" },
-                { "error_Template", "エラー {0} が発生しました\r\n\r\n{1}\r\n\r\nプロセスを再試行して下さい。問題を解決できない場合は、このエラーコードを[Issue Tracker]で報告して下さい" },
-                { "error_Redownload",  "エラー 1001-0105\r\n\r\nファイルのダウンロードに失敗しました {0}\r\n\r\nインターネットが接続されているかどうかを確認し、再実行しても問題が解決しない場合は[Issue Tracker]で問題を報告して下さい"},
+                { "error_Template", "エラー {0} が発生しました\r\n\r\n{1}\r\n\r\nプロセスを再試行して下さい。問題を解決できない場合は、エラーコードを[Issue Tracker]で報告して下さい" },
+                { "error_Redownload",  "エラー 1001-0105\r\n\r\nファイルのダウンロードに失敗しました {0}\r\n\r\nインターネットが接続されているかどうかを確認し、再実行しても問題が解決しない場合は[Issue Tracker]で報告して下さい"},
 
                 { "log_SearchingForQCMA", "QCMAを探しています..." },
                 { "log_FoundQCMA", "QCMAが見つかりました" },
