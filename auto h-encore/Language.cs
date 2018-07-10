@@ -967,7 +967,9 @@ namespace auto_h_encore {
                 { "title_Import", "Varolan Dosyaları Aktar" },
                 { "title_Warning", "Uyarı" },
                 { "title_Error", "Hata" }
-
+            } }
+        };
+        
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
     }
 }
