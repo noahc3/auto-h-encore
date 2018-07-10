@@ -16,6 +16,7 @@ namespace auto_h_encore {
     public partial class FormConnector : Form {
 
         System.Timers.Timer QCMAtimer = new System.Timers.Timer();
+        bool FoundAID = false;
 
         public FormConnector() {
             InitializeComponent();
@@ -75,6 +76,8 @@ namespace auto_h_encore {
                         }
                     }
 
+                    FoundAID = true;
+
                     QCMAtimer.Stop();
                     Global.AID = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null);
                     Global.QCMAAPPS = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "appsPath", null);
@@ -98,9 +101,17 @@ namespace auto_h_encore {
                 Task.Factory.StartNew(new Action(() => {
                     string old = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "xxxxxxxxxxxxxxxx");
 
-                    while ((string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "xxxxxxxxxxxxxxxx") == old) {
-                        Thread.Sleep(500);
+                    while (true)
+                    {
+                        string value = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", "");
+                        if (value != old)
+                        {
+                            if (value.Length == 16) break;
+                            else old = value;
+                        }
                     }
+
+                    FoundAID = true;
 
                     Global.AID = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "lastAccountId", null);
                     Global.QCMAAPPS = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\codestation\\qcma", "appsPath", null);
@@ -125,6 +136,7 @@ namespace auto_h_encore {
 
         private void FormConnector_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!FoundAID) e.Cancel = true;
             QCMAtimer.Stop();
         }
     }
