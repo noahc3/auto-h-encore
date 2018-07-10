@@ -873,8 +873,100 @@ namespace auto_h_encore {
                 { "title_Import", "既存のファイルをインポート" },
                 { "title_Warning", "警告" },
                 { "title_Error", "エラー" }
-            } }
-        };
+                } },
+            { "Türkçe",  new Dictionary<string, string> {
+                { "lbl_ChooseLanguage", "Dili Seçin:" },
+                { "lbl_VersionText", "auto h-encore versiyonu " },
+                { "lbl_Issues", "Hata Takibi" },
+                { "lbl_ConnectionMethod", "H-encore yüklemesi için Vitanızı nasıl bağlamayı planlıyorsunuz?" },
+                { "lbl_UnplugVita", "Eğer Vitanız bağlı ise, bağlantıyı kesin ve İleri'ye tıklayın." },
+                { "lbl_InstallingUSB", "USB sürücüsü yükleniyor, lütfen bekleyin..." },
+                { "lbl_WifiProblems", "Eğer Vitanız versiyon güncellemesi yapmanızı istiyorsa, WiFi bağlantısını kapatın ve Vitanızı yeniden başlatın. Bu durum güncelleme yapmadan Wifi kullanarak h-encore yüklemesi yapamayacağınız anlamına gelir!" },
+
+                { "status_NoFile", "Hiçbir dosya seçilmedi, indiriliyor." },
+                { "status_Invalid", "Dosya dizini geçersiz." },
+                { "status_Valid", "Dosya seçildi ve bütünlüğü doğrulandı, aktarılıyor." },
+                { "status_BadHash", "Dosya seçildi ve bütünlüğü doğrulanamadı, indiriliyor." },
+                { "status_Override", "Dosya seçildi ancak bütünlüğü sağlanamadı. Bütünlük sağlanılarak aktarılıyor." },
+                { "status_Calculating", "Dosya bütünlüğü kontrol ediliyor..." },
+
+                { "txtblock_BeforeRunning", "Uygulama QCMA yüklü değilse otomatik olarak indirecektir. Ayrıca çalıştırıp ayarlamaları otomatik bir şekilde yapacaktır. Eğer:\r\n    QCMA yüklü değil ise:\r\n        QCMA bu program tarafından kullanılmak üzere indirilecektir.\r\n        USB ile uygulama aktarımını seçerseniz USB sürücüsü de yüklenecektir\r\n    Eğer QCMA yüklü ise:\r\n        Varolan yükleme kullanılacaktır.\r\n        Yeni USB sürücüleri yüklenmeyecek ve varolan ayarlarınız değiştirilmeyecektir.\r\n\r\nÖzetle, herhangi bir problem yaşamadıkça QCMA program tarafından yönetilecektir. Eğer hata alırsanız, lütfen Hata Takibi bölümünden hata bildiriminde bulunun."},
+                { "txtblock_Import", "Eğer gerekli dosyaların bazılarını veya tamamını indirmiş ve programın tekrar indirmesini istemiyorsanız, buradan dosyaları seçip programa aktarabilirsiniz." },
+                { "txtblock_USBInstructions", "Şimdi PS Vitanızı bağlayın.\r\n\r\nIEğer tanımlanmazsa:\r\n1. Vitanızdan İçerik Yöneticisini çalıştırın\r\n2. İçeriği kopyalayı seçin\r\n3. Sorulması durumunda: Bilgisayar ardından USB kablosunu seçin\r\n\r\nEğer hala çalışmıyorsa, bilgisayarınızı ve Vitanızı yeniden başlatın ve yeniden deneyin (yukarıdaki adımları).\r\n\r\nBunlara rağmen çalışmıyorsa, QCMA uygulamasını kendiniz yükleyin ve libusbk dışında bir USB sürücüsü kullanın." },
+                { "txtblock_WifiInstructions", "PS Vitanızdan:\r\n1. İçerik Yöneticisini çalıştırın\r\n2. İçeriği Kopyalayı seçin\r\n3. Bigisayarı seçin\r\n4. Wifiyi seçin\r\n5. Bilgisayarınızın adını seçin\r\n6. Bilgisayarınızda çıkan kodu girin\r\n7. Kaydeti seçin\r\n\r\nEğer çalışmazsa, Vita ve bilgisayarınızın aynı ağa bağlı olduğundan emin olun, veya uygulamayı yeniden başlatıp USB ile bağlanın." },
+
+                { "btn_Import", "Gerekli dosyaların bazıları veya tamamını indirdim, yeniden indirmek yerine varolanları kullanmak istiyorum" },
+                { "btn_Ok", "Tamam" },
+                { "btn_Close", "Kapat" },
+                { "btn_Start", "Başlat" },
+                { "btn_Done", "Bitti" },
+                { "btn_Browse", "Gözat" },
+                { "btn_Next", "İleri" },
+                { "btn_USB", "USB" },
+                { "btn_Wifi", "WiFi (SADECE 3.68 yazılımı içindir)" },
+
+                { "cbx_Trim", "Bitter Smile demosundan gereksiz dosyaları temizle (h-encore boyutu ~240MB'den ~13MB'ye düşecektir)" },
+                { "cbx_DeleteExisting", "Varolan dosyaları sil (Hata aldıysanız bunu yapın)" },
+                { "cbx_OverrideHashes", "Bütünlüğü sağlanamayan dosyaları yine de kullan" },
+
+                { "browse_Generic", "Gözat " },
+
+                { "info_Finish",  "h-encore yüklemesini tamamlamak için:\r\n"
+                        + "1. Daha önce yaptığınız gibi PS Vitanızı bilgisayarınıza yeniden bağlayın (eğer bağlı ise devam edin)\r\n"
+                        + "     Eğer Vitanız versiyon güncellemesi yapmanızı istiyorsa, WIFI bağlantısını kapatın ve Vitanızı yeniden başlatın\r\n"
+                        + "2. İçerik yöneticisi, İçeriği kopyala, Bilgisayar -> PS Vita Sistemini seçin\r\n"
+                        + "3. Uygulamaları seçin\r\n"
+                        + "4. PS Vita'yı seçin\r\n"
+                        + "5. h-encore uygulamasını seçip Kopyala'ya basın\r\n"
+                        + "6. Live Area ekranından h-encore uygulamasını çalıştırın\r\n"
+                        + "     Uygulama ilk çalıştırdığınızda çökerse, Vitanızı yeniden başlatmayı ve uygulamayı yeniden çalıştırmayı deneyin\r\n\r\n"
+                        + "Tamamlandı!"},
+
+                { "warn_HashCompat", "Programın dizayn edildiği uygulamaların güncel versiyonları kullanılmadığında uyumluluk garantisi verilmemektedir. Yine de devam et?" },
+                { "warn_DeleteExistingBittersmile", "QCMA dizininde varolan bittersmile demosunu kaldırmak zorundasınız. Silinmesini istemiyorsanız, başka bir dizine taşıyın. Silinsin mi?" },
+
+                { "error_WebException", "Dosya indirme işlemi başarısız oldu. İnternet bağlantınızı kontrol edin." },
+                { "error_Unknown", "{0} için bir hata oluştu." },
+                { "error_DirectoryNotFoundException", "Oluşturulan dizin bulunamadı (silinmiş olabilir) VEYA dizinde çıkarma işlemi başarısız olmuş olabilir VEYA desteklenmeyen uzantıda dosya aktardınız." },
+                { "error_UnauthorizedAccessException", "Uygulama yüklendiği dizinde değişiklik yapma yetkisine sahip değil. Uygulamayı Yönetici olarak tekrar çalıştırmayı deneyin." },
+                { "error_FileNotFoundException",  "Oluşturulan dosya bulunamadı (silinmiş olabilir) VEYA dosya çıkarılırken başarısız olunmuş olabilir VEYA desteklenmeyen uzantıda dosya aktardınız."},
+                { "error_InvalidOperationException",  "Bir dosya tam indirilemedi. Lütfen internet bağlantınızın stabilliğini kontrol ediniz."},
+                { "error_TargetInvocationException", "MD5 hesaplayıcı oluşturulurken başarısız olundu." },
+                { "error_Template", "{0} için hata oluştu.\r\n\r\n{1}\r\n\r\nLütfen işlemleri tekrarlayın. Eğer yine hata alırsanız, lütfen hata takibi bölümünden aldığınız hata koduyla birlikte hata bildiriminde bulunun." },
+                { "error_Redownload",  "1001-0105 Hatası\r\n\r\n {0} için dosya indirme başarısız oldu\r\n\r\nİnternet bağlantınızı kontrol edin ve/veya yeniden deneyin. Eğer hala çalışmazsa, Hata Bildirimi bölümünden Github üzerinden bildirimde bulunun."},
+
+                { "log_SearchingForQCMA", "QCMA uygulaması aranıyor..." },
+                { "log_FoundQCMA", "QCMA uygulaması bulundu." },
+                { "log_QCMANotFound", "QCMA uygulaması bulunamadı, indiriliyor." },
+                { "log_KillingQCMA", "Arka planda çalışan QCMA işlemleri kapatılıyor..." },
+                { "log_QCMARegistry", "QCMA ayarları aktarılıyor..." },
+                { "log_ScrubAID", "AID verisi temizleniyor" },
+                { "log_Prompt", "Kullanıcı bilgisi isteniyor..." },
+                { "log_Done", "        Tamamlandı!" },
+                { "log_WipeFiles", "Gereksiz dosyalar siliniyor..." },
+                { "log_Import", "{0} dosyası için dizin geçerli." },
+                { "log_DownloadValid", "{0} dosyası daha önce indirildi ve doğrulandı, tekrar indirilmeyecek." },
+                { "log_DownloadInvalid", "{0} dosyası bulundu ancak bütünlüğü sağlanamadı, tekrar indiriliyor." },
+                { "log_NotDownloaded", "{0} dosyası eksik veya aktarılmadı, indiriliyor." },
+                { "log_WorkingDirs", "Dizinler oluşturuluyor..." },
+                { "log_CorrectLocation", "{0} dosyası dizinde bulundu, sonraki adıma geçiliyor." },
+                { "log_Importing", "{0} Aktarılıyor" },
+                { "log_Downloading", "{0} İndiriliyor" },
+                { "log_Extracting", "{0} Çıkartılıyor" },
+                { "log_ExtractingPKG", "pkg2zip ile bittersmile demosu çıkartılıyor..." },
+                { "log_Trimming", "Bittersmile demosundan gereksiz dosyalar temizleniyor..." },
+                { "log_MoveToHencore", "{0} h-encore dizinine taşınıyor..." },
+                { "log_MoveLicense", "Lisans dosyası taşınıyor..." },
+                { "log_GetCMA", "AID {0} için CMA şifreleme anahtarı oluşturuluyor" },
+                { "log_GotCMA", "{0} için CMA şifreleme anahtarı oluşturuldu" },
+                { "log_Packaging", "psvimgtools ile h-encore {0} arşivleniyor..." },
+                { "log_MoveToQCMA", "h-encore dosyaları QCMA APP dizinine taşınıyor...\r\n" },
+                { "log_Finished", "auto h-encore yüklemesi tamamlandı!!\r\n" },
+
+                { "title_Main", "auto h-encore" },
+                { "title_Import", "Varolan Dosyaları Aktar" },
+                { "title_Warning", "Uyarı" },
+                { "title_Error", "Hata" }
 
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
     }
