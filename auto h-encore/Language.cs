@@ -38,7 +38,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "Browse" },
                 { "btn_Next", "Next" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (Firmware 3.68 ONLY)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Trim excess content from bitter smile demo (reduces h-encore app size from ~240MB to ~13MB)" },
                 { "cbx_DeleteExisting", "Delete existing files (do this if something went wrong before)" },
@@ -134,7 +134,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "浏览" },
                 { "btn_Next", "下一步" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (仅限 3.68 版本系统)" },
+                { "btn_Wifi", "Wi-Fi" },
 
 
                 { "cbx_Trim", "删减 bitter smile demo 的多余内容 (将 h-encore app 大小 从 240MB 减小到 13MB)" },
@@ -231,7 +231,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "Navegar" },
                         { "btn_Next", "Siguiente" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (SOLO Firmware 3.68)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Eliminar contenido sobrante de la demo bitter smile (reduce el tamaño de app de H-encore de ~240MB a ~13MB)." },
                 { "cbx_DeleteExisting", "Borrar archivos existentes (haz esto si ha ocurrido algún error en el proceso)." },
@@ -327,7 +327,7 @@ namespace auto_h_encore {
 
                         { "btn_Next", "Avanti" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (SOLO Firmware 3.68 )" },
+                { "btn_Wifi", "Wi-Fi" },
 
 
                 { "cbx_Trim", "Ritaglia il contenuto in eccesso dalla demo bitter smile (riduce le dimensioni delle app h-encore da ~ 240 MB a ~ 13 MB)" },
@@ -424,10 +424,9 @@ namespace auto_h_encore {
                 { "btn_Start", "Начать" },
                 { "btn_Done", "Готово" },
                 { "btn_Browse", "Обзор" },
-
-                        { "btn_Next", "Далее" },
+                { "btn_Next", "Далее" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "Wi-Fi (Только прошивка 3.68)" },
+                { "btn_Wifi", "Wi-Fi" },
 
 
                 { "cbx_Trim", "Обрезать лишний контент из bittersmile demo (размер h-encore уменьшается с ~240MБ до ~13MБ)" },
@@ -522,9 +521,9 @@ namespace auto_h_encore {
                 { "btn_Start", "Iniciar" },
                 { "btn_Done", "Feito" },
                 { "btn_Browse", "Procurar" },
-                        { "btn_Next", "Próximo" },
+                { "btn_Next", "Próximo" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (Firmware 3.68 SOMENTE)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Tirar o conteúdo excessivo do demo bitter smile (reduz o tamanho do app h-encore de ~240MB para ~13MB)" },
                 { "cbx_DeleteExisting", "Deletar arquivos existentes (faça isso se alguma coisa deu errada antes)" },
@@ -617,9 +616,9 @@ namespace auto_h_encore {
                 { "btn_Start", "Démarrer" },
                 { "btn_Done", "Fini" },
                 { "btn_Browse", "Parcourir" },
-        { "btn_Next", "Suivant" },
+                { "btn_Next", "Suivant" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "Wi-Fi (Firmware 3.68 SEULEMENT)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Réduit l’excès de contenu de la démo bitter smile (réduire la taille de l'application h-encore de ~240MB a ~13MB)" },
                 { "cbx_DeleteExisting", "Supprimer les fichiers existants (Faites ceci en cas d'erreur)" },
@@ -712,9 +711,9 @@ namespace auto_h_encore {
                 { "btn_Start", "Start" },
                 { "btn_Done", "Fertig" },
                 { "btn_Browse", "Durchsuchen" },
-                        { "btn_Next", "Weiter" },
+                { "btn_Next", "Weiter" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (nur PS Vita System-Version 3.68)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Überflüssigen Inhalt der Bitter Smile Demo entfernen (Reduziert die Größe der h-encore-App von ~240MB auf ~13MB)" },
                 { "cbx_DeleteExisting", "Bestehende Dateien löschen (tue dies, falls zuvor etwas schiefgelaufen ist)" },
@@ -809,7 +808,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "参照" },
                 { "btn_Next", "次へ" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (FW3.68のみ)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "bitter smile.体験版から余分なデータを削除(h-encoreアプリのサイズを240MBから13MBに減らす)" },
                 { "cbx_DeleteExisting", "既存のファイルを削除(エラーが起きた場合)" },
@@ -903,7 +902,7 @@ namespace auto_h_encore {
                 { "btn_Browse", "Gözat" },
                 { "btn_Next", "İleri" },
                 { "btn_USB", "USB" },
-                { "btn_Wifi", "WiFi (SADECE 3.68 yazılımı içindir)" },
+                { "btn_Wifi", "Wi-Fi" },
 
                 { "cbx_Trim", "Bitter Smile demosundan gereksiz dosyaları temizle (h-encore boyutu ~240MB'den ~13MB'ye düşecektir)" },
                 { "cbx_DeleteExisting", "Varolan dosyaları sil (Hata aldıysanız bunu yapın)" },

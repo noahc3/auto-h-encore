@@ -146,6 +146,7 @@
             this.lblWifiProblem.Size = new System.Drawing.Size(569, 46);
             this.lblWifiProblem.TabIndex = 15;
             this.lblWifiProblem.Text = "WIFI PROBLEMS";
+            this.lblWifiProblem.Visible = false;
             // 
             // Form1
             // 
