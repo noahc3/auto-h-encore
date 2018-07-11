@@ -53,6 +53,8 @@ Other changes are also welcome through pull requests.
  - barbabarros for the Brazilian Portuguese translation.
  - wababc and Retsukun for the French translation.
  - barooney and fyr77 for the German translation.
+ - Hack-Usagi for the Japanese translation.
+ - Localizati0n for the Turkish translation.
  
 ### Scene
  - fyr77 for giving me a good reference for getting QCMA automation working.
