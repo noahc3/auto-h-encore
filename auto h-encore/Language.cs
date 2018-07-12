@@ -966,6 +966,100 @@ namespace auto_h_encore {
                 { "title_Import", "Varolan Dosyaları Aktar" },
                 { "title_Warning", "Uyarı" },
                 { "title_Error", "Hata" }
+            } },
+                { "Magyar",  new Dictionary<string, string> {
+                { "lbl_ChooseLanguage", "Válassz nyelvet:" },
+                { "lbl_VersionText", "auto h-encore verzió " },
+                { "lbl_Issues", "Hiba követő" },
+                { "lbl_ConnectionMethod", "Hogyan szeretnéd csatlakoztatni a PS vitát a h-encore másolásához?" },
+                { "lbl_UnplugVita", "Ha a vitád bevan dugva, húzd ki, és nyomj a következő re." },
+                { "lbl_InstallingUSB", "USB illesztőprogram telepítése, kérlek várj..." },
+                { "lbl_WifiProblems", "Ha a vitád azt írja frissíteni akar, kapcsold ki a wifit és indítsd újra. Ez azt jelenti hogy nem tudod wifin felmásolni a h-encore t frissítés nélkül!" },
+
+                { "status_NoFile", "Nincs fájl kiválasztva, letöltés." },
+                { "status_Invalid", "Hibás elérési út." },
+                { "status_Valid", "Fájl kiválasztva és hash egyezik, importálás." },
+                { "status_BadHash", "Fájl kiválasztva de a hash nem egyezik, letöltés." },
+                { "status_Override", "Fájl kiválasztva de a hash nem egyezik. Hash felülírás bekapcsolva, importálás." },
+                { "status_Calculating", "Fájl hash számítása..." },
+
+                { "txtblock_BeforeRunning", "Az alkalmazás automatikusan letölti a QCMA-t ha nincs feltelepítve. Automatikusan elindítja. Ez azt jelenti:\r\n    Ha a QCMA nincs telepítve:\r\n        a QCMA le lesz töltve a számítógépedre.\r\n        Az USB illesztőprogram telepítve lesz ha az USB-n keresztüli telepítést választod\r\n    Hs a QCMA telepítve van:\r\n        A meglévő QCMA-dat fogja használni.\r\n        Nincs új USB illesztőprogram telepítve, és a beállításaid nem lesznek felülírva.\r\n\r\nAlapvetően, nem kell a QCMA hoz nyúlnod ha nincsenek gondok vele. Ha problémát találsz, jelezd a hibakövetőnél."},
+                { "txtblock_Import", "ha már letöltötted a fájlokat, és nem szeretnéd hogy az alkalmazás letöltse, kiválaszthatod hogy azokat a fájlokat használod az importálásnál." },
+                { "txtblock_USBInstructions", "Csatlakoztasd a PS Vitád.\r\n\r\nHa semmi nem történik:\r\n1. Indítsd el a Content Manager-t a PS Vitádon\r\n2. Válaszd hogy Copy Content\r\n3. Ha bejött: válaszd hogy PC aztán USB\r\n\r\nHa nem működik, Próbáld újraindítani a géped és a PS Vitád és próbáld újra (és csináld újra a lépéseket).\r\n\r\nHa nem működik, manuálisan kell feltelepítened a QCMA-t és más illesztőprogramot válassz a libusbk-n kívül." },
+                { "txtblock_WifiInstructions", "A PS Vitádon:\r\n1. Indítsd a Content Manager-t\r\n2. válaszd hogy Copy Content\r\n3. Vélaszd hogy PC\r\n4. aztán Wifi\r\n5. Válaszd ki a PC-d nevét\r\n6. Írd be a kódot ami látsz a PC-n\r\n7. Válaszd hogy Register\r\n\r\nHa nem működik, bizonyosodj meg róla hogy egy hálózatra csatlakozik a PC-d és a PS Vitád, vagy indítsd újra az alkalmazást és próbáld USB-n." },
+
+                { "btn_Import", "Már letöltöttem a fájlokat és nem szeretném újra letölteni" },
+                { "btn_Ok", "OK" },
+                { "btn_Close", "Bezár" },
+                { "btn_Start", "Indít" },
+                { "btn_Done", "Kész" },
+                { "btn_Browse", "Tallózás" },
+                { "btn_Next", "Következő" },
+                { "btn_USB", "USB" },
+                { "btn_Wifi", "Wi-Fi" },
+
+                { "cbx_Trim", "bitter smile trimmelése (a h-encore app csak 13mb ot foglal a 242mb helyett)" },
+                { "cbx_DeleteExisting", "Létező fájlok törlése (tedd ezt ha valami szarul ment előbb)" },
+                { "cbx_OverrideHashes", "Hash ellenőrzés kihagyása" },
+
+                { "browse_Generic", "Tallózás ehhez " },
+
+                { "info_Finish",  "A h-encore telepítésed befejezéséhez:\r\n"
+                        + "1. Csatlakoztasd a PS Vitád a PC-dhez Content Managerrel ahogy előbb csináltad (csak akkor ha nincs csatlakoztatva)\r\n"
+                        + "     Ha azt mondja frissítened kell, kapcsold ki a wifit és indítsd újra a PS Vitád\r\n"
+                        + "2. A Content Managerben, válaszd hogy PC -> PS Vita System\r\n"
+                        + "3. Válaszd hogy Applications\r\n"
+                        + "4. Válaszd hogy PS Vita\r\n"
+                        + "5. Pipáld ki a h-encoret és nyomj a Copy-ra\r\n"
+                        + "6. Indítsd a h-encore alkalmazást a PS Vitád menüjéből\r\n"
+                        + "     Ha hibát ír elsőnek, próbáld meg újraindítani a Vitád és indítsd el az alkalmazást\r\n\r\n"
+                        + "Kész!"},
+
+                { "warn_HashCompat", "A kompatibilitás nem garantált ha más verziót hasznélsz a fájlokból ezt az alkalmazást nem erre találták ki. Így is folytatod?" },
+                { "warn_DeleteExistingBittersmile", "El kell távolítanod a létező bittersmile demót a QCMA könyvtáradból. Ha megakarod tartani, helyezd át most. Törlöd?" },
+
+                { "error_WebException", "Nem sikerült letölteni. Ellenőrizd az interneted." },
+                { "error_Unknown", "Valami szarul ment: {0}" },
+                { "error_DirectoryNotFoundException", "Egy könyvtár eltúnt (törölted te fasz?) VAGY nem sikerült kibontani előbb VAGY nem támogatott fájlt használsz te gyökér." },
+                { "error_UnauthorizedAccessException", "Az alkalmazásnak nincs írási engedélye a helyhez. Futtasd rendszergazdaként az alkalmazást." },
+                { "error_FileNotFoundException",  "Egy könyvtár eltúnt (törölted te fasz?) VAGY nem sikerült kibontani előbb VAGY nem támogatott fájlt használsz te gyökér."},
+                { "error_InvalidOperationException",  "Nem jó a letöltés. Ellenőrizd hogy stabil e az interneted."},
+                { "error_TargetInvocationException", "MD5 HIBA." },
+                { "error_Template", "Hiba {0} történt.\r\n\r\n{1}\r\n\r\nKérlek próbáld újra. If you can't solve the issue, please create an issue on the issue tracker with this error code." },
+                { "error_Redownload",  "Hiba 1001-0105\r\n\r\nNem sikerült letölteni a fájlt {0}\r\n\r\nEllenőrizd az interneted és/vagy próbáld újra. ha nem működik, create an issue on the Github issue tracker."},
+
+                { "log_SearchingForQCMA", "QCMA keresése..." },
+                { "log_FoundQCMA", "QCMA találva." },
+                { "log_QCMANotFound", "QCMA nem található, letöltés." },
+                { "log_KillingQCMA", "futó QCMA alkalmazás kinyírása..." },
+                { "log_QCMARegistry", "Importing QCMA registry information..." },
+                { "log_ScrubAID", "Scrubbing AID value" },
+                { "log_Prompt", "infoormáció megadása..." },
+                { "log_Done", "        kész!" },
+                { "log_WipeFiles", "Régi fájlok törlése..." },
+                { "log_Import", "Fájl importálés ennek a fájlnak {0} rendben." },
+                { "log_DownloadValid", "Fájl {0} már levan töltve és rendben van, nem kell újratölteni." },
+                { "log_DownloadInvalid", "Fájl {0} levan töltve de szar, újra lesz töltve." },
+                { "log_NotDownloaded", "Fájl {0} nincs letöltve sem importálva, lefogja tölteni." },
+                { "log_WorkingDirs", "Könyvtárak Generálása..." },
+                { "log_CorrectLocation", "Fájl {0} jó helyen van, átugrás." },
+                { "log_Importing", "Importálás {0}" },
+                { "log_Downloading", "Letöltés {0}" },
+                { "log_Extracting", "Kibontás {0}" },
+                { "log_ExtractingPKG", "bittersmile demó kibontása..." },
+                { "log_Trimming", "Felesleges fájlok kiírtása a bittersmile demóból..." },
+                { "log_MoveToHencore", "Mozgatás {0} a h-encore mappájába..." },
+                { "log_MoveLicense", "License fájl mozgatása..." },
+                { "log_GetCMA", "CMA titkosító kulcs megszerzése AID al {0}" },
+                { "log_GotCMA", "CMA titkosító kulcs megszerezve {0}" },
+                { "log_Packaging", "h-encore csomagolása {0} psvimgtools al..." },
+                { "log_MoveToQCMA", "h-encore fájlok mozgatása a QCMA APP környvtárába...\r\n" },
+                { "log_Finished", "auto h-encore Végzett!!\r\n" },
+
+                { "title_Main", "auto h-encore" },
+                { "title_Import", "Létező fájlok importásása" },
+                { "title_Warning", "Figyelmeztetés" },
+                { "title_Error", "Hiba" }
             } }
         };
         
