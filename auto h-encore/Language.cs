@@ -966,8 +966,8 @@ namespace auto_h_encore {
                 { "title_Import", "Varolan Dosyaları Aktar" },
                 { "title_Warning", "Uyarı" },
                 { "title_Error", "Hata" }
-            } }
-                        { "Magyar",  new Dictionary<string, string> {
+            } },
+                { "Magyar",  new Dictionary<string, string> {
                 { "lbl_ChooseLanguage", "Válassz nyelvet:" },
                 { "lbl_VersionText", "auto h-encore verzió " },
                 { "lbl_Issues", "Hiba követő" },
@@ -1060,6 +1060,7 @@ namespace auto_h_encore {
                 { "title_Import", "Létező fájlok importásása" },
                 { "title_Warning", "Figyelmeztetés" },
                 { "title_Error", "Hiba" }
+            } }
         };
         
         public static Dictionary<string, string> MountedLanguage = Languages["English"];
