@@ -55,6 +55,7 @@ Other changes are also welcome through pull requests.
  - barooney and fyr77 for the German translation.
  - Hack-Usagi for the Japanese translation.
  - Localizati0n for the Turkish translation.
+ - TheOneEyedGrimReaper for the Hungarian translation.
  
 ### Scene
  - fyr77 for giving me a good reference for getting QCMA automation working.
