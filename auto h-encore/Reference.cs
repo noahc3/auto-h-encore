@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace auto_h_encore {
     public static class Reference {
-        public static readonly string version = "0.4.3";
+        public static readonly string version = "0.4.4";
         public static readonly string config_language = Environment.CurrentDirectory + "\\settings.conf";
 
         public static readonly string path_hencore = Environment.CurrentDirectory + "\\data\\h-encore\\";
