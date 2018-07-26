@@ -3,6 +3,8 @@ A C# (.NET) application to automate the PC process of getting h-encore running o
 
 This application is **WINDOWS ONLY**.
 
+**This application will not be updated in the future. Please use [finalhe by soarqin](https://github.com/soarqin/finalhe), which also supports OSX and Linux.**
+
 ![screenshot](https://puu.sh/AT1YE/8d33549df5.png "screenshot")
 
 ## Features
@@ -22,8 +24,6 @@ This application does everything required for h-encore related to your PC. This 
 Basically, you just need to read and interact with your Vita.
 
 ## Usage
-
-The average user should probably follow [vita.hacks.guide](https://vita.hacks.guide/), which includes the process of using this application. Otherwise:
 
 The application has been verified working on all PS Vita models (including PSTV).
 
